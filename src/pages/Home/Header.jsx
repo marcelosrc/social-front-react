@@ -1,5 +1,4 @@
 import logo from '../../images/logo.png'
-import {Navigate} from 'react-router-dom'
 
 export default function Header() {
     function logout() {

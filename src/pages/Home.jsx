@@ -1,14 +1,12 @@
 import {Helmet, HelmetProvider} from 'react-helmet-async'
-import {Navigate} from 'react-router-dom'
+import CheckAuth from './Login/CheckAuth'
 import Header from './Home/Header'
 import Body from './Home/Body'
 
 export default function Home() {
-    if (!localStorage.jwt) {
-        <Navigate to="/login"/>
-    }
     return (
         <>
+            <CheckAuth />
             <HelmetProvider>
                 <Helmet>
                     <link rel="stylesheet" href="/styles/home.css" />

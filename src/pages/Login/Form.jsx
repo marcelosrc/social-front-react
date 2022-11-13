@@ -1,6 +1,6 @@
 import React from 'react'
+import { Navigate } from 'react-router-dom'
 import axios from 'axios'
-import {Navigate} from 'react-router-dom'
 
 function greetings() {
     const date = new Date()
@@ -28,19 +28,16 @@ export default class Form extends React.Component {
         this.setState({[event.target.name]: event.target.value})
     }
     handleSubmit(event) {
-        const {email,password} = this.state
         event.preventDefault()
-        axios.post('/login', {
-            email,
-            password
-        })
-        .then((response) => {
-            localStorage.setItem('jwt',response.data.jwt)
-            this.setState({isLogged: true})
-        })
-        .catch((error) => {
-            alert(error.response.data.message)
-        })
+        const {email, password} = this.state
+        axios.post('/login', {email, password})
+            .then((response) => {
+                localStorage.setItem('jwt',response.data.jwt)
+                this.setState({isLogged: true})
+            })
+            .catch((error) => {
+                alert(error.response.data.message)
+            })
     }
     render() {
         return (
@@ -58,7 +55,7 @@ export default class Form extends React.Component {
                 </a>
                 <br/>
                 <button className="standard-button" type="submit">Login</button>
-                {this.state.isLogged && (<Navigate to="/"/>)}
+                {this.state.isLogged && <Navigate to="/"/>}
             </form>
         )
     }
