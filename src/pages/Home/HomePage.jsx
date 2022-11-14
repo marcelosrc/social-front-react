@@ -1,13 +1,31 @@
 import {Helmet, HelmetProvider} from 'react-helmet-async'
+import React from 'react'
 import CheckAuth from '../Login/CheckAuth'
 import ContentPost from './ContentPost'
 import logo from '../../images/logo.png'
 import profileDefaultImage from '../../images/default.png'
+import axios from 'axios'
 
 export default function Home() {
+
     function logout() {
         localStorage.removeItem('jwt')
     }
+
+    const [profile, setProfile] = React.useState(null)
+    React.useEffect(() => {
+        axios.get("/users/me", {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+            }
+        })
+        .then((res) => {
+            setProfile(res.data)
+        })
+    }, [])
+    if (!profile) return null
+    
+
     return (
         <>
             <CheckAuth />
@@ -29,8 +47,8 @@ export default function Home() {
             <div className="flex-container">
                 <div className="profile">
                     <img id="profile-picture" width="200" height="200" src={profileDefaultImage} alt="Nome"/>
-                    <h2 id="profile-name">Nome</h2>
-                    <h2 id="profile-surname">Sobrenome</h2>
+                    <h2 id="profile-name">{profile.me.name}</h2>
+                    <h2 id="profile-surname">{profile.me.surname}</h2>
                     <div className="profile-panel">
                     </div>
                 </div>
