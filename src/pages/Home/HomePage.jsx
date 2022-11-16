@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import CheckAuth from '../Login/CheckAuth'
-import ContentPost from './ContentPost'
+import MyFeed from './MyFeed'
 import logo from '../../images/logo.png'
 import profileDefaultImage from '../../images/default.png' //SEUS DIAS ESTÃO CONTADOS
 
@@ -60,7 +60,7 @@ export default class Home extends React.Component {
                             <input className="post-input" id="content" name="content" type="text"/>
                             <button className="standard-button" type="submit">Postar</button>
                         </form>
-                        <ContentPost />
+                        <MyFeed />
                     </div>
                 </div>
             </>
