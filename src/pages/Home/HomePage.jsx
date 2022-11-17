@@ -3,14 +3,15 @@ import axios from 'axios'
 import CheckAuth from '../Login/CheckAuth'
 import MyFeed from './MyFeed'
 import logo from '../../images/logo.png'
-import profileDefaultImage from '../../images/default.png' //SEUS DIAS ESTÃO CONTADOS
+import profileDefaultImage from '../../images/default.png'
 
 export default class Home extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             name: '',
-            surname: ''
+            surname: '',
+            profilePic: profileDefaultImage
         }
     }
     componentDidMount() {
@@ -48,7 +49,7 @@ export default class Home extends React.Component {
                 </header>
                 <div className="homepage-flex-container">
                     <div className="profile">
-                        <img width="200" height="200" src={profileDefaultImage} alt={this.state.nome}/>
+                        <img width="200" height="200" src={this.state.profilePic} alt={this.state.nome}/>
                         <h2>{this.state.name}</h2>
                         <h2>{this.state.surname}</h2>
                         <div className="profile-panel">
