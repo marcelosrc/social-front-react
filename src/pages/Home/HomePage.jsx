@@ -27,7 +27,7 @@ export default class Home extends React.Component {
             }
         })
         .then((res) => {
-            this.setState(res.data.me)
+            this.setState(res.data)
         })
         .catch((error) => {
             console.log(error.message)
@@ -49,7 +49,7 @@ export default class Home extends React.Component {
                 </header>
                 <div className="homepage-flex-container">
                     <div className="profile">
-                        <img width="200" height="200" src={this.state.profilePic} alt={this.state.nome}/>
+                        <img className="profile-picture" width="200" height="200" src={this.state.profilePic} alt={this.state.nome}/>
                         <h2>{this.state.name}</h2>
                         <h2>{this.state.surname}</h2>
                         <div className="profile-panel">

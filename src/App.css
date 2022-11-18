@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
 
+/*GLOBAIS*/
+
 * {
     margin: 0;
     padding: 0;
@@ -35,6 +37,25 @@ a {
     padding: 10px;
 }
 
+
+/*ANIMAÇÕES-EFEITOS*/
+
+.tint {
+    filter: grayscale(100%);
+}
+
+.fade-in {
+    animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+
+/*PÁGINA DE LOGIN*/
+
 .loginpage-flex-container {
     display: flex;
     align-items: center;
@@ -65,6 +86,17 @@ a {
     justify-content: center;
 }
 
+
+/*HOME*/
+
+.homepage-flex-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+
+/*HOME>HEADER*/
+
 header {
     position: fixed;
     display: flex;
@@ -92,23 +124,24 @@ header {
     gap: 30px;
 }
 
-.homepage-flex-container {
-    display: flex;
-    min-height: 100vh;
-}
+
+/*HOME>PROFILE*/
 
 .profile {
     padding: 100px 50px;
     width: 200px;
 }
 
-#profile-picture {
+.profile-picture {
     border-radius: 10px;
 }
 
 .profile-panel {
     margin: 10px 0px 10px 0px;
 }
+
+
+/*INPUT DE POST*/
 
 .post-input-box {
     display: flex;
@@ -131,6 +164,9 @@ header {
     background-color: whitesmoke;
     padding: 10px;
 }
+
+
+/*MYFEED*/
 
 .myfeed {
     padding: 100px 50px;
@@ -158,17 +194,4 @@ header {
 
 .post-profile-picture > img {
     border-radius: 5px;
-}
-
-.tint {
-    filter: grayscale(100%);
-}
-
-.fade-in {
-    animation: fadeIn 0.5s;
-}
-
-@keyframes fadeIn {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
 }
