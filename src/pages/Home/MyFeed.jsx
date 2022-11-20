@@ -13,14 +13,11 @@ export default class MyFeed extends React.Component {
     componentDidMount() {
         this.renderPosts()
     }
-    componentWillUnmount() {
-        clearInterval(this.renderPosts)
-    }
     renderPosts() {
         const authHeader = `Bearer ${localStorage.getItem('jwt')}`
-        const getMe = axios.get("/users/me", {headers: {'Authorization' : authHeader}})
-        const getMyPosts = axios.get("/posts/me", {headers: {'Authorization' : authHeader}})
-        Promise.all([getMe, getMyPosts]).then((res) => {
+        const myData = axios.get("/users/me", {headers: {'Authorization' : authHeader}})
+        const myPosts = axios.get("/posts/me", {headers: {'Authorization' : authHeader}})
+        Promise.all([myData, myPosts]).then((res) => {
             this.setState({
                 posts : res[1].data.myPosts,
                 info : res[0].data

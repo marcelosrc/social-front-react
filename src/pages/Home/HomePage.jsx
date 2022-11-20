@@ -1,9 +1,9 @@
 import React from 'react'
 import axios from 'axios'
-import CheckAuth from '../Login/CheckAuth'
 import MyFeed from './MyFeed'
 import logo from '../../images/logo.png'
 import profileDefaultImage from '../../images/default.png'
+
 
 export default class Home extends React.Component {
     constructor(props) {
@@ -13,37 +13,37 @@ export default class Home extends React.Component {
             surname: '',
             profilePic: profileDefaultImage
         }
+        this.handleLogout = this.handleLogout.bind(this)
     }
     componentDidMount() {
-        this.setProfile()
+        this.showProfile()
     }
-    componentWillUnmount() {
-        clearInterval(this.setProfile)
-    }
-    setProfile() {
-        axios.get("/users/me", {
-            headers: {
-                'Authorization': `Bearer ${localStorage.getItem('jwt')}`
-            }
-        })
-        .then((res) => {
-            this.setState(res.data)
+    showProfile() {
+        const authHeader = `Bearer ${localStorage.getItem('jwt')}`
+        axios.get("/users/me", {headers: {'Authorization' : authHeader}}).then((res) => {
+            this.setState({
+                name : res.data.name,
+                surname : res.data.surname,
+                profilePic: res.data.profilePic
+            })
         })
         .catch((error) => {
             console.log(error.message)
         })
     }
+    handleLogout() {
+        localStorage.removeItem('jwt')
+    }
     render() {
         return (
             <>
-                <CheckAuth />
                 <header>
                     <div className="header-left">
                         <img width="50px" height="50px" src={logo} alt="Home"/>
                         <input className="standard-input" type="text" placeholder="Busca"/>
                     </div>
                     <div className="header-right">
-                        <a href="/">Sair</a>
+                        <a href="/login" onClick={this.handleLogout}>Sair</a>
                         <a href="https://giphy.com/gifs/masterchefbr-help-masterchef-vxdhxk40EKRHpRbeSp" rel="noopener noreferrer" target="_blank">Ajuda</a>
                     </div>
                 </header>

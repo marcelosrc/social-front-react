@@ -34,7 +34,7 @@ export default class Register extends React.Component {
             <>
                 <form onSubmit={this.handleSubmit}>
                     <label htmlFor="profilePic">Foto</label><br/>
-                    <input name="profilePic" type="file" enctype="multipart/form-data"/><br/>
+                    <input name="profilePic" type="file" encType="multipart/form-data"/><br/>
                     <label htmlFor="email">Email</label><br/>
                     <input name="email" type="text" value={this.state.email} onChange={this.handleChange}/><br/>
                     <label htmlFor="name">Nome</label><br/>
