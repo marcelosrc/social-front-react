@@ -141,7 +141,7 @@ header {
 }
 
 
-/*INPUT DE POST*/
+/*INPUTPOST*/
 
 .post-input-box {
     display: flex;
@@ -166,9 +166,9 @@ header {
 }
 
 
-/*MYFEED*/
+/*GENERALFEED*/
 
-.myfeed {
+.generalfeed {
     padding: 100px 50px;
 }
 
@@ -194,4 +194,10 @@ header {
 
 .post-profile-picture > img {
     border-radius: 5px;
+}
+
+/*NADA AINDA PAI, MAS É BEM A DIREITA DO GENERAL FEED! :)*/
+
+.nadaaindapai {
+    padding: 100px 50px;
 }

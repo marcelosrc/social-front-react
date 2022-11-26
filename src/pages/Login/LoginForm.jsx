@@ -35,7 +35,7 @@ export default class Form extends React.Component {
         }).then((response) => {
             localStorage.setItem('jwt',response.data.jwt)
             this.setState({isAbleToLogin: true})
-            window.location.reload() //ISSO NÃO PARECE CERTO
+            window.location.reload() //GAMBIARRA
         })
         .catch((error) => {alert(error.response.data.message)})
     }
@@ -47,14 +47,7 @@ export default class Form extends React.Component {
                     <label>Email</label>
                     <input className="standard-input" name="email" type="text" value={this.state.email} onChange={this.handleChange}/><br/>
                     <label>Senha</label>
-                    <input className="standard-input" name="password" type="password" value={this.state.password} onChange={this.handleChange}/>
-                    <a href="https://giphy.com/gifs/se-fudeu-fodeu-Y4c8GgvNh7BiBbv8fp" target="_blank" rel="noreferrer">
-                        <p>Esqueci minha senha</p>
-                    </a>
-                    <a href="/register">
-                        <p>Criar conta</p>
-                    </a>
-                    <br/>
+                    <input className="standard-input" name="password" type="password" value={this.state.password} onChange={this.handleChange}/><br/>
                     <button className="standard-button" type="submit">Login</button>
                 </form>
             </>

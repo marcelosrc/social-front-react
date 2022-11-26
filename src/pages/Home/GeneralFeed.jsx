@@ -2,12 +2,16 @@ import React from 'react'
 import axios from 'axios'
 import profileDefaultImage from '../../images/default.png'
 
-export default class MyFeed extends React.Component {
+export default class GeneralFeed extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            posts : [],
-            profilePic : profileDefaultImage
+            data: [{
+                _id: '',
+                name: '',
+                profilePic: profileDefaultImage,
+                content: ''
+            }]
         }
     }
     componentDidMount() {
@@ -15,23 +19,18 @@ export default class MyFeed extends React.Component {
     }
     renderPosts() {
         const authHeader = `Bearer ${localStorage.getItem('jwt')}`
-        const myData = axios.get("/users/me", {headers: {'Authorization' : authHeader}})
-        const myPosts = axios.get("/posts/me", {headers: {'Authorization' : authHeader}})
-        Promise.all([myData, myPosts]).then((res) => {
-            this.setState({
-                posts : res[1].data.myPosts,
-                info : res[0].data
-            })
+        axios.get("/queries/generalfeed", {headers: {'Authorization' : authHeader}}).then((res) => {
+            this.setState(res)
         }).catch((error) => (error.message))
     }
     render() {
-        const renderedPost = this.state.posts.map((post) => (
+        const renderedPost = this.state.data.map((post) => (
             <div key={post._id} className="post fade-in">
                 <div className="post-profile-picture">
-                    <img width="100" height="100" src={this.state.info.profilePic} alt="Nome"/>
+                    <img width="100" height="100" src={post.profilePic} alt={post.name}/>
                 </div>
                 <div className="post-profile-content"> 
-                    <h3>{this.state.info.name}</h3>
+                    <h3>{post.name}</h3>
                     <p>{post.content}</p>
                 </div>
             </div>
