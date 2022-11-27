@@ -20,6 +20,11 @@ a {
     text-decoration: none;
 }
 
+small {
+    font-size: 12px;
+    font-weight: bold
+}
+
 .standard-input {
     width: 200px;
     height: 20px;
@@ -172,6 +177,9 @@ header {
     padding: 100px 50px;
 }
 
+
+/*POST*/
+
 .post {
     display: flex;
     gap: 10px;
@@ -193,8 +201,15 @@ header {
 }
 
 .post-profile-picture > img {
-    border-radius: 5px;
+    border-radius: 5px
 }
+
+.post-profile {
+    color: lightgray;
+    line-height: 14px;
+    text-align: center
+}
+
 
 /*NADA AINDA PAI, MAS É BEM A DIREITA DO GENERAL FEED! :)*/
 
