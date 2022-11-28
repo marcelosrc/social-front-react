@@ -2,9 +2,8 @@ import React from 'react'
 import axios from 'axios'
 import Header from './Header'
 import GeneralFeed from './GeneralFeed'
-import PostInputBox from './PostInputBox'
+import PeoplePanel from './PeoplePanel'
 import profileDefaultImage from '../../images/default.png'
-
 
 export default class Home extends React.Component {
     constructor(props) {
@@ -40,13 +39,8 @@ export default class Home extends React.Component {
                             
                         </div>
                     </div>
-                    <div className="generalfeed">
-                        <PostInputBox />
-                        <GeneralFeed />
-                    </div>
-                    <div className="nadaaindapai">
-
-                    </div>
+                    <GeneralFeed />
+                    <PeoplePanel />
                 </div>
             </>
         )

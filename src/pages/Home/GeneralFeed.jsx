@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import PostInputBox from './PostInputBox'
 import profileDefaultImage from '../../images/default.png'
 
 export default class GeneralFeed extends React.Component {
@@ -36,7 +37,13 @@ export default class GeneralFeed extends React.Component {
                 formattedDate.getHours(),
                 formattedDate.getMinutes()
             ]
-            return <small>{day}/{month} - {hours}:{minutes}</small>
+            if (new Date()) {
+                return <small>{hours}:{minutes}</small>
+            } else if (new Date() - 1) {
+                return <small>{hours}:{minutes} (Ontem)</small>
+            } else {
+                return <small>{hours}:{minutes} ({day}/{month})</small>
+            }
         }
         const renderedPost = this.state.data.map((post) => (
             <div key={post._id} className="post fade-in">
@@ -54,7 +61,10 @@ export default class GeneralFeed extends React.Component {
         ))
         return (
             <>
-                {renderedPost}
+                <div className="generalfeed">
+                    <PostInputBox />
+                    {renderedPost}
+                </div>
             </>
         )
     }

@@ -211,14 +211,17 @@ header {
 
 .post-profile {
     color: lightgray;
-    line-height: 14px;
-    text-align: center
+    line-height: 14px
 }
 
 
-/*NADA AINDA PAI, MAS É BEM A DIREITA DO GENERAL FEED! :)*/
+/*PEOPLE-PANEL*/
 
-.nadaaindapai {
+.people-panel {
     padding: 100px 10px;
     width: 200px;
+}
+
+.people {
+    padding-bottom: 10px
 }
