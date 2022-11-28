@@ -18,6 +18,9 @@ export default class GeneralFeed extends React.Component {
     componentDidMount() {
         this.renderPosts()
     }
+    componentDidUpdate() {
+        this.renderPosts()
+    }
     renderPosts() {
         const authHeader = `Bearer ${localStorage.getItem('jwt')}`
         axios.get("/queries/generalfeed", {headers: {'Authorization' : authHeader}}).then((res) => {

@@ -45,6 +45,10 @@ small {
 
 /*ANIMAÇÕES-EFEITOS*/
 
+.red {
+    color: red
+}
+
 .tint {
     filter: grayscale(100%);
 }
@@ -96,6 +100,7 @@ small {
 
 .homepage-flex-container {
     display: flex;
+    justify-content: center;
     min-height: 100vh;
 }
 
@@ -133,7 +138,7 @@ header {
 /*HOME>PROFILE*/
 
 .profile {
-    padding: 100px 50px;
+    padding: 100px 10px;
     width: 200px;
 }
 
@@ -174,7 +179,7 @@ header {
 /*GENERALFEED*/
 
 .generalfeed {
-    padding: 100px 50px;
+    padding: 100px 10px;
 }
 
 
@@ -214,5 +219,6 @@ header {
 /*NADA AINDA PAI, MAS É BEM A DIREITA DO GENERAL FEED! :)*/
 
 .nadaaindapai {
-    padding: 100px 50px;
+    padding: 100px 10px;
+    width: 200px;
 }
