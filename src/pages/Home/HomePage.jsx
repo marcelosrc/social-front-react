@@ -2,13 +2,14 @@ import React from 'react'
 import axios from 'axios'
 import Header from './Header'
 import GeneralFeed from './GeneralFeed'
-import PeoplePanel from './PeoplePanel'
+import CardsPanel from './CardsPanel'
 import profileDefaultImage from '../../images/default.png'
 
 export default class Home extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
+            id: '',
             name: '',
             surname: '',
             profilePic: profileDefaultImage
@@ -40,7 +41,7 @@ export default class Home extends React.Component {
                         </div>
                     </div>
                     <GeneralFeed />
-                    <PeoplePanel />
+                    <CardsPanel />
                 </div>
             </>
         )

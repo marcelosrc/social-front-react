@@ -215,13 +215,29 @@ header {
 }
 
 
-/*PEOPLE-PANEL*/
+/*CARDSPANEL*/
 
-.people-panel {
+.cards {
     padding: 100px 10px;
     width: 200px;
 }
 
-.people {
-    padding-bottom: 10px
+.people-card {
+    padding-bottom: 5px
+}
+
+.people-card-id {
+    display: flex
+}
+
+.people-card-picture {
+    border-radius: 5px;
+}
+
+.people-card-name {
+    padding-left: 10px;
+}
+
+.people-card-bio {
+    padding-bottom: 15px
 }
