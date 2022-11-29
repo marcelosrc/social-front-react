@@ -19,13 +19,13 @@ export default class Home extends React.Component {
         this.showProfile()
     }
     showProfile() {
-        const authHeader = `Bearer ${localStorage.getItem('jwt')}`
+        /*const authHeader = `Bearer ${localStorage.getItem('jwt')}`
         axios.get("/users/read/637c2f4cc14ee7cb1a990f21", {headers: {'Authorization' : authHeader}}).then((res) => {
             this.setState(res.data)
         })
         .catch((error) => {
             console.log(error.message)
-        })
+        })*/
     }
     render() {
         return (

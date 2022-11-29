@@ -138,7 +138,7 @@ header {
 /*HOME>PROFILE*/
 
 .profile {
-    padding: 100px 10px;
+    padding: 100px 20px;
     width: 200px;
 }
 
@@ -179,7 +179,7 @@ header {
 /*GENERALFEED*/
 
 .generalfeed {
-    padding: 100px 10px;
+    padding: 100px 20px;
 }
 
 
@@ -218,7 +218,7 @@ header {
 /*CARDSPANEL*/
 
 .cards {
-    padding: 100px 10px;
+    padding: 100px 20px;
     width: 200px;
 }
 
@@ -227,7 +227,8 @@ header {
 }
 
 .people-card-id {
-    display: flex
+    display: flex;
+    align-items: center
 }
 
 .people-card-picture {
@@ -238,6 +239,7 @@ header {
     padding-left: 10px;
 }
 
-.people-card-bio {
-    padding-bottom: 15px
+.people-card-bio, .people-card-bio > p {
+    padding-bottom: 5px;
+    font-size: 14px
 }

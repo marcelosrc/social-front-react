@@ -18,6 +18,9 @@ export default class PeopleCards extends React.Component {
     componentDidMount() {
         this.showPeopleCards()
     }
+    componentDidUpdate() {
+        this.showPeopleCards()
+    }
     showPeopleCards() {
         const authHeader = `Bearer ${localStorage.getItem('jwt')}`
         axios.get("/queries/peoplecards", {headers: {'Authorization' : authHeader}}).then((res) => {
