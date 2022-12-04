@@ -23,7 +23,7 @@ export default function GeneralFeed() {
       .then((data) => {
         setPosts(data);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => alert(err));
   }, []);
 
   function formatDate(date) {

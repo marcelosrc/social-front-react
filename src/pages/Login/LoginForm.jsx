@@ -32,7 +32,7 @@ export default function LoginForm() {
           localStorage.setItem("jwt", data.jwt);
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => alert(err));
   };
   return (
     <div className="rightside">

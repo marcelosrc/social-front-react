@@ -20,7 +20,7 @@ export default function HomePage() {
     })
       .then((res) => res.json())
       .then((data) => setCurrentUser(data))
-      .catch((err) => console.log(err));
+      .catch((err) => alert(err));
   }, []);
 
   return (

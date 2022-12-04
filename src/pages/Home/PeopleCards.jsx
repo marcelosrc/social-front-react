@@ -21,7 +21,7 @@ export default function PeopleCards() {
     })
       .then((res) => res.json())
       .then((data) => setPeople(data))
-      .catch((err) => console.log(err));
+      .catch((err) => alert(err));
   }, []);
 
   const renderedCard = people.map((card) => (

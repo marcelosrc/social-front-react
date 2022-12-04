@@ -8,7 +8,6 @@ export default function PostInputBox() {
   };
 
   const handleSubmit = (event) => {
-    console.log(postContent);
     event.preventDefault();
     fetch("/posts/create", {
       method: "POST",
@@ -19,8 +18,8 @@ export default function PostInputBox() {
       body: JSON.stringify({content: postContent}),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data))
-      .catch((err) => console.log(err));
+      .then((data) => alert(data.message))
+      .catch((err) => alert(err));
   };
 
   return (
