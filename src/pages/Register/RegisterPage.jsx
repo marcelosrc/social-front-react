@@ -1,58 +1,105 @@
-import axios from 'axios'
-import React from 'react'
+import React from "react";
 
-export default class Register extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            email: '',
-            name: '',
-            surname: '',
-            dob: '',
-            password: ''
-        }
-        this.handleChange = this.handleChange.bind(this)
-        this.handleSubmit = this.handleSubmit.bind(this)
-    }
-    handleChange(event) {
-        this.setState({[event.target.name]: event.target.value})
-    }
-    handleSubmit(event) {
-        event.preventDefault()
-        const {email, name, surname, dob, password} = this.state
-        axios.post("/users/create", {email, name, surname, dob, password})
-            .then((res) => {
-                localStorage.setItem('jwt',res.data.jwt)
-                this.setState({isLogged: true})
-            })
-            .catch((error) => {
-                alert(error.response.data.message)
-            })
-    }
-    render() {
-        return (
-            <>
-                <form onSubmit={this.handleSubmit}>
-                    <label htmlFor="profilePic">Foto</label><br/>
-                    <input name="profilePic" type="file" encType="multipart/form-data"/><br/>
-                    <label htmlFor="email">Email</label><br/>
-                    <input name="email" type="text" value={this.state.email} onChange={this.handleChange}/><br/>
-                    <label htmlFor="name">Nome</label><br/>
-                    <input name="name" type="text" value={this.state.name} onChange={this.handleChange}/><br/>
-                    <label htmlFor="surname">Sobrenome</label><br/>
-                    <input name="surname" type="text" value={this.state.surname} onChange={this.handleChange}/><br/>
-                    <label htmlFor="dob">Data de Nascimento</label><br/>
-                    <input name="dob" type="date" value={this.state.dob} onChange={this.handleChange}/><br/>
-                    <label htmlFor="password">Senha</label><br/>
-                    <input name="password" type="password" value={this.state.password} onChange={this.handleChange}/><br/>
-                    <label htmlFor="pwconf">Confirmação da Senha</label><br/>
-                    <input name="pwconf" type="password"/><br/><br/>
-                    <button type="submit">Criar</button><br/><br/>
-                </form>
-                <a href="/login">
-                    <button>Voltar</button>
-                </a>
-            </>
-        )
-    }
+export default function RegisterPage() {
+  const [newUser, setNewUser] = React.useState({
+    profilePic: "",
+    email: "",
+    name: "",
+    surname: "",
+    dob: "",
+    password: "",
+  });
+
+  const handleChange = (event) => {
+    setNewUser({ ...newUser, [event.target.name]: event.target.value });
+  };
+
+  const handleFileChange = (event) => {
+    setNewUser({ ...newUser, [event.target.name]: event.target.files[0] });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const formData = new FormData();
+    formData.set("profilePic", newUser.profilePic);
+    formData.append("email", newUser.email);
+    formData.append("name", newUser.name);
+    formData.append("surname", newUser.surname);
+    formData.append("dob", newUser.dob);
+    formData.append("password", newUser.password);
+    fetch("/users/create", { method: "POST", body: formData })
+      .then((res) => res.json())
+      .then((data) => alert(data.message))
+      .catch((err) => alert(err));
+  };
+
+  return (
+    <div className="register-form">
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="profilePic">Foto</label>
+        <br />
+        <input type="file" name="profilePic" onChange={handleFileChange} />
+        <br />
+        <label htmlFor="email">Email</label>
+        <br />
+        <input
+          className="standard-input"
+          name="email"
+          type="text"
+          value={newUser.email}
+          onChange={handleChange}
+        />
+        <br />
+        <label htmlFor="name">Nome</label>
+        <br />
+        <input
+          className="standard-input"
+          name="name"
+          type="text"
+          value={newUser.name}
+          onChange={handleChange}
+        />
+        <br />
+        <label htmlFor="surname">Sobrenome</label>
+        <br />
+        <input
+          className="standard-input"
+          name="surname"
+          type="text"
+          value={newUser.surname}
+          onChange={handleChange}
+        />
+        <br />
+        <label htmlFor="dob">Data de Nascimento</label>
+        <br />
+        <input
+          className="standard-input"
+          name="dob"
+          type="date"
+          value={newUser.dob}
+          onChange={handleChange}
+        />
+        <br />
+        <label htmlFor="password">Senha</label>
+        <br />
+        <input
+          className="standard-input"
+          name="password"
+          type="password"
+          value={newUser.password}
+          onChange={handleChange}
+        />
+        <br />
+        <br />
+        <button className="standard-button" type="submit">
+          Criar
+        </button>
+        <br />
+        <br />
+      </form>
+      <button className="standard-button">
+        Voltar
+      </button>
+    </div>
+  );
 }

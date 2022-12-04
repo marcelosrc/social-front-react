@@ -1,17 +1,11 @@
-import Form from './LoginForm'
-import PicturePane from './PicturePane'
+import LoginForm from "./LoginForm";
+import PicturePane from "./PicturePane";
 
-export default function Login() {
-    return (
-        <>
-            <div className="loginpage-flex-container">
-                <div className="leftside">
-                    <PicturePane />
-                </div>
-                <div className="rightside" id="login-pane">
-                    <Form />
-                </div>
-            </div>
-        </>
-    )
+export default function LoginPage() {
+  return (
+    <div className="loginpage-flex-container">
+      <PicturePane />
+      <LoginForm />
+    </div>
+  );
 }

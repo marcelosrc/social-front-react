@@ -1,26 +1,16 @@
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
-import Home from './pages/Home/HomePage'
-import Login from './pages/Login/LoginPage'
-import Register from './pages/Register/RegisterPage'
-import checkAuth from'./pages/components/CheckAuth'
+import HomePage from './pages/Home/HomePage'
+import LoginPage from './pages/Login/LoginPage'
+import RegisterPage from './pages/Register/RegisterPage'
 
 export default function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={checkAuth() ? <Home/> : <Login/>/*GAMBIARRA*/}/>
-        <Route path="/register" element={<Register/>}/>
-        <Route path="/login" element={checkAuth() ? <Home/> : <Login/>/*GAMBIARRA*/}/> 
+        <Route path="/" element={<HomePage/>}/>
+        <Route path="/register" element={<RegisterPage/>}/>
+        <Route path="/login" element={<LoginPage/>}/> 
       </Routes>
     </Router>
   )
 }
-
-/*
-
-GAMBIARRAS EM:
-
-APP.JS
-LOGINFORM.JSX
-
-*/
