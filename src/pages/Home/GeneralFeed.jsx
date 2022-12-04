@@ -70,6 +70,12 @@ export default function GeneralFeed() {
         <h3>{post.name}</h3>
         <p>{post.content}</p>
       </div>
+      <div className="dropdown-panel">
+        <p>...</p>
+        <div className="dropdown-content fade-in">
+          <p>Remover post {post._id}</p>
+        </div>
+      </div>
     </div>
   ));
   return (

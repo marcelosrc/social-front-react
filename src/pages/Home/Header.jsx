@@ -7,17 +7,9 @@ export default function Header() {
       <header>
         <div className="header-left">
           <img width="50px" height="50px" src={logo} alt="Home" />
-          <input className="standard-input" type="text" placeholder="Busca" />
         </div>
         <div className="header-right">
-          <a>Sair</a>
-          <a
-            href="https://giphy.com/gifs/masterchefbr-help-masterchef-vxdhxk40EKRHpRbeSp"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            Ajuda
-          </a>
+          <p>Sair</p>
         </div>
       </header>
     </>

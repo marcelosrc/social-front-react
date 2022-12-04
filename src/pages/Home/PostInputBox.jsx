@@ -15,10 +15,13 @@ export default function PostInputBox() {
         Authorization: `Bearer ${localStorage.getItem("jwt")}`,
         "content-type": "application/json; charset=UTF-8",
       },
-      body: JSON.stringify({content: postContent}),
+      body: JSON.stringify({ content: postContent }),
     })
       .then((res) => res.json())
-      .then((data) => alert(data.message))
+      .then((data) => {
+        alert(data.message);
+        setPostContent("");
+      })
       .catch((err) => alert(err));
   };
 
@@ -32,7 +35,7 @@ export default function PostInputBox() {
           className="post-input"
           name="content"
           type="text"
-          value={postContent.content}
+          value={postContent}
           onChange={handleChange}
         />
         <button className="standard-button" type="submit">
