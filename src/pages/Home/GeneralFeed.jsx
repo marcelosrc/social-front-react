@@ -20,11 +20,21 @@ export default function GeneralFeed() {
       },
     })
       .then((res) => res.json())
-      .then((data) => {
-        setPosts(data);
-      })
+      .then((data) => setPosts(data))
       .catch((err) => alert(err));
   }, []);
+
+  function handlePostRemoval(postId) {
+    fetch(`/posts/delete/${postId}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => alert(data.message))
+      .catch((err) => alert(err));
+  }
 
   function formatDate(date) {
     const formattedDate = new Date(date);
@@ -57,19 +67,18 @@ export default function GeneralFeed() {
         <p>{post.content}</p>
       </div>
       <div className="post-dropdown-panel">
-        <p></p>
         <div className="post-dropdown-content fade-in">
-          <p>Remover post {post._id}</p>
+          <small onClick={() => handlePostRemoval(post._id)}>
+            Remover post
+          </small>
         </div>
       </div>
     </div>
   ));
   return (
-    <>
-      <div className="generalfeed">
-        <PostInputBox />
-        {renderedPost}
-      </div>
-    </>
+    <div className="generalfeed">
+      <PostInputBox />
+      {renderedPost}
+    </div>
   );
 }

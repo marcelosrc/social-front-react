@@ -184,9 +184,9 @@ header {
 .post {
   display: flex;
   gap: 10px;
-  width: 520px;
+  width: 500px;
   min-height: 100px;
-  padding: 20px 0px 20px 20px;
+  padding: 20px;
   margin-bottom: 20px;
   background-color: white;
   border-radius: 10px;
@@ -212,19 +212,15 @@ header {
 }
 
 .post-profile-content {
-  min-width: 380px;
-  max-width: 380px;
+  min-width: 370px;
+  max-width: 370px;
 }
 
 /*POST > DROPDOWN*/
 
 .post-dropdown-panel {
-  position: relative;
-  align-self: center;
-  display: inline-block;
   width: 10px;
-  margin-right: 10px;
-  height: 100px;
+  height: 10px;
   border-radius: 10px;
   background-color: whitesmoke;
 }
@@ -233,24 +229,15 @@ header {
   display: none;
   position: absolute;
   z-index: 1;
-  gap: 10px;
+  white-space: nowrap;
   padding: 10px;
-  margin-bottom: 20px;
   background-color: white;
-  border-radius: 10px;
+  border-radius: 5px;
   filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.2));
-}
-
-.post-dropdown-content > p {
-  font-size: 12px;
 }
 
 .post-dropdown-panel:hover .post-dropdown-content {
   display: block;
-}
-
-.post-dropdown-panel:hover {
-  background-color: lightgray;
 }
 
 /*CARDSPANEL*/
