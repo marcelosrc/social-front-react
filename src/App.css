@@ -65,11 +65,6 @@ small {
   }
 }
 
-/*REGISTER-FORM*/
-
-.register-form {
-}
-
 /*PÁGINA DE LOGIN*/
 
 .loginpage-flex-container {
@@ -189,9 +184,9 @@ header {
 .post {
   display: flex;
   gap: 10px;
-  width: 500px;
+  width: 520px;
   min-height: 100px;
-  padding: 20px;
+  padding: 20px 0px 20px 20px;
   margin-bottom: 20px;
   background-color: white;
   border-radius: 10px;
@@ -216,14 +211,25 @@ header {
   line-height: 14px;
 }
 
-/*POST>DROPDOWN*/
-
-.dropdown-panel {
-  position: relative;
-  display: inline-block;
+.post-profile-content {
+  min-width: 380px;
+  max-width: 380px;
 }
 
-.dropdown-content {
+/*POST > DROPDOWN*/
+
+.post-dropdown-panel {
+  position: relative;
+  align-self: center;
+  display: inline-block;
+  width: 10px;
+  margin-right: 10px;
+  height: 100px;
+  border-radius: 10px;
+  background-color: whitesmoke;
+}
+
+.post-dropdown-content {
   display: none;
   position: absolute;
   z-index: 1;
@@ -235,12 +241,16 @@ header {
   filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.2));
 }
 
-.dropdown-content > p{
-    font-size: 12px;
+.post-dropdown-content > p {
+  font-size: 12px;
 }
 
-.dropdown-panel:hover .dropdown-content {
+.post-dropdown-panel:hover .post-dropdown-content {
   display: block;
+}
+
+.post-dropdown-panel:hover {
+  background-color: lightgray;
 }
 
 /*CARDSPANEL*/

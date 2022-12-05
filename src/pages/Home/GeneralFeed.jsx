@@ -34,25 +34,11 @@ export default function GeneralFeed() {
       formattedDate.getHours(),
       formattedDate.getMinutes(),
     ];
-    if (new Date()) {
-      return (
-        <small>
-          {hours}:{minutes}
-        </small>
-      );
-    } else if (new Date() - 1) {
-      return (
-        <small>
-          {hours}:{minutes} (Ontem)
-        </small>
-      );
-    } else {
-      return (
-        <small>
-          {hours}:{minutes} ({day}/{month})
-        </small>
-      );
-    }
+    return (
+      <small>
+        {hours}:{minutes} ({day}/{month})
+      </small>
+    );
   }
 
   const renderedPost = posts.map((post) => (
@@ -70,9 +56,9 @@ export default function GeneralFeed() {
         <h3>{post.name}</h3>
         <p>{post.content}</p>
       </div>
-      <div className="dropdown-panel">
-        <p>...</p>
-        <div className="dropdown-content fade-in">
+      <div className="post-dropdown-panel">
+        <p></p>
+        <div className="post-dropdown-content fade-in">
           <p>Remover post {post._id}</p>
         </div>
       </div>
