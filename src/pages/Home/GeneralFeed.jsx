@@ -1,5 +1,6 @@
 import React from "react";
 import PostInputBox from "./PostInputBox";
+import formatDate from "../../components/FormatDate";
 
 export default function GeneralFeed() {
   const [posts, setPosts] = React.useState([
@@ -11,6 +12,7 @@ export default function GeneralFeed() {
       date: "",
     },
   ]);
+  const [reloadGeneralFeed, setReloadGeneralFeed] = React.useState(false);
 
   React.useEffect(() => {
     fetch("/queries/generalfeed", {
@@ -20,11 +22,13 @@ export default function GeneralFeed() {
       },
     })
       .then((res) => res.json())
-      .then((data) => setPosts(data))
-      .catch((err) => alert(err));
-  }, []);
+      .then((data) => {
+        setPosts(data);
+        setReloadGeneralFeed(false);
+      });
+  }, [reloadGeneralFeed]);
 
-  function handlePostRemoval(postId) {
+  const handlePostRemoval = (postId) => {
     fetch(`/posts/delete/${postId}`, {
       method: "DELETE",
       headers: {
@@ -32,24 +36,10 @@ export default function GeneralFeed() {
       },
     })
       .then((res) => res.json())
-      .then((data) => alert(data.message))
-      .catch((err) => alert(err));
-  }
-
-  function formatDate(date) {
-    const formattedDate = new Date(date);
-    const [day, month, hours, minutes] = [
-      formattedDate.getDate(),
-      formattedDate.getMonth(),
-      formattedDate.getHours(),
-      formattedDate.getMinutes(),
-    ];
-    return (
-      <small>
-        {hours}:{minutes} ({day}/{month})
-      </small>
-    );
-  }
+      .then((data) => {
+        setReloadGeneralFeed(true);
+      });
+  };
 
   const renderedPost = posts.map((post) => (
     <div key={post._id} className="post fade-in">
@@ -60,7 +50,9 @@ export default function GeneralFeed() {
           src={post.profilePicPath}
           alt={post.name}
         />
-        <div className="post-profile">{formatDate(post.date)}</div>
+        <div className="post-profile">
+          <small>{formatDate(post.date)}</small>
+        </div>
       </div>
       <div className="post-profile-content">
         <h3>{post.name}</h3>
@@ -77,7 +69,7 @@ export default function GeneralFeed() {
   ));
   return (
     <div className="generalfeed">
-      <PostInputBox />
+      <PostInputBox reloadFeed={setReloadGeneralFeed} />
       {renderedPost}
     </div>
   );

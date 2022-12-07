@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function PostInputBox() {
+export default function PostInputBox(props) {
   const [postContent, setPostContent] = React.useState("");
 
   const handleChange = (event) => {
@@ -19,10 +19,9 @@ export default function PostInputBox() {
     })
       .then((res) => res.json())
       .then((data) => {
-        alert(data.message);
         setPostContent("");
-      })
-      .catch((err) => alert(err));
+        props.reloadFeed(true);
+      });
   };
 
   return (
@@ -38,6 +37,7 @@ export default function PostInputBox() {
           value={postContent}
           onChange={handleChange}
         />
+       
         <button className="standard-button" type="submit">
           Postar
         </button>

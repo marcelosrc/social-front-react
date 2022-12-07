@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function RegisterPage() {
   const [newUser, setNewUser] = React.useState({
@@ -9,6 +10,11 @@ export default function RegisterPage() {
     dob: "",
     password: "",
   });
+  const navigate = useNavigate();
+
+  const handleNavigation = () => {
+    navigate("/login");
+  };
 
   const handleChange = (event) => {
     setNewUser({ ...newUser, [event.target.name]: event.target.value });
@@ -29,8 +35,10 @@ export default function RegisterPage() {
     formData.append("password", newUser.password);
     fetch("/users/create", { method: "POST", body: formData })
       .then((res) => res.json())
-      .then((data) => alert(data.message))
-      .catch((err) => alert(err));
+      .then((data) => {
+        alert(data.message)
+        navigate("/login")
+      })
   };
 
   return (
@@ -97,7 +105,7 @@ export default function RegisterPage() {
         <br />
         <br />
       </form>
-      <button className="standard-button">
+      <button onClick={handleNavigation} className="standard-button">
         Voltar
       </button>
     </div>

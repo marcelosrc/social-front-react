@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginForm() {
   const [greetings, setGreetings] = React.useState("Bom dia");
@@ -6,6 +7,7 @@ export default function LoginForm() {
     email: "",
     password: "",
   });
+  const navigate = useNavigate();
 
   React.useEffect(() => {
     const date = new Date();
@@ -30,9 +32,9 @@ export default function LoginForm() {
       .then((data) => {
         if (data.jwt) {
           localStorage.setItem("jwt", data.jwt);
+          navigate("/");
         }
-      })
-      .catch((err) => alert(err));
+      });
   };
   return (
     <div className="rightside">
