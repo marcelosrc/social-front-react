@@ -1,10 +1,8 @@
 import React from "react";
 import PostInputBox from "./PostInputBox";
 import formatDate from "../../components/formatDate";
-import { AuthContext } from "../../App";
 
 export default function GeneralFeed() {
-  const webtoken = React.useContext(AuthContext);
   const [posts, setPosts] = React.useState([
     {
       _id: "",
@@ -20,7 +18,7 @@ export default function GeneralFeed() {
     fetch("/queries/generalfeed", {
       method: "GET",
       headers: {
-        Authorization: `Bearer ${webtoken}`,
+        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
       },
     })
       .then((res) => res.json())
@@ -28,13 +26,13 @@ export default function GeneralFeed() {
         setPosts(data);
         setReloadGeneralFeed(false);
       });
-  }, [reloadGeneralFeed, webtoken]);
+  }, [reloadGeneralFeed]);
 
   const handlePostRemoval = (postId) => {
     fetch(`/posts/delete/${postId}`, {
       method: "DELETE",
       headers: {
-        Authorization: `Bearer ${webtoken}`,
+        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
       },
     })
       .then((res) => res.json())

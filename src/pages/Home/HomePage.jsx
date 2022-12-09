@@ -2,10 +2,8 @@ import React from "react";
 import Header from "./Header";
 import GeneralFeed from "./GeneralFeed";
 import CardsPanel from "./CardsPanel";
-import { AuthContext } from "../../App";
 
 export default function HomePage() {
-  const webtoken = React.useContext(AuthContext);
   const [currentUser, setCurrentUser] = React.useState({
     name: "",
     surname: "",
@@ -16,14 +14,14 @@ export default function HomePage() {
     fetch("/users/myuser", {
       method: "GET",
       headers: {
-        Authorization: `Bearer ${webtoken}`,
+        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
         "content-type": "application/json; charset=UTF-8",
       },
     })
       .then((res) => res.json())
       .then((data) => setCurrentUser(data))
       .catch((err) => alert(err));
-  }, [webtoken]);
+  }, []);
 
   return (
     <>

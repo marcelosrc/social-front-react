@@ -35,7 +35,6 @@ export default function LoginForm() {
       .then((data) => {
         if (data.jwt) {
           localStorage.setItem("jwt", data.jwt);
-          console.log("1")
           navigate("/");
         } else {
           setErrorAlert(data.message);

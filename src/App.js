@@ -4,38 +4,33 @@ import HomePage from "./pages/Home/HomePage";
 import LoginPage from "./pages/Login/LoginPage";
 import RegisterPage from "./pages/Register/RegisterPage";
 import NoMatchPage from "./pages/NoMatch/NoMatchPage";
-
-export const AuthContext = React.createContext(null);
+import jwt_decode from "jwt-decode";
 
 export default function App() {
-  const webtoken = localStorage.getItem("jwt");
-
   const ProtectedRoute = ({ children }) => {
-    console.log("2 -", webtoken)
-    if (!webtoken) {
-      return <Navigate to="/login" />;
-    } else {
+    try {
+      jwt_decode(localStorage.getItem("jwt"), { header: true });
       return children;
+    } catch {
+      return <Navigate to="/login" />;
     }
   };
 
   return (
-    <AuthContext.Provider value={webtoken}>
-      <BrowserRouter>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <ProtectedRoute>
-                <HomePage />
-              </ProtectedRoute>
-            }
-          />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="*" element={<NoMatchPage />} />
-        </Routes>
-      </BrowserRouter>
-    </AuthContext.Provider>
+    <BrowserRouter>
+      <Routes>
+        <Route
+          index
+          element={
+            <ProtectedRoute>
+              <HomePage />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="register" element={<RegisterPage />} />
+        <Route path="login" element={<LoginPage />} />
+        <Route path="*" element={<NoMatchPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
