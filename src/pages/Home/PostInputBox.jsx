@@ -2,9 +2,12 @@ import React from "react";
 
 export default function PostInputBox(props) {
   const [postContent, setPostContent] = React.useState("");
+  const [count, setCount] = React.useState(0);
 
   const handleChange = (event) => {
     setPostContent(event.target.value);
+    setCount(event.target.value.length);
+
   };
 
   const handleSubmit = (event) => {
@@ -30,14 +33,15 @@ export default function PostInputBox(props) {
         <label htmlFor="content">
           O que se passa nessa sua cabecinha de merda?
         </label>
-        <input
-          className="post-input"
+        <textarea
+          className="post-textarea"
           name="content"
           type="text"
+          rows="3"
           value={postContent}
           onChange={handleChange}
         />
-
+        <small className="post-profile">{count}/300</small>
         <button className="standard-button" type="submit">
           Postar
         </button>

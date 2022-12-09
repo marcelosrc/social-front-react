@@ -4,6 +4,7 @@ import GeneralFeed from "./GeneralFeed";
 import CardsPanel from "./CardsPanel";
 
 export default function HomePage() {
+  const [isLoading, setIsLoading] = React.useState(true);
   const [currentUser, setCurrentUser] = React.useState({
     name: "",
     surname: "",
@@ -19,11 +20,18 @@ export default function HomePage() {
       },
     })
       .then((res) => res.json())
-      .then((data) => setCurrentUser(data))
+      .then((data) => {
+        setCurrentUser(data);
+        setIsLoading(false);
+      })
       .catch((err) => alert(err));
   }, []);
 
-  return (
+  return isLoading ? (
+    <>
+      <h1>CARREGANDO...</h1>
+    </>
+  ) : (
     <>
       <Header />
       <div className="homepage-flex-container">

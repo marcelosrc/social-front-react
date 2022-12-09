@@ -164,9 +164,8 @@ header {
   filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.2));
 }
 
-.post-input {
-  width: 95%;
-  height: 20px;
+.post-textarea {
+  width: 480px;
   border: none;
   border-radius: 5px;
   background-color: whitesmoke;
@@ -185,7 +184,6 @@ header {
   display: flex;
   gap: 10px;
   width: 500px;
-  min-height: 100px;
   padding: 20px;
   margin-bottom: 20px;
   background-color: white;
