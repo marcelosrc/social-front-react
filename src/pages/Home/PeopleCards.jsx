@@ -1,6 +1,8 @@
 import React from "react";
+import { AuthContext } from "../../App";
 
 export default function PeopleCards() {
+  const webtoken = React.useContext(AuthContext);
   const [people, setPeople] = React.useState([
     {
       _id: "",
@@ -15,14 +17,14 @@ export default function PeopleCards() {
     fetch("/queries/peoplecards", {
       method: "GET",
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+        Authorization: `Bearer ${webtoken}`,
         "Content-type": "application/json; charset=UTF-8",
       },
     })
       .then((res) => res.json())
       .then((data) => setPeople(data))
       .catch((err) => alert(err));
-  }, []);
+  }, [webtoken]);
 
   const renderedCard = people.map((card) => (
     <div key={card._id} className="people-card">

@@ -1,30 +1,41 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import HomePage from "./pages/Home/HomePage";
 import LoginPage from "./pages/Login/LoginPage";
 import RegisterPage from "./pages/Register/RegisterPage";
-import jwt_decode from "jwt-decode";
+import NoMatchPage from "./pages/NoMatch/NoMatchPage";
+
+export const AuthContext = React.createContext(null);
 
 export default function App() {
-  const [authed, setAuthed] = React.useState(false);
+  const webtoken = localStorage.getItem("jwt");
 
-  React.useEffect(() => {
-    try {
-      jwt_decode(localStorage.getItem("jwt"), { header: true });
-      setAuthed(true);
-    } catch (err) {
-      console.log(err);
-      setAuthed(false);
+  const ProtectedRoute = ({ children }) => {
+    console.log("2 -", webtoken)
+    if (!webtoken) {
+      return <Navigate to="/login" />;
+    } else {
+      return children;
     }
-  }, []);
+  };
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route index element={authed ? <HomePage /> : <RegisterPage />} />
-        <Route path="register" element={<RegisterPage />} />
-        <Route path="login" element={<LoginPage />} />
-      </Routes>
-    </BrowserRouter>
+    <AuthContext.Provider value={webtoken}>
+      <BrowserRouter>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <ProtectedRoute>
+                <HomePage />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="*" element={<NoMatchPage />} />
+        </Routes>
+      </BrowserRouter>
+    </AuthContext.Provider>
   );
 }

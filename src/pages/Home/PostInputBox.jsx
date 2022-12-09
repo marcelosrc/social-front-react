@@ -1,6 +1,8 @@
 import React from "react";
+import { AuthContext } from "../../App";
 
 export default function PostInputBox(props) {
+  const webtoken = React.useContext(AuthContext);
   const [postContent, setPostContent] = React.useState("");
 
   const handleChange = (event) => {
@@ -12,7 +14,7 @@ export default function PostInputBox(props) {
     fetch("/posts/create", {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+        Authorization: `Bearer ${webtoken}`,
         "content-type": "application/json; charset=UTF-8",
       },
       body: JSON.stringify({ content: postContent }),
@@ -37,7 +39,7 @@ export default function PostInputBox(props) {
           value={postContent}
           onChange={handleChange}
         />
-       
+
         <button className="standard-button" type="submit">
           Postar
         </button>

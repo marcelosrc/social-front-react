@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import formatError from "../../components/formatError";
 
 export default function LoginForm() {
   const [greetings, setGreetings] = React.useState("Bom dia");
@@ -7,6 +8,7 @@ export default function LoginForm() {
     email: "",
     password: "",
   });
+  const [errorAlert, setErrorAlert] = React.useState(null);
   const navigate = useNavigate();
 
   React.useEffect(() => {
@@ -21,6 +23,7 @@ export default function LoginForm() {
   const handleChange = (event) => {
     setCurrentUser({ ...currentUser, [event.target.name]: event.target.value });
   };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     fetch("/login", {
@@ -32,10 +35,14 @@ export default function LoginForm() {
       .then((data) => {
         if (data.jwt) {
           localStorage.setItem("jwt", data.jwt);
+          console.log("1")
           navigate("/");
+        } else {
+          setErrorAlert(data.message);
         }
       });
   };
+
   return (
     <div className="rightside">
       <form className="rightside-pane" onSubmit={handleSubmit}>
@@ -58,6 +65,7 @@ export default function LoginForm() {
           value={currentUser.password}
           onChange={handleChange}
         />
+        {formatError(errorAlert, "small")}
         <br />
         <button className="standard-button" type="submit">
           Login
