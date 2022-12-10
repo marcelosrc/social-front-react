@@ -22,6 +22,7 @@ export default function PostInputBox(props) {
       .then((res) => res.json())
       .then((data) => {
         setPostContent("");
+        setCount(0);
         props.reloadFeed(true);
       });
   };

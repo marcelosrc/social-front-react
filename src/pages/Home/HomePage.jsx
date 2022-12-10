@@ -29,7 +29,7 @@ export default function HomePage() {
 
   return isLoading ? (
     <>
-      <h1>CARREGANDO...</h1>
+      <h1>ENFIANDO UM DEDINHO NO CUZINHO...</h1>
     </>
   ) : (
     <>

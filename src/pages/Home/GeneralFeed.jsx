@@ -1,5 +1,6 @@
 import React from "react";
 import PostInputBox from "./PostInputBox";
+import PostMenu from "./PostMenu";
 import formatDate from "../../components/formatDate";
 
 export default function GeneralFeed() {
@@ -13,11 +14,6 @@ export default function GeneralFeed() {
     },
   ]);
   const [reloadGeneralFeed, setReloadGeneralFeed] = React.useState(false);
-  const [contextMenuAnchorPoint, setContextMenuAnchorPoint] = React.useState({
-    x: 0,
-    y: 0,
-  });
-  const [showContextMenu, setShowContextMenu] = React.useState(false);
   const [postId, setPostId] = React.useState("");
 
   React.useEffect(() => {
@@ -34,32 +30,12 @@ export default function GeneralFeed() {
       });
   }, [reloadGeneralFeed]);
 
-  const contextMenu = (postId) => (event) => {
-    event.preventDefault();
+  const postMenuHandler = (postId) => {
     setPostId(postId);
-    setContextMenuAnchorPoint({ x: event.pageX, y: event.pageY });
-    setShowContextMenu(true);
-  };
-
-  const handlePostRemoval = () => {
-    fetch(`/posts/delete/${postId}`, {
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setReloadGeneralFeed(true);
-      });
   };
 
   const renderedPost = posts.map((post) => (
-    <div
-      key={post._id}
-      className="post fade-in"
-      onContextMenu={contextMenu(post._id)}
-    >
+    <div key={post._id} className="post fade-in">
       <div className="post-profile-picture">
         <img
           width="100"
@@ -71,9 +47,18 @@ export default function GeneralFeed() {
           <small>{formatDate(post.date)}</small>
         </div>
       </div>
-      <div className="post-profile-content">
+      <div className="post-content">
         <h3>{post.name}</h3>
         <p>{post.content}</p>
+      </div>
+      <div
+        className="post-right-padding"
+        onMouseEnter={() => postMenuHandler(post._id)}
+        onMouseLeave={() => postMenuHandler(null)}
+      >
+        {postId === post._id ? (
+          <PostMenu postId={postId} reloadFeed={setReloadGeneralFeed} />
+        ) : null}
       </div>
     </div>
   ));
@@ -81,17 +66,6 @@ export default function GeneralFeed() {
     <div className="generalfeed">
       <PostInputBox reloadFeed={setReloadGeneralFeed} />
       {renderedPost}
-      {showContextMenu && (
-        <div
-          className="context-menu fade-in"
-          style={{
-            top: contextMenuAnchorPoint.y,
-            left: contextMenuAnchorPoint.x,
-          }}
-        >
-          <small onClick={handlePostRemoval}>Remover Post</small>
-        </div>
-      )}
     </div>
   );
 }

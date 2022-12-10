@@ -1,21 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
 
-.menu {
-  font-size: 14px;
-  background-color: #fff;
-  border-radius: 2px;
-  padding: 5px 0 5px 0;
-  width: 150px;
-  height: auto;
-  margin: 0;
-  /* use absolute positioning  */
-  position: absolute;
-  list-style: none;
-  box-shadow: 0 0 20px 0 #ccc;
-  opacity: 1;
-  transition: opacity 0.5s linear;
-}
-
 /*GLOBAIS*/
 
 * {
@@ -56,6 +40,7 @@ small {
   background-color: greenyellow;
   width: 150px;
   padding: 10px;
+  cursor: pointer;
 }
 
 /*ANIMAÇÕES-EFEITOS*/
@@ -150,6 +135,10 @@ header {
   gap: 30px;
 }
 
+.header-right > p {
+  cursor: pointer;
+}
+
 /*HOME>PROFILE*/
 
 .profile {
@@ -199,8 +188,8 @@ header {
 .post {
   display: flex;
   gap: 10px;
-  width: 500px;
-  padding: 20px;
+  width: 520px;
+  padding: 20px 0px 20px 20px;
   margin-bottom: 20px;
   background-color: white;
   border-radius: 10px;
@@ -225,20 +214,30 @@ header {
   line-height: 14px;
 }
 
-.post-profile-content {
-  min-width: 390px;
-  max-width: 390px;
+.post-content {
+  min-width: 380px;
+  max-width: 380px;
 }
 
-/*POST > DROPDOWN*/
+.post-right-padding {
+  width: 20px;
+  height: 70px;
+  background-color: whitesmoke;
+  border-radius: 10px 0px 0px 10px;
+}
 
-.context-menu {
+.post-context-menu {
   position: absolute;
-  white-space: nowrap;
+  border-radius: 10px 0px 0px 10px;
+  left: 420px;
+  width: 100px;
+  height: 50px;
   padding: 10px;
-  background-color: white;
-  border-radius: 5px;
-  filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.2));
+  background-color: whitesmoke;
+}
+
+.post-context-menu > small {
+  cursor: pointer;
 }
 
 /*CARDSPANEL*/
