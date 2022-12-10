@@ -13,6 +13,12 @@ export default function GeneralFeed() {
     },
   ]);
   const [reloadGeneralFeed, setReloadGeneralFeed] = React.useState(false);
+  const [contextMenuAnchorPoint, setContextMenuAnchorPoint] = React.useState({
+    x: 0,
+    y: 0,
+  });
+  const [showContextMenu, setShowContextMenu] = React.useState(false);
+  const [postId, setPostId] = React.useState("");
 
   React.useEffect(() => {
     fetch("/queries/generalfeed", {
@@ -28,7 +34,14 @@ export default function GeneralFeed() {
       });
   }, [reloadGeneralFeed]);
 
-  const handlePostRemoval = (postId) => {
+  const contextMenu = (postId) => (event) => {
+    event.preventDefault();
+    setPostId(postId);
+    setContextMenuAnchorPoint({ x: event.pageX, y: event.pageY });
+    setShowContextMenu(true);
+  };
+
+  const handlePostRemoval = () => {
     fetch(`/posts/delete/${postId}`, {
       method: "DELETE",
       headers: {
@@ -42,7 +55,11 @@ export default function GeneralFeed() {
   };
 
   const renderedPost = posts.map((post) => (
-    <div key={post._id} className="post fade-in">
+    <div
+      key={post._id}
+      className="post fade-in"
+      onContextMenu={contextMenu(post._id)}
+    >
       <div className="post-profile-picture">
         <img
           width="100"
@@ -58,19 +75,23 @@ export default function GeneralFeed() {
         <h3>{post.name}</h3>
         <p>{post.content}</p>
       </div>
-      <div className="post-dropdown-panel">
-        <div className="post-dropdown-content fade-in">
-          <small onClick={() => handlePostRemoval(post._id)}>
-            Remover post
-          </small>
-        </div>
-      </div>
     </div>
   ));
   return (
     <div className="generalfeed">
       <PostInputBox reloadFeed={setReloadGeneralFeed} />
       {renderedPost}
+      {showContextMenu && (
+        <div
+          className="context-menu fade-in"
+          style={{
+            top: contextMenuAnchorPoint.y,
+            left: contextMenuAnchorPoint.x,
+          }}
+        >
+          <small onClick={handlePostRemoval}>Remover Post</small>
+        </div>
+      )}
     </div>
   );
 }

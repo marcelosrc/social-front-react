@@ -7,7 +7,6 @@ export default function PostInputBox(props) {
   const handleChange = (event) => {
     setPostContent(event.target.value);
     setCount(event.target.value.length);
-
   };
 
   const handleSubmit = (event) => {

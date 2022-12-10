@@ -1,5 +1,21 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
 
+.menu {
+  font-size: 14px;
+  background-color: #fff;
+  border-radius: 2px;
+  padding: 5px 0 5px 0;
+  width: 150px;
+  height: auto;
+  margin: 0;
+  /* use absolute positioning  */
+  position: absolute;
+  list-style: none;
+  box-shadow: 0 0 20px 0 #ccc;
+  opacity: 1;
+  transition: opacity 0.5s linear;
+}
+
 /*GLOBAIS*/
 
 * {
@@ -210,32 +226,19 @@ header {
 }
 
 .post-profile-content {
-  min-width: 370px;
-  max-width: 370px;
+  min-width: 390px;
+  max-width: 390px;
 }
 
 /*POST > DROPDOWN*/
 
-.post-dropdown-panel {
-  width: 10px;
-  height: 10px;
-  border-radius: 10px;
-  background-color: whitesmoke;
-}
-
-.post-dropdown-content {
-  display: none;
+.context-menu {
   position: absolute;
-  z-index: 1;
   white-space: nowrap;
   padding: 10px;
   background-color: white;
   border-radius: 5px;
   filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.2));
-}
-
-.post-dropdown-panel:hover .post-dropdown-content {
-  display: block;
 }
 
 /*CARDSPANEL*/
