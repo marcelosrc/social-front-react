@@ -4,7 +4,7 @@ import HomePage from "./pages/Home/HomePage";
 import LoginPage from "./pages/Login/LoginPage";
 import RegisterPage from "./pages/Register/RegisterPage";
 import UserPage from "./pages/User/UserPage";
-import NoMatchPage from "./pages/NoMatch/NoMatchPage";
+import NotFoundPage from "./pages/NotFound/NotFoundPage";
 import jwt_decode from "jwt-decode";
 
 export default function App() {
@@ -38,7 +38,7 @@ export default function App() {
         />
         <Route path="register" element={<RegisterPage />} />
         <Route path="login" element={<LoginPage />} />
-        <Route path="*" element={<NoMatchPage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
   );

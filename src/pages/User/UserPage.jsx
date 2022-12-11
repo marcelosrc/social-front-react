@@ -12,6 +12,8 @@ export default function UserPage() {
     name: "",
     surname: "",
     profilePicPath: "",
+    followers: "",
+    posts: "",
   });
 
   React.useEffect(() => {
@@ -47,9 +49,12 @@ export default function UserPage() {
           />
           <h2>{user.name}</h2>
           <h2>{user.surname}</h2>
-          <div className="profile-panel"></div>
+          <div className="profile-panel">
+            <h3>Devotos {user.followers}</h3>
+            <h3>Verdades {user.posts}</h3>
+          </div>
         </div>
-        <UserFeed userId={userId}/>
+        <UserFeed userId={userId} />
         <CardsPanel />
       </div>
     </>

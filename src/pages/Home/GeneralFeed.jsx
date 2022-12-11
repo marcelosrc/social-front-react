@@ -4,7 +4,7 @@ import PostInputBox from "./PostInputBox";
 import PostMenu from "../../components/PostMenu";
 import formatDate from "../../components/formatDate";
 
-export default function GeneralFeed() {
+export default function GeneralFeed(props) {
   const [posts, setPosts] = React.useState([
     {
       _id: "",
@@ -28,11 +28,13 @@ export default function GeneralFeed() {
       .then((data) => {
         setPosts(data);
         setReloadGeneralFeed(false);
+        //props.setReloadCurrentUser(true);
       });
   }, [reloadGeneralFeed]);
 
   const postMenuHandler = (postId) => {
     setPostId(postId);
+    
   };
 
   const profileLink = "/users/";
@@ -49,7 +51,7 @@ export default function GeneralFeed() {
           />
         </Link>
         <div className="post-profile">
-          <small>{formatDate(post.date)}</small>
+          <small className="gray">{formatDate(post.date)}</small>
         </div>
       </div>
       <div className="post-content">

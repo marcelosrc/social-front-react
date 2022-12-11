@@ -50,6 +50,10 @@ small {
   color: red;
 }
 
+.gray {
+  color: lightgray;
+}
+
 .tint {
   filter: grayscale(100%);
 }
@@ -147,11 +151,23 @@ header {
   width: 200px;
 }
 
+.profile-card-id {
+  display: flex;
+  align-items: center;
+}
+
 .profile-picture {
-  border-radius: 10px;
+  border-radius: 5px;
+}
+
+.profile-card-name {
+  padding-left: 10px;
 }
 
 .profile-panel {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
   margin: 10px 0px 10px 0px;
 }
 
@@ -211,7 +227,6 @@ header {
 }
 
 .post-profile {
-  color: lightgray;
   line-height: 14px;
 }
 

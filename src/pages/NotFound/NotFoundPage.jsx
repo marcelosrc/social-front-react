@@ -1,4 +1,4 @@
-export default function NoMatchPage() {
+export default function NotFoundPage() {
   return (
     <div>
       <h1>

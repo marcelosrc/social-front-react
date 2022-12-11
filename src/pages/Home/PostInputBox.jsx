@@ -31,7 +31,7 @@ export default function PostInputBox(props) {
     <>
       <form className="post-input-box" onSubmit={handleSubmit}>
         <label htmlFor="content">
-          O que se passa nessa sua cabecinha de merda?
+          Vai, manda sua merdinha de hoje
         </label>
         <textarea
           className="post-textarea"
@@ -41,7 +41,7 @@ export default function PostInputBox(props) {
           value={postContent}
           onChange={handleChange}
         />
-        <small className="post-profile">{count}/300</small>
+        <small className="gray">{count}/300</small>
         <button className="standard-button" type="submit">
           Postar
         </button>
