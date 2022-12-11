@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import HomePage from "./pages/Home/HomePage";
 import LoginPage from "./pages/Login/LoginPage";
 import RegisterPage from "./pages/Register/RegisterPage";
+import UserPage from "./pages/User/UserPage";
 import NoMatchPage from "./pages/NoMatch/NoMatchPage";
 import jwt_decode from "jwt-decode";
 
@@ -24,6 +25,14 @@ export default function App() {
           element={
             <ProtectedRoute>
               <HomePage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="users/:userId"
+          element={
+            <ProtectedRoute>
+              <UserPage />
             </ProtectedRoute>
           }
         />

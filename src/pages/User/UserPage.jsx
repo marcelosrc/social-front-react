@@ -1,18 +1,21 @@
 import React from "react";
 import Header from "../Header/Header";
-import GeneralFeed from "./GeneralFeed";
+import UserFeed from "./UserFeed";
 import CardsPanel from "../../components/CardsPanel/CardsPanel";
+import { useParams } from "react-router-dom";
 
-export default function HomePage() {
+export default function UserPage() {
+  const { userId } = useParams();
   const [isLoading, setIsLoading] = React.useState(true);
-  const [currentUser, setCurrentUser] = React.useState({
+  const [user, setUser] = React.useState({
+    _id: "",
     name: "",
     surname: "",
     profilePicPath: "",
   });
 
   React.useEffect(() => {
-    fetch("/users/myuser", {
+    fetch(`/users/read/${userId}`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("jwt")}`,
@@ -21,10 +24,10 @@ export default function HomePage() {
     })
       .then((res) => res.json())
       .then((data) => {
-        setCurrentUser(data);
+        setUser(data);
         setIsLoading(false);
-      })
-  }, []);
+      });
+  }, [userId]);
 
   return isLoading ? (
     <>
@@ -39,14 +42,14 @@ export default function HomePage() {
             className="profile-picture"
             width="200"
             height="200"
-            src={currentUser.profilePicPath}
-            alt={currentUser.name}
+            src={user.profilePicPath}
+            alt={user.name}
           />
-          <h2>{currentUser.name}</h2>
-          <h2>{currentUser.surname}</h2>
+          <h2>{user.name}</h2>
+          <h2>{user.surname}</h2>
           <div className="profile-panel"></div>
         </div>
-        <GeneralFeed />
+        <UserFeed userId={userId}/>
         <CardsPanel />
       </div>
     </>

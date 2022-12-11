@@ -1,27 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import PostInputBox from "./PostInputBox";
-import PostMenu from "../../components/PostMenu";
 import formatDate from "../../components/formatDate";
 
-export default function GeneralFeed() {
-  const [posts, setPosts] = React.useState([
-    {
-      _id: "",
-      name: "",
-      profilePicPath: "",
-      content: "",
-      date: "",
-    },
-  ]);
+export default function UserFeed(props) {
+  const [posts, setPosts] = React.useState([]);
   const [reloadGeneralFeed, setReloadGeneralFeed] = React.useState(false);
-  const [postId, setPostId] = React.useState("");
 
   React.useEffect(() => {
-    fetch("/queries/generalfeed", {
+    fetch(`/queries/feed/${props.userId}`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+        "content-type": "application/json; charset=UTF-8",
       },
     })
       .then((res) => res.json())
@@ -29,11 +19,7 @@ export default function GeneralFeed() {
         setPosts(data);
         setReloadGeneralFeed(false);
       });
-  }, [reloadGeneralFeed]);
-
-  const postMenuHandler = (postId) => {
-    setPostId(postId);
-  };
+  }, [reloadGeneralFeed, props.userId]);
 
   const profileLink = "/users/";
   const renderedPost = posts.map((post) => (
@@ -58,21 +44,7 @@ export default function GeneralFeed() {
         </Link>
         <p>{post.content}</p>
       </div>
-      <div
-        className="post-right-padding"
-        onMouseEnter={() => postMenuHandler(post._id)}
-        onMouseLeave={() => postMenuHandler(null)}
-      >
-        {postId === post._id ? (
-          <PostMenu postId={postId} reloadFeed={setReloadGeneralFeed} />
-        ) : null}
-      </div>
     </div>
   ));
-  return (
-    <div className="generalfeed">
-      <PostInputBox reloadFeed={setReloadGeneralFeed} />
-      {renderedPost}
-    </div>
-  );
+  return <div className="generalfeed">{renderedPost}</div>;
 }

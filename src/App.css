@@ -16,8 +16,9 @@ label {
   font-size: 16px;
 }
 
-a {
+a, a:link, a:visited {
   text-decoration: none;
+  color: black
 }
 
 small {
@@ -205,7 +206,7 @@ header {
   font-size: 14px;
 }
 
-.post-profile-picture > img {
+.post-profile-picture {
   border-radius: 5px;
 }
 
