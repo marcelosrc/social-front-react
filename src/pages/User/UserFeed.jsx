@@ -34,7 +34,7 @@ export default function UserFeed(props) {
   const profileLink = "/users/";
   const renderedPost = posts.map((post) => (
     <div key={post._id} className="post fade-in">
-      <div className="post-profile">
+      <div className="post-header">
         <Link to={profileLink + post.parentId}>
           <img
             className="post-profile-picture"

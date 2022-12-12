@@ -1,5 +1,4 @@
 import React from "react";
-import logo from "../../images/logo.png";
 import { useNavigate, Link } from "react-router-dom";
 
 export default function Header() {
@@ -15,7 +14,7 @@ export default function Header() {
       <header>
         <div className="header-left">
           <Link to="/">
-            <img width="50px" height="50px" src={logo} alt="Home" />
+            <img width="50px" height="50px" src="#" alt="Home" />
           </Link>
         </div>
         <div className="header-right">

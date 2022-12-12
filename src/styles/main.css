@@ -7,7 +7,8 @@
 }
 
 body {
-  background-color: whitesmoke;
+  background-color: #202529;
+  color: lightgray;
 }
 
 label {
@@ -22,7 +23,7 @@ a,
 a:link,
 a:visited {
   text-decoration: none;
-  color: black;
+  color: lightgray;
 }
 
 small {
@@ -38,13 +39,14 @@ p {
   width: 200px;
   height: 20px;
   border: none;
-  background-color: whitesmoke;
+  background-color: #4c555c;
+  color: lightgray;
   padding: 10px;
 }
 
 .standard-button {
   border: none;
-  background-color: greenyellow;
+  background-color: #1bc6b4;
   width: 150px;
   padding: 10px;
   cursor: pointer;
@@ -55,11 +57,7 @@ p {
 }
 
 .gray {
-  color: gray;
-}
-
-.lightgray {
-  color: lightgray;
+  color: #4c555c;
 }
 
 .tint {

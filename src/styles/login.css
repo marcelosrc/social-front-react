@@ -1,29 +1,22 @@
 .loginpage-flex-container {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.2));
+  width: 100%;
 }
 
-.leftside {
-  width: 400px;
-  height: 400px;
-  background-color: grey;
-  border-radius: 10px 0px 0px 10px;
+.loginpage-left-pane {
+  background-color: #4c555c;
+  width: 50%;
 }
 
-.rightside {
-  width: 400px;
-  height: 400px;
-  background-color: white;
-  border-radius: 0px 10px 10px 0px;
+.loginpage-right-pane {
+  width: 50%;
 }
 
-.rightside-pane {
-  padding-left: 20px;
-  height: 100%;
+.loginpage-form {
   display: flex;
-  flex-direction: column;
+  height: 100vh;
+  padding-left: 10px;
   justify-content: center;
+  flex-direction: column;
+  gap: 10px;
 }
