@@ -35,7 +35,7 @@ export default function UserFeed(props) {
           />
         </Link>
         <div className="post-profile">
-          <small className="gray">{formatDate(post.date)}</small>
+          <small className="lightgray">{formatDate(post.date)}</small>
         </div>
       </div>
       <div className="post-content">

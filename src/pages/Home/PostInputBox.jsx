@@ -41,7 +41,7 @@ export default function PostInputBox(props) {
           value={postContent}
           onChange={handleChange}
         />
-        <small className="gray">{count}/300</small>
+        <small className="lightgray">{count}/300</small>
         <button className="standard-button" type="submit">
           Postar
         </button>

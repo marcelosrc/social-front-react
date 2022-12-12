@@ -8,6 +8,7 @@ export default function GeneralFeed(props) {
   const [posts, setPosts] = React.useState([
     {
       _id: "",
+      parentId: "",
       name: "",
       profilePicPath: "",
       content: "",
@@ -34,7 +35,6 @@ export default function GeneralFeed(props) {
 
   const postMenuHandler = (postId) => {
     setPostId(postId);
-    
   };
 
   const profileLink = "/users/";
@@ -51,7 +51,7 @@ export default function GeneralFeed(props) {
           />
         </Link>
         <div className="post-profile">
-          <small className="gray">{formatDate(post.date)}</small>
+          <small className="lightgray">{formatDate(post.date)}</small>
         </div>
       </div>
       <div className="post-content">
@@ -65,7 +65,7 @@ export default function GeneralFeed(props) {
         onMouseEnter={() => postMenuHandler(post._id)}
         onMouseLeave={() => postMenuHandler(null)}
       >
-        {postId === post._id ? (
+        {props.currentUser === post.parentId && postId === post._id ? (
           <PostMenu postId={postId} reloadFeed={setReloadGeneralFeed} />
         ) : null}
       </div>

@@ -1,5 +1,6 @@
 import React from "react";
 import Header from "../Header/Header";
+import UserStatus from "../../components/UserStatus";
 import GeneralFeed from "./GeneralFeed";
 import CardsPanel from "../../components/CardsPanel/CardsPanel";
 
@@ -10,8 +11,9 @@ export default function HomePage() {
     name: "",
     surname: "",
     profilePicPath: "",
-    followers: "",
+    following: "",
     posts: "",
+    followers: "",
   });
   const [reloadCurrentUser, setReloadCurrentUser] = React.useState(false);
 
@@ -27,7 +29,7 @@ export default function HomePage() {
       .then((data) => {
         setCurrentUser(data);
         setIsLoading(false);
-        setReloadCurrentUser(false)
+        setReloadCurrentUser(false);
       });
   }, [reloadCurrentUser]);
 
@@ -60,11 +62,13 @@ export default function HomePage() {
             </div>
           </div>
           <div className="profile-panel">
-              <h3 >Devotos {currentUser.followers}</h3>
-              <h3>Verdades {currentUser.posts}</h3>
+            <UserStatus user={currentUser} />
           </div>
         </div>
-        <GeneralFeed setReloadCurrentUser={setReloadCurrentUser}/>
+        <GeneralFeed
+          currentUser={currentUser._id}
+          setReloadCurrentUser={setReloadCurrentUser}
+        />
         <CardsPanel />
       </div>
     </>

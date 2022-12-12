@@ -16,9 +16,11 @@ label {
   font-size: 16px;
 }
 
-a, a:link, a:visited {
+a,
+a:link,
+a:visited {
   text-decoration: none;
-  color: black
+  color: black;
 }
 
 small {
@@ -51,6 +53,10 @@ small {
 }
 
 .gray {
+  color: gray;
+}
+
+.lightgray {
   color: lightgray;
 }
 
@@ -167,8 +173,19 @@ header {
 .profile-panel {
   display: flex;
   flex-direction: column;
-  flex-wrap: nowrap;
   margin: 10px 0px 10px 0px;
+}
+
+.profile-panel-status {
+  display: flex;
+}
+
+.profile-panel-status-desc {
+  width: 50%;
+}
+
+.profile-panel-status-data {
+  width: 50%;
 }
 
 /*INPUTPOST*/
@@ -237,23 +254,30 @@ header {
 
 .post-right-padding {
   width: 20px;
-  height: 70px;
-  background-color: whitesmoke;
-  border-radius: 10px 0px 0px 10px;
 }
 
 .post-context-menu {
   position: absolute;
-  border-radius: 10px 0px 0px 10px;
-  left: 420px;
-  width: 100px;
-  height: 50px;
-  padding: 10px;
-  background-color: whitesmoke;
+  display: flex;
+  flex-direction: column;
+  border-radius: 0px 10px 10px 0px;
+  top: 0px;
+  left: 340px;
+  width: 200px;
+  height: 100%;
+  background-color: yellow;
 }
 
 .post-context-menu > small {
   cursor: pointer;
+  height: 50%;
+}
+
+.post-context-menu > small:hover {
+  cursor: pointer;
+  height: 50%;
+  background-color: red;
+  border-radius: 0px 10px 0px 0px;
 }
 
 /*CARDSPANEL*/

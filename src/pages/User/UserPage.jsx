@@ -1,5 +1,6 @@
 import React from "react";
 import Header from "../Header/Header";
+import UserStatus from "../../components/UserStatus";
 import UserFeed from "./UserFeed";
 import CardsPanel from "../../components/CardsPanel/CardsPanel";
 import { useParams } from "react-router-dom";
@@ -12,7 +13,7 @@ export default function UserPage() {
     name: "",
     surname: "",
     profilePicPath: "",
-    followers: "",
+    following: "",
     posts: "",
   });
 
@@ -50,8 +51,7 @@ export default function UserPage() {
           <h2>{user.name}</h2>
           <h2>{user.surname}</h2>
           <div className="profile-panel">
-            <h3>Devotos {user.followers}</h3>
-            <h3>Verdades {user.posts}</h3>
+            <UserStatus user={user}/>
           </div>
         </div>
         <UserFeed userId={userId} />

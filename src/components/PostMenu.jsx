@@ -14,7 +14,7 @@ export default function PostMenu(props) {
 
   return (
     <div className="post-context-menu fade-in">
-      <small onClick={handlePostRemoval}>Remover post</small>
+      <small onClick={handlePostRemoval}></small>
     </div>
   );
 }
