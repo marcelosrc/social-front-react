@@ -10,6 +10,7 @@ export default function GeneralFeed(props) {
       _id: "",
       parentId: "",
       name: "",
+      surname: "",
       profilePicPath: "",
       content: "",
       date: "",
@@ -40,28 +41,27 @@ export default function GeneralFeed(props) {
   const profileLink = "/users/";
   const renderedPost = posts.map((post) => (
     <div key={post._id} className="post fade-in">
-      <div>
+      <div className="post-profile">
         <Link to={profileLink + post.parentId}>
           <img
             className="post-profile-picture"
-            width="100"
-            height="100"
+            width="80"
+            height="80"
             src={post.profilePicPath}
             alt={post.name}
           />
         </Link>
-        <div className="post-profile">
-          <small className="lightgray">{formatDate(post.date)}</small>
-        </div>
       </div>
       <div className="post-content">
-        <Link to={profileLink + post.parentId}>
-          <h3>{post.name}</h3>
-        </Link>
         <p>{post.content}</p>
+        <small>
+          <i>
+            ({post.surname.toUpperCase()}, {formatDate(post.date)})
+          </i>
+        </small>
       </div>
       <div
-        className="post-right-padding"
+        className="post-menu"
         onMouseEnter={() => postMenuHandler(post._id)}
         onMouseLeave={() => postMenuHandler(null)}
       >

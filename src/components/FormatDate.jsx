@@ -1,15 +1,34 @@
-export default function formatDate(date) {
+export default function formatDate(date, type) {
   const formattedDate = new Date(date);
-  const [/*day, month, */hours, minutes] = [
-    /*formattedDate.getDate(),
-    formattedDate.getMonth(),*/
+  const monthNames = [
+    "Janeiro",
+    "Fevereiro",
+    "Março",
+    "Abril",
+    "Maio",
+    "Junho",
+    "Julho",
+    "Agosto",
+    "Setembro",
+    "Outubro",
+    "Novembro",
+    "Dezembro",
+  ];
+  const monthIndex = formattedDate.getMonth();
+  const monthName = monthNames[monthIndex];
+  const [day, month, hours, minutes, year] = [
+    formattedDate.getDate(),
+    monthName,
     formattedDate.getHours(),
     (formattedDate.getMinutes() < 10 ? "0" : "") + formattedDate.getMinutes(),
+    formattedDate.getFullYear(),
   ];
 
-  return (
+  return type === "full" ? (
     <>
-      {hours}:{minutes}
+      {day} de {month} de {year} as {hours}:{minutes}
     </>
+  ) : (
+    <>{year}</>
   );
 }

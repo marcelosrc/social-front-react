@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "../Header/Header";
+import Header from "../../components/Header/Header"
 import UserStatus from "../../components/UserStatus";
 import GeneralFeed from "./GeneralFeed";
 import CardsPanel from "../../components/CardsPanel/CardsPanel";

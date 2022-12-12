@@ -1,0 +1,136 @@
+header {
+  position: fixed;
+  display: flex;
+  height: 50px;
+  width: 100%;
+  background-color: white;
+  z-index: 1;
+  box-shadow: 0px 0px 20px lightgray;
+}
+
+.header-left {
+  padding-left: 30px;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.header-right {
+  padding-right: 30px;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  gap: 30px;
+}
+
+.header-right > p {
+  cursor: pointer;
+}
+
+.homepage-flex-container {
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.profile {
+  padding: 100px 20px;
+  width: 200px;
+}
+
+.profile-card-id {
+  display: flex;
+  align-items: center;
+}
+
+.profile-card-name {
+  padding-left: 10px;
+}
+
+.profile-panel {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0px 10px 0px;
+}
+
+.generalfeed {
+  padding: 100px 20px;
+}
+
+.post-input-box {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  justify-content: center;
+  width: 500px;
+  padding: 20px;
+  margin-bottom: 2px;
+  background-color: white;
+}
+
+.post-textarea {
+  width: 480px;
+  border: none;
+  background-color: whitesmoke;
+  padding: 10px;
+}
+
+.post {
+  display: flex;
+  width: 540px;
+  margin-bottom: 2px;
+  background-color: white;
+}
+
+.post-profile {
+  padding: 20px 0px 20px 20px;
+}
+
+.post-content {
+  padding: 15px;
+  width: 410px;
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.post-context-menu {
+  position: absolute;
+  background-color: yellow;
+}
+
+.post-context-menu > small {
+  cursor: pointer;
+  height: 50%;
+}
+
+.post-context-menu > small:hover {
+  cursor: pointer;
+  height: 50%;
+  background-color: red;
+  border-radius: 0px 10px 0px 0px;
+}
+
+.cards {
+  padding: 100px 20px;
+  width: 200px;
+}
+
+.people-card {
+  padding-bottom: 5px;
+}
+
+.people-card-id {
+  display: flex;
+  align-items: center;
+}
+
+.people-card-name {
+  padding-left: 10px;
+}
+
+.people-card-bio {
+  padding-bottom: 5px;
+}

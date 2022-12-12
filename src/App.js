@@ -7,6 +7,10 @@ import UserPage from "./pages/User/UserPage";
 import NotFoundPage from "./pages/NotFound/NotFoundPage";
 import jwt_decode from "jwt-decode";
 
+import "./styles/main.css";
+import "./styles/login.css";
+import "./styles/home.css";
+
 export default function App() {
   const ProtectedRoute = ({ children }) => {
     try {
