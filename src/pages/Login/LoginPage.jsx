@@ -5,7 +5,6 @@ export default function LoginPage(props) {
     <div className="loginpage-flex-container">
       <div className="loginpage-left-pane" />
       <LoginForm setWebtoken={props.setWebtoken} />
-      <br />
     </div>
   );
 }

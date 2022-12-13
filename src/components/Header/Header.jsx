@@ -1,24 +1,28 @@
 import React from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-export default function Header() {
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    localStorage.removeItem("jwt");
-    navigate("/login");
-  };
-
+export default function Header(props) {
   return (
     <>
       <header>
         <div className="header-left">
           <Link to="/">
-            <img width="50px" height="50px" src="#" alt="Home" />
+            <img
+              className="header-picture"
+              src={props.currentUser.profilePicPath}
+              alt={props.currentUser.name}
+            />
+          </Link>
+          <Link to="/">
+            <p>
+              <b>{props.currentUser.name}</b>
+            </p>
           </Link>
         </div>
         <div className="header-right">
-          <p onClick={handleLogout}>Sair</p>
+          <Link to="/logout">
+            <p>Sair</p>
+          </Link>
         </div>
       </header>
     </>

@@ -13,7 +13,13 @@ header {
   width: 50%;
   display: flex;
   align-items: center;
-  gap: 30px;
+  gap: 10px;
+}
+
+.header-picture {
+  border: 1px solid #32383d;
+  width: 36px;
+  height: 36px;
 }
 
 .header-right {
@@ -40,22 +46,20 @@ header {
   width: 200px;
 }
 
-.profile-card-id {
-  display: flex;
-  align-items: center;
+.profile-picture {
+  width: 194px;
+  height: 194px;
+  border: 3px solid lightgray;
 }
-
-.profile-card-name {
-  padding-left: 10px;
-}
-
 .profile-panel {
   display: flex;
   flex-direction: column;
+  gap: 10px;
   margin: 10px 0px 10px 0px;
 }
 
 .generalfeed {
+  max-width: 540px;
   padding: 100px 20px;
 }
 
@@ -104,6 +108,12 @@ header {
   flex-direction: column;
 }
 
+.post-menu {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+}
+
 .post-context-menu {
   position: absolute;
   background-color: yellow;
@@ -127,18 +137,14 @@ header {
 }
 
 .people-card {
-  padding-bottom: 5px;
-}
-
-.people-card-id {
   display: flex;
+  gap: 10px;
   align-items: center;
+  padding-bottom: 10px;
 }
 
-.people-card-name {
-  padding-left: 10px;
-}
-
-.people-card-bio {
-  padding-bottom: 5px;
+.people-card-picture {
+  border: 1px solid lightgray;
+  width: 46px;
+  height: 46px;
 }

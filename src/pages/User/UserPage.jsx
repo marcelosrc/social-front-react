@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "../../components/Header/Header"
+import Header from "../../components/Header/Header";
 import UserStatus from "../../components/UserStatus";
 import UserFeed from "./UserFeed";
 import CardsPanel from "../../components/CardsPanel/CardsPanel";
@@ -33,25 +33,24 @@ export default function UserPage() {
   }, [userId]);
 
   return isLoading ? (
-    <>
+    <div className="standard-center-page">
       <h1>CARREGANDO...</h1>
-    </>
+    </div>
   ) : (
     <>
-      <Header />
+      <Header currentUser={user}/>
       <div className="homepage-flex-container fade-in">
         <div className="profile">
           <img
             className="profile-picture"
-            width="200"
-            height="200"
             src={user.profilePicPath}
             alt={user.name}
           />
           <h2>{user.name}</h2>
           <h2>{user.surname}</h2>
           <div className="profile-panel">
-            <UserStatus user={user}/>
+            <UserStatus user={user} />
+            <button className="standard-button">Seguir</button>
           </div>
         </div>
         <UserFeed userId={userId} />

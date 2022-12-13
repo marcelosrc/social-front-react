@@ -1,0 +1,22 @@
+.registerpage-flex-container {
+  display: flex;
+  width: 100%;
+}
+
+.registerpage-left-pane {
+  background-color: #4c555c;
+  width: 50%;
+}
+
+.registerpage-right-pane {
+  width: 50%;
+}
+
+.registerpage-form {
+  display: flex;
+  height: 100vh;
+  padding-left: 10px;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+}
