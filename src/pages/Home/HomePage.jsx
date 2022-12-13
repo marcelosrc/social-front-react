@@ -43,7 +43,7 @@ export default function HomePage() {
       <div className="homepage-flex-container fade-in">
         <div className="profile">
           <div className="profile-panel">
-            <UserStatus user={currentUser} />
+            <UserStatus currentUser={currentUser} />
           </div>
         </div>
         <GeneralFeed

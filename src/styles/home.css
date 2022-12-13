@@ -17,7 +17,7 @@ header {
 }
 
 .header-picture {
-  border: 1px solid #32383d;
+  border: 2px solid #32383d;
   width: 36px;
   height: 36px;
 }
@@ -47,9 +47,9 @@ header {
 }
 
 .profile-picture {
-  width: 194px;
-  height: 194px;
-  border: 3px solid lightgray;
+  width: 196px;
+  height: 196px;
+  border: 2px solid lightgray;
 }
 .profile-panel {
   display: flex;
@@ -59,7 +59,7 @@ header {
 }
 
 .generalfeed {
-  max-width: 540px;
+  width: 540px;
   padding: 100px 20px;
 }
 

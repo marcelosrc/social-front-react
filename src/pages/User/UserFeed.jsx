@@ -55,5 +55,11 @@ export default function UserFeed(props) {
       </div>
     </div>
   ));
-  return <div className="generalfeed">{renderedPost}</div>;
+  return renderedPost.length === 0 ? (
+    <div className="generalfeed">
+      <h1>Não há publicações</h1>
+    </div>
+  ) : (
+    <div className="generalfeed">{renderedPost}</div>
+  );
 }

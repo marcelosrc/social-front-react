@@ -49,7 +49,7 @@ export default function UserPage() {
           <h2>{user.name}</h2>
           <h2>{user.surname}</h2>
           <div className="profile-panel">
-            <UserStatus user={user} />
+            <UserStatus currentUser={user} />
             <button className="standard-button">Seguir</button>
           </div>
         </div>
