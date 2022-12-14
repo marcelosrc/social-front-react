@@ -1,12 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { userContext } from "../Home/HomePage";
 import PostInputBox from "./PostInputBox";
 import PostMenu from "../../components/PostMenu";
 import formatDate from "../../components/formatDate";
 
-export default function UserFeed(props) {
+export default function UserFeed() {
+  const user = React.useContext(userContext);
   const [posts, setPosts] = React.useState([]);
-  const [reloadGeneralFeed, setReloadGeneralFeed] = React.useState(false);
   const [postId, setPostId] = React.useState("");
 
   React.useEffect(() => {
@@ -19,9 +20,8 @@ export default function UserFeed(props) {
       .then((res) => res.json())
       .then((data) => {
         setPosts(data);
-        setReloadGeneralFeed(false);
       });
-  }, [reloadGeneralFeed]);
+  }, []);
 
   const postMenuHandler = (postId) => {
     setPostId(postId);
@@ -54,15 +54,15 @@ export default function UserFeed(props) {
         onMouseEnter={() => postMenuHandler(post._id)}
         onMouseLeave={() => postMenuHandler(null)}
       >
-        {props.user === post.parentId && postId === post._id ? (
-          <PostMenu postId={postId} reloadFeed={setReloadGeneralFeed} />
+        {user._id === post.parentId && postId === post._id ? (
+          <PostMenu postId={postId} />
         ) : null}
       </div>
     </div>
   ));
   return (
     <div className="generalfeed">
-      <PostInputBox reloadFeed={setReloadGeneralFeed} />
+      <PostInputBox />
       {renderedPost}
     </div>
   );

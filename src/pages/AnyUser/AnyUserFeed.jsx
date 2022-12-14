@@ -1,27 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { anyUserContext } from "./AnyUserPage";
 import formatDate from "../../components/formatDate";
 
-export default function UserFeed() {
-  const anyUser = React.useContext(anyUserContext);
+export default function AnyUserFeed() {
   const [posts, setPosts] = React.useState([]);
-  const [reloadGeneralFeed, setReloadGeneralFeed] = React.useState(false);
 
   React.useEffect(() => {
-    fetch("/queries/feed/" + anyUser._id, {
+    fetch("/queries/feed/639618bdd590b3f28f94da5b", {
       method: "GET",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-        "content-type": "application/json; charset=UTF-8",
       },
     })
       .then((res) => res.json())
       .then((data) => {
         setPosts(data);
-        setReloadGeneralFeed(false);
       });
-  }, [reloadGeneralFeed, anyUser]);
+  });
 
   const profileLink = "/users/";
   const renderedPost = posts.map((post) => (

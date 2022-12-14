@@ -22,7 +22,7 @@ export default function UserPage() {
       .then((data) => {
         setAnyUser(data);
       });
-  }, [userId]);
+  });
 
   return (
     <anyUserContext.Provider value={anyUser}>
