@@ -1,13 +1,11 @@
 import React from "react";
-import { useNavigate, Link } from "react-router-dom";
-import formatError from "../../components/formatError";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function LoginForm() {
   const [currentUser, setCurrentUser] = React.useState({
     email: "",
     password: "",
   });
-  const [errorAlert, setErrorAlert] = React.useState(null);
   const navigate = useNavigate();
 
   const handleChange = (event) => {
@@ -27,7 +25,7 @@ export default function LoginForm() {
           localStorage.setItem("jwt", data.jwt);
           navigate("/");
         } else {
-          setErrorAlert(data.message);
+          console.log("TEM QUE TRATAR ESSE ERRO AQUI");
         }
       });
   };
@@ -52,7 +50,6 @@ export default function LoginForm() {
             value={currentUser.password}
             onChange={handleChange}
           />
-          {formatError(errorAlert, "small")}
           <Link to="/register">
             <small>Criar nova conta</small>
           </Link>

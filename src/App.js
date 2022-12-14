@@ -1,11 +1,11 @@
 import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import HomePage from "./pages/Home/HomePage";
+import UserPage from "./pages/User/UserPage";
+import AnyUserPage from "./pages/AnyUser/AnyUserPage";
 import LoginPage from "./pages/Login/LoginPage";
 import RegisterPage from "./pages/Register/RegisterPage";
-import UserPage from "./pages/User/UserPage";
 import NotFoundPage from "./pages/NotFound/NotFoundPage";
-import jwt_decode from "jwt-decode";
 
 import "./styles/main.css";
 import "./styles/login.css";
@@ -13,18 +13,16 @@ import "./styles/home.css";
 import "./styles/register.css";
 
 export default function App() {
-  const ProtectedRoute = ({ children }) => {
-    try {
-      jwt_decode(localStorage.getItem("jwt"), { header: true });
-      return children;
-    } catch {
-      return <Navigate to="/login" />;
-    }
-  };
-
   const HandleLogout = () => {
     localStorage.removeItem("jwt");
     return <Navigate to="/login" />;
+  };
+
+  const ProtectedRoute = ({ children }) => {
+    if (!localStorage.getItem("jwt")) {
+      return <Navigate to="/login" />;
+    }
+    return children;
   };
 
   return (
@@ -34,7 +32,7 @@ export default function App() {
           index
           element={
             <ProtectedRoute>
-              <HomePage />
+              <HomePage page={<UserPage />} />
             </ProtectedRoute>
           }
         />
@@ -42,7 +40,7 @@ export default function App() {
           path="users/:userId"
           element={
             <ProtectedRoute>
-              <UserPage />
+              <HomePage page={<AnyUserPage />} />
             </ProtectedRoute>
           }
         />

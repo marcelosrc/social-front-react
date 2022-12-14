@@ -1,27 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import PostInputBox from "./PostInputBox";
+import PostMenu from "../../components/PostMenu";
 import formatDate from "../../components/formatDate";
 
 export default function UserFeed(props) {
-  const [posts, setPosts] = React.useState([
-    {
-      _id: "",
-      parentId: "",
-      name: "",
-      surname: "",
-      profilePicPath: "",
-      content: "",
-      date: "",
-    },
-  ]);
+  const [posts, setPosts] = React.useState([]);
   const [reloadGeneralFeed, setReloadGeneralFeed] = React.useState(false);
+  const [postId, setPostId] = React.useState("");
 
   React.useEffect(() => {
-    fetch(`/queries/feed/${props.userId}`, {
+    fetch("/queries/generalfeed", {
       method: "GET",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-        "content-type": "application/json; charset=UTF-8",
       },
     })
       .then((res) => res.json())
@@ -29,7 +21,11 @@ export default function UserFeed(props) {
         setPosts(data);
         setReloadGeneralFeed(false);
       });
-  }, [reloadGeneralFeed, props.userId]);
+  }, [reloadGeneralFeed]);
+
+  const postMenuHandler = (postId) => {
+    setPostId(postId);
+  };
 
   const profileLink = "/users/";
   const renderedPost = posts.map((post) => (
@@ -53,13 +49,21 @@ export default function UserFeed(props) {
           </i>
         </small>
       </div>
+      <div
+        className="post-menu"
+        onMouseEnter={() => postMenuHandler(post._id)}
+        onMouseLeave={() => postMenuHandler(null)}
+      >
+        {props.user === post.parentId && postId === post._id ? (
+          <PostMenu postId={postId} reloadFeed={setReloadGeneralFeed} />
+        ) : null}
+      </div>
     </div>
   ));
-  return renderedPost.length === 0 ? (
+  return (
     <div className="generalfeed">
-      <h1>Não há publicações</h1>
+      <PostInputBox reloadFeed={setReloadGeneralFeed} />
+      {renderedPost}
     </div>
-  ) : (
-    <div className="generalfeed">{renderedPost}</div>
   );
 }

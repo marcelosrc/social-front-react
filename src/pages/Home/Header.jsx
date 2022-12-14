@@ -1,7 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { userContext } from "./HomePage";
 
-export default function Header(props) {
+export default function Header() {
+  const user = React.useContext(userContext);
+
   return (
     <>
       <header>
@@ -9,13 +12,13 @@ export default function Header(props) {
           <Link to="/">
             <img
               className="header-picture"
-              src={props.currentUser.profilePicPath}
-              alt={props.currentUser.name}
+              src={user.profilePicPath}
+              alt={user.name}
             />
           </Link>
           <Link to="/">
             <p>
-              <b>{props.currentUser.name}</b>
+              <b>{user.name}</b>
             </p>
           </Link>
         </div>

@@ -1,10 +1,10 @@
 import LoginForm from "./LoginForm";
 
-export default function LoginPage(props) {
+export default function LoginPage() {
   return (
     <div className="loginpage-flex-container">
       <div className="loginpage-left-pane" />
-      <LoginForm setWebtoken={props.setWebtoken} />
+      <LoginForm />
     </div>
   );
 }

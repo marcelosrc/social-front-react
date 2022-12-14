@@ -21,6 +21,7 @@ export default function PostInputBox(props) {
     })
       .then((res) => res.json())
       .then((data) => {
+        alert("TEM Q VER ISSO DAQUI")
         setPostContent("");
         setCount(0);
         props.reloadFeed(true);

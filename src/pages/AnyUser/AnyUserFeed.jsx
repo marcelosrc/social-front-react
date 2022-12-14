@@ -1,42 +1,27 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import PostInputBox from "./PostInputBox";
-import PostMenu from "../../components/PostMenu";
+import { anyUserContext } from "./AnyUserPage";
 import formatDate from "../../components/formatDate";
 
-export default function GeneralFeed(props) {
-  const [posts, setPosts] = React.useState([
-    {
-      _id: "",
-      parentId: "",
-      name: "",
-      surname: "",
-      profilePicPath: "",
-      content: "",
-      date: "",
-    },
-  ]);
+export default function UserFeed() {
+  const anyUser = React.useContext(anyUserContext);
+  const [posts, setPosts] = React.useState([]);
   const [reloadGeneralFeed, setReloadGeneralFeed] = React.useState(false);
-  const [postId, setPostId] = React.useState("");
 
   React.useEffect(() => {
-    fetch("/queries/generalfeed", {
+    fetch("/queries/feed/" + anyUser._id, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+        "content-type": "application/json; charset=UTF-8",
       },
     })
       .then((res) => res.json())
       .then((data) => {
         setPosts(data);
         setReloadGeneralFeed(false);
-        //props.setReloadCurrentUser(true);
       });
-  }, [reloadGeneralFeed]);
-
-  const postMenuHandler = (postId) => {
-    setPostId(postId);
-  };
+  }, [reloadGeneralFeed, anyUser]);
 
   const profileLink = "/users/";
   const renderedPost = posts.map((post) => (
@@ -60,21 +45,13 @@ export default function GeneralFeed(props) {
           </i>
         </small>
       </div>
-      <div
-        className="post-menu"
-        onMouseEnter={() => postMenuHandler(post._id)}
-        onMouseLeave={() => postMenuHandler(null)}
-      >
-        {props.currentUser === post.parentId && postId === post._id ? (
-          <PostMenu postId={postId} reloadFeed={setReloadGeneralFeed} />
-        ) : null}
-      </div>
     </div>
   ));
-  return (
+  return renderedPost.length === 0 ? (
     <div className="generalfeed">
-      <PostInputBox reloadFeed={setReloadGeneralFeed} />
-      {renderedPost}
+      <h1>Não há publicações</h1>
     </div>
+  ) : (
+    <div className="generalfeed">{renderedPost}</div>
   );
 }

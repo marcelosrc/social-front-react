@@ -1,21 +1,10 @@
 import React from "react";
-import Header from "../../components/Header/Header";
-import UserStatus from "../../components/UserStatus";
-import GeneralFeed from "./GeneralFeed";
-import CardsPanel from "../../components/CardsPanel/CardsPanel";
+import Header from "./Header";
 
-export default function HomePage() {
-  const [isLoading, setIsLoading] = React.useState(true);
-  const [currentUser, setCurrentUser] = React.useState({
-    _id: "",
-    name: "",
-    surname: "",
-    profilePicPath: "",
-    following: "",
-    posts: "",
-    followers: "",
-  });
-  const [reloadCurrentUser, setReloadCurrentUser] = React.useState(false);
+export const userContext = React.createContext();
+
+export default function HomePage(props) {
+  const [user, setUser] = React.useState({});
 
   React.useEffect(() => {
     fetch("/users/myuser", {
@@ -27,31 +16,16 @@ export default function HomePage() {
     })
       .then((res) => res.json())
       .then((data) => {
-        setCurrentUser(data);
-        setIsLoading(false);
-        setReloadCurrentUser(false);
+        setUser(data);
       });
-  }, [reloadCurrentUser]);
+  }, []);
 
-  return isLoading ? (
-    <div className="standard-center-page">
-      <h1>CARREGANDO...</h1>
-    </div>
-  ) : (
+  return (
     <>
-      <Header currentUser={currentUser}/>
-      <div className="homepage-flex-container fade-in">
-        <div className="profile">
-          <div className="profile-panel">
-            <UserStatus currentUser={currentUser} />
-          </div>
-        </div>
-        <GeneralFeed
-          currentUser={currentUser._id}
-          setReloadCurrentUser={setReloadCurrentUser}
-        />
-        <CardsPanel />
-      </div>
+      <userContext.Provider value={user}>
+        <Header />
+        {props.page}
+      </userContext.Provider>
     </>
   );
 }
