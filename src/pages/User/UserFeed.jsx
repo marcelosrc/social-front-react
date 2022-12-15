@@ -9,6 +9,7 @@ export default function UserFeed() {
   const user = React.useContext(userContext);
   const [posts, setPosts] = React.useState([]);
   const [postId, setPostId] = React.useState("");
+  const [feedReloader, setFeedReloader] = React.useState(false);
 
   React.useEffect(() => {
     fetch("/queries/generalfeed", {
@@ -20,8 +21,9 @@ export default function UserFeed() {
       .then((res) => res.json())
       .then((data) => {
         setPosts(data);
+        setFeedReloader(false);
       });
-  }, []);
+  }, [feedReloader]);
 
   const postMenuHandler = (postId) => {
     setPostId(postId);
@@ -60,14 +62,14 @@ export default function UserFeed() {
       </div>
     </div>
   ));
-  return posts.length === 0 ? (
+  return (
     <div className="generalfeed">
-      <h1>Você ainda não tem publicações</h1>
-    </div>
-  ) : (
-    <div className="generalfeed">
-      <PostInputBox />
-      {renderedPost}
+      <PostInputBox setFeedReloader={setFeedReloader} />
+      {posts.length === 0 ? (
+        <h1>Você ainda não tem publicações</h1>
+      ) : (
+        renderedPost
+      )}
     </div>
   );
 }

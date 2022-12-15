@@ -1,6 +1,21 @@
 import React from "react";
+import { userContext } from "../Home/HomePage";
 
 export default function AnyUserProfile(props) {
+  const user = React.useContext(userContext);
+
+  const addFollower = () => {
+    fetch("/users/update/" + user._id, {
+      method: "PATCH",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+        "content-type": "application/json; charset=UTF-8",
+      },
+      body: JSON.stringify({ following: props.anyUser._id }),
+    })
+      .then((res) => res.json())
+      .then((data) => alert(data.message));
+  };
   return (
     <div className="profile">
       <img
@@ -16,7 +31,9 @@ export default function AnyUserProfile(props) {
           <p>Devotos {props.anyUser.followers}</p>
           <p>Publicações {props.anyUser.posts}</p>
         </div>
-        <button className="standard-button">Seguir</button>
+        <button className="standard-button" onClick={addFollower}>
+          Seguir
+        </button>
       </div>
     </div>
   );

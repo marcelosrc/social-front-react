@@ -1,5 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
+import LoadingPage from "../../components/LoadingPage";
 import CardsPanel from "../../components/CardsPanel/CardsPanel";
 
 const AnyUserProfile = React.lazy(() => import("../AnyUser/AnyUserProfile"));
@@ -25,9 +26,11 @@ export default function UserPage() {
 
   return (
     <div className="homepage-flex-container fade-in">
-      <AnyUserProfile anyUser={anyUser} />
-      <AnyUserFeed anyUser={anyUser} />
-      <CardsPanel anyUser={anyUser} />
+      <React.Suspense fallback={<LoadingPage />}>
+        <AnyUserProfile anyUser={anyUser} />
+        <AnyUserFeed anyUser={anyUser} />
+        <CardsPanel anyUser={anyUser} />
+      </React.Suspense>
     </div>
   );
 }

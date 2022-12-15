@@ -1,6 +1,5 @@
 import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import LoadingPage from "./components/LoadingPage";
 import HomePage from "./pages/Home/HomePage";
 import UserPage from "./pages/User/UserPage";
 import AnyUserPage from "./pages/AnyUser/AnyUserPage";
@@ -28,30 +27,28 @@ export default function App() {
 
   return (
     <BrowserRouter>
-      <React.Suspense fallback={<LoadingPage />}>
-        <Routes>
-          <Route
-            index
-            element={
-              <ProtectedRoute>
-                <HomePage page={<UserPage />} />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="users/:userId"
-            element={
-              <ProtectedRoute>
-                <HomePage page={<AnyUserPage />} />
-              </ProtectedRoute>
-            }
-          />
-          <Route path="register" element={<RegisterPage />} />
-          <Route path="login" element={<LoginPage />} />
-          <Route path="logout" element={<HandleLogout />} />
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
-      </React.Suspense>
+      <Routes>
+        <Route
+          index
+          element={
+            <ProtectedRoute>
+              <HomePage page={<UserPage />} />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="users/:userId"
+          element={
+            <ProtectedRoute>
+              <HomePage page={<AnyUserPage />} />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="register" element={<RegisterPage />} />
+        <Route path="login" element={<LoginPage />} />
+        <Route path="logout" element={<HandleLogout />} />
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
     </BrowserRouter>
   );
 }

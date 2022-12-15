@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import formatDate from "../../components/formatDate";
 
 export default function AnyUserFeed() {
@@ -20,11 +20,9 @@ export default function AnyUserFeed() {
       });
   }, [routerIdParam.userId]);
 
-  const profileLink = "/users/";
   const renderedPost = posts.map((post) => (
     <div key={post._id} className="post fade-in">
       <div className="post-header">
-        <Link to={profileLink + post.parentId}>
           <img
             className="post-profile-picture"
             width="80"
@@ -32,7 +30,6 @@ export default function AnyUserFeed() {
             src={post.profilePicPath}
             alt={post.name}
           />
-        </Link>
       </div>
       <div className="post-content">
         <p>{post.content}</p>

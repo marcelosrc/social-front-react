@@ -21,19 +21,17 @@ export default function PostInputBox(props) {
     })
       .then((res) => res.json())
       .then((data) => {
-        alert("TEM Q VER ISSO DAQUI")
+        setPostContent(data);
         setPostContent("");
         setCount(0);
-        props.reloadFeed(true);
+        props.setFeedReloader(true)
       });
   };
 
   return (
     <>
       <form className="post-input-box" onSubmit={handleSubmit}>
-        <label htmlFor="content">
-          Vai, manda sua merdinha de hoje
-        </label>
+        <label htmlFor="content">Vai, manda sua merdinha de hoje</label>
         <textarea
           className="post-textarea"
           name="content"
