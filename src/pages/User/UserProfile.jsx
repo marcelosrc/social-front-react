@@ -8,9 +8,9 @@ export default function UserProfile() {
     <div className="profile">
       <div className="profile-panel">
         <div className="profile-panel-status">
-          <p>Seguindo {user.following}</p>
-          <p>Devotos {user.followers}</p>
-          <p>Publicações {user.posts}</p>
+          <p>Seguindo {user.following?.length}</p>
+          <p>Devotos {user.followers?.length}</p>
+          <p>Publicações {user.posts?.length}</p>
         </div>
       </div>
     </div>

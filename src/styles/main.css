@@ -59,6 +59,15 @@ p {
   cursor: pointer;
 }
 
+.standard-deny-button {
+  border: none;
+  color: lightgray;
+  background-color: red;
+  width: 150px;
+  padding: 10px;
+  cursor: pointer;
+}
+
 .standard-center-page {
   display: flex;
   height: 100vh;
