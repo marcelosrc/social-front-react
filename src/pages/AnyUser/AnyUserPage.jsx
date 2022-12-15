@@ -1,17 +1,16 @@
 import React from "react";
-import AnyUserProfile from "../AnyUser/AnyUserProfile";
-import AnyUserFeed from "./AnyUserFeed";
-import CardsPanel from "../../components/CardsPanel/CardsPanel";
 import { useParams } from "react-router-dom";
+import CardsPanel from "../../components/CardsPanel/CardsPanel";
 
-export const anyUserContext = React.createContext();
+const AnyUserProfile = React.lazy(() => import("../AnyUser/AnyUserProfile"));
+const AnyUserFeed = React.lazy(() => import("./AnyUserFeed"));
 
 export default function UserPage() {
-  const { userId } = useParams();
+  const routerIdParam = useParams();
   const [anyUser, setAnyUser] = React.useState({});
 
   React.useEffect(() => {
-    fetch(`/users/read/${userId}`, {
+    fetch("/users/read/" + routerIdParam.userId, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("jwt")}`,
@@ -22,15 +21,13 @@ export default function UserPage() {
       .then((data) => {
         setAnyUser(data);
       });
-  });
+  }, [routerIdParam.userId]);
 
   return (
-    <anyUserContext.Provider value={anyUser}>
-      <div className="homepage-flex-container fade-in">
-        <AnyUserProfile />
-        <AnyUserFeed />
-        <CardsPanel />
-      </div>
-    </anyUserContext.Provider>
+    <div className="homepage-flex-container fade-in">
+      <AnyUserProfile anyUser={anyUser} />
+      <AnyUserFeed anyUser={anyUser} />
+      <CardsPanel anyUser={anyUser} />
+    </div>
   );
 }

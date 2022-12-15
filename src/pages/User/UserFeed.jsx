@@ -60,7 +60,11 @@ export default function UserFeed() {
       </div>
     </div>
   ));
-  return (
+  return posts.length === 0 ? (
+    <div className="generalfeed">
+      <h1>Você ainda não tem publicações</h1>
+    </div>
+  ) : (
     <div className="generalfeed">
       <PostInputBox />
       {renderedPost}

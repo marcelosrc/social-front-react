@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "./Header";
 
-export const userContext = React.createContext();
+export const userContext = React.createContext({});
 
 export default function HomePage(props) {
   const [user, setUser] = React.useState({});

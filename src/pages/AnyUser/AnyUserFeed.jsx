@@ -1,22 +1,24 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import formatDate from "../../components/formatDate";
 
 export default function AnyUserFeed() {
+  const routerIdParam = useParams();
   const [posts, setPosts] = React.useState([]);
 
   React.useEffect(() => {
-    fetch("/queries/feed/639618bdd590b3f28f94da5b", {
+    fetch("/queries/feed/" + routerIdParam.userId, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+        "content-type": "application/json; charset=UTF-8",
       },
     })
       .then((res) => res.json())
       .then((data) => {
         setPosts(data);
       });
-  });
+  }, [routerIdParam.userId]);
 
   const profileLink = "/users/";
   const renderedPost = posts.map((post) => (
@@ -42,9 +44,9 @@ export default function AnyUserFeed() {
       </div>
     </div>
   ));
-  return renderedPost.length === 0 ? (
+  return posts.length === 0 ? (
     <div className="generalfeed">
-      <h1>Não há publicações</h1>
+      <h1>Esse usuário ainda não tem publicações</h1>
     </div>
   ) : (
     <div className="generalfeed">{renderedPost}</div>
