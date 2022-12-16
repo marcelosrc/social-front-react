@@ -3,6 +3,7 @@ import React from "react";
 export default function PostInputBox(props) {
   const [postContent, setPostContent] = React.useState("");
   const [count, setCount] = React.useState(0);
+  const maxLength = 300
 
   const handleChange = (event) => {
     setPostContent(event.target.value);
@@ -24,7 +25,7 @@ export default function PostInputBox(props) {
         setPostContent(data);
         setPostContent("");
         setCount(0);
-        props.setFeedReloader(true)
+        props.setFeedReloader(true);
       });
   };
 
@@ -39,8 +40,9 @@ export default function PostInputBox(props) {
           rows="3"
           value={postContent}
           onChange={handleChange}
+          maxLength={maxLength}
         />
-        <small className="lightgray">{count}/300</small>
+        <small className="lightgray">{count}/{maxLength}</small>
         <button className="standard-button" type="submit">
           Postar
         </button>

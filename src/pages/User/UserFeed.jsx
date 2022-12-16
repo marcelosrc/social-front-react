@@ -47,7 +47,7 @@ export default function UserFeed() {
         <p>{post.content}</p>
         <small>
           <i>
-            ({post.surname.toUpperCase()}, {formatDate(post.date)})
+            ({post.surname.toUpperCase()}, {formatDate(post.date, "full")})
           </i>
         </small>
       </div>

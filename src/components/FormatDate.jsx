@@ -26,7 +26,7 @@ export default function formatDate(date, type) {
 
   return type === "full" ? (
     <>
-      {day} de {month} de {year} as {hours}:{minutes}
+      {day} de {month} de {year} às {hours}:{minutes}
     </>
   ) : (
     <>{year}</>

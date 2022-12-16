@@ -103,9 +103,11 @@ header {
 .post-content {
   padding: 20px;
   width: 500px;
-  gap: 10px;
+  gap: 20px;
   display: flex;
   flex-direction: column;
+  word-break: break-word;
+  white-space: pre-wrap;
 }
 
 .post-menu {

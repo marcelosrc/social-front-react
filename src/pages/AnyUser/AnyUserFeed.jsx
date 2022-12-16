@@ -22,20 +22,11 @@ export default function AnyUserFeed() {
 
   const renderedPost = posts.map((post) => (
     <div key={post._id} className="post">
-      <div className="post-header">
-          <img
-            className="post-profile-picture"
-            width="80"
-            height="80"
-            src={post.profilePicPath}
-            alt={post.name}
-          />
-      </div>
       <div className="post-content">
         <p>{post.content}</p>
         <small>
           <i>
-            ({post.surname.toUpperCase()}, {formatDate(post.date)})
+            ({post.surname.toUpperCase()}, {formatDate(post.date, "full")})
           </i>
         </small>
       </div>

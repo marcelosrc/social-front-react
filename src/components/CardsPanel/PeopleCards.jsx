@@ -2,15 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default function PeopleCards() {
-  const [people, setPeople] = React.useState([
-    {
-      _id: "",
-      name: "",
-      surname: "",
-      profilePicPath: "",
-      bio: "",
-    },
-  ]);
+  const [people, setPeople] = React.useState([]);
 
   React.useEffect(() => {
     fetch("/queries/peoplecards", {
