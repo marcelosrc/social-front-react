@@ -55,11 +55,15 @@ export default function UserFeed() {
           </i>
         </small>
       </div>
-      <div className="post-answers">
-        {post.answerPosts.map((answerPost) => (
-          <p key={answerPost._id}>{answerPost.content}</p>
-        ))}
-      </div>
+
+      {post.answerPosts.length === 0
+        ? null
+        : post.answerPosts.map((answerPost) => (
+            <div key={answerPost._id} className="post-answers">
+              <p>{answerPost.content}</p>
+            </div>
+          ))}
+
       {user._id !== post.parentId && postId === post._id ? (
         <PostAnswerInputBox postId={postId} setFeedReloader={setFeedReloader} />
       ) : null}
