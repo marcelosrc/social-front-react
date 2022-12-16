@@ -30,13 +30,14 @@ export default function AnyUserFeed() {
           </i>
         </small>
       </div>
+      <div className="post-footer" />
     </div>
   ));
   return posts.length === 0 ? (
-    <div className="generalfeed">
+    <div className="anyuser-feed">
       <h1>Esse usuário ainda não tem publicações</h1>
     </div>
   ) : (
-    <div className="generalfeed">{renderedPost}</div>
+    <div className="anyuser-feed">{renderedPost}</div>
   );
 }

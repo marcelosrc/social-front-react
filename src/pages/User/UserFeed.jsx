@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { userContext } from "../Home/HomePage";
 import PostInputBox from "./PostInputBox";
+import PostAnswerInputBox from "../../components/PostAnswerInputBox";
 import PostMenu from "../../components/PostMenu";
 import formatDate from "../../components/formatDate";
 
@@ -31,13 +32,16 @@ export default function UserFeed() {
 
   const profileLink = "/users/";
   const renderedPost = posts.map((post) => (
-    <div key={post._id} className="post">
+    <div
+      key={post._id}
+      className="post"
+      onMouseEnter={() => postMenuHandler(post._id)}
+      onMouseLeave={() => postMenuHandler(null)}
+    >
       <div className="post-header">
         <Link to={profileLink + post.parentId}>
           <img
             className="post-profile-picture"
-            width="80"
-            height="80"
             src={post.profilePicPath}
             alt={post.name}
           />
@@ -51,11 +55,15 @@ export default function UserFeed() {
           </i>
         </small>
       </div>
-      <div
-        className="post-menu"
-        onMouseEnter={() => postMenuHandler(post._id)}
-        onMouseLeave={() => postMenuHandler(null)}
-      >
+      <div className="post-answers">
+        {post.answerPosts.map((answerPost) => (
+          <p key={answerPost._id}>{answerPost.content}</p>
+        ))}
+      </div>
+      {user._id !== post.parentId && postId === post._id ? (
+        <PostAnswerInputBox postId={postId} setFeedReloader={setFeedReloader} />
+      ) : null}
+      <div className="post-menu">
         {user._id === post.parentId && postId === post._id ? (
           <PostMenu postId={postId} />
         ) : null}
@@ -63,13 +71,15 @@ export default function UserFeed() {
     </div>
   ));
   return (
-    <div className="generalfeed">
+    <div className="user-feed">
       <PostInputBox setFeedReloader={setFeedReloader} />
-      {posts.length === 0 ? (
-        <h1>Você ainda não tem publicações</h1>
-      ) : (
-        renderedPost
-      )}
+      <div className="feed-content">
+        {posts.length === 0 ? (
+          <h1>Você ainda não tem publicações</h1>
+        ) : (
+          renderedPost
+        )}
+      </div>
     </div>
   );
 }

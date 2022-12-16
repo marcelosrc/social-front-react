@@ -8,7 +8,7 @@ export default function Header() {
   return (
     <>
       <header>
-        <div className="header-left">
+        <div className="header-user-card">
           <Link to="/">
             <img
               className="header-picture"
@@ -22,7 +22,7 @@ export default function Header() {
             </p>
           </Link>
         </div>
-        <div className="header-right">
+        <div className="header-right-pane">
           <Link to="/logout">
             <p>Sair</p>
           </Link>
