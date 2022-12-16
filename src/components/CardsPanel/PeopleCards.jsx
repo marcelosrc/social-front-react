@@ -27,7 +27,7 @@ export default function PeopleCards() {
 
   const profileLink = "/users/";
   const renderedCard = people.map((card) => (
-    <div key={card._id} className="people-card fade-in">
+    <div key={card._id} className="people-card">
       <Link to={profileLink + card._id}>
         <img
           className="people-card-picture"

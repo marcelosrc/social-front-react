@@ -6,7 +6,7 @@ import PostMenu from "../../components/PostMenu";
 import formatDate from "../../components/formatDate";
 
 export default function UserFeed() {
-  const user = React.useContext(userContext);
+  const { user } = React.useContext(userContext);
   const [posts, setPosts] = React.useState([]);
   const [postId, setPostId] = React.useState("");
   const [feedReloader, setFeedReloader] = React.useState(false);
@@ -31,7 +31,7 @@ export default function UserFeed() {
 
   const profileLink = "/users/";
   const renderedPost = posts.map((post) => (
-    <div key={post._id} className="post fade-in">
+    <div key={post._id} className="post">
       <div className="post-header">
         <Link to={profileLink + post.parentId}>
           <img

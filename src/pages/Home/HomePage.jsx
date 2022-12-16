@@ -5,6 +5,7 @@ export const userContext = React.createContext({});
 
 export default function HomePage(props) {
   const [user, setUser] = React.useState({});
+  const [reloadUser, setReloadUser] = React.useState(false);
 
   React.useEffect(() => {
     fetch("/users/myuser", {
@@ -17,12 +18,13 @@ export default function HomePage(props) {
       .then((res) => res.json())
       .then((data) => {
         setUser(data);
+        setReloadUser(false);
       });
-  }, []);
+  }, [reloadUser]);
 
   return (
     <>
-      <userContext.Provider value={user}>
+      <userContext.Provider value={{ user, setReloadUser }}>
         <Header />
         {props.page}
       </userContext.Provider>

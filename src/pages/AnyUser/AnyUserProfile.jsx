@@ -2,8 +2,7 @@ import React from "react";
 import { userContext } from "../Home/HomePage";
 
 export default function AnyUserProfile(props) {
-  const user = React.useContext(userContext);
-  const [isFollowing, SetIsFollowing] = React.useState("");
+  const { user, setReloadUser } = React.useContext(userContext);
 
   const addFollower = () => {
     fetch("/users/update/" + user._id, {
@@ -15,10 +14,13 @@ export default function AnyUserProfile(props) {
       body: JSON.stringify({ $addToSet: { following: props.anyUser._id } }),
     })
       .then((res) => res.json())
-      .then((data) => {});
+      .then((data) => {
+        props.setReloadAnyUser(true);
+        setReloadUser(true);
+      });
   };
 
-  const deleteFollower = () => {
+  const removeFollower = () => {
     fetch("/users/update/" + user._id, {
       method: "PATCH",
       headers: {
@@ -28,20 +30,28 @@ export default function AnyUserProfile(props) {
       body: JSON.stringify({ $pull: { following: props.anyUser._id } }),
     })
       .then((res) => res.json())
-      .then((data) => {});
+      .then((data) => {
+        props.setReloadAnyUser(true);
+        setReloadUser(true);
+      });
   };
 
-  React.useEffect(() => {
+  const FollowButton = () => {
     if (user.following?.includes(props.anyUser._id)) {
-      SetIsFollowing(
-        <button className="standard-deny-button">Deixar de Seguir</button>
+      return (
+        <button className="standard-deny-button" onClick={removeFollower}>
+          Deixar de Seguir
+        </button>
       );
-    } else if (user._id !== props.anyUser._id) {
-      SetIsFollowing(<button className="standard-button">Seguir</button>);
-    } else {
-      SetIsFollowing(null);
+    } else if (user._id === props.anyUser._id) {
+      return null;
     }
-  }, [user.following, user._id, props.anyUser._id]);
+    return (
+      <button className="standard-button" onClick={addFollower}>
+        Seguir
+      </button>
+    );
+  };
 
   return (
     <div className="profile">
@@ -59,21 +69,7 @@ export default function AnyUserProfile(props) {
           <p>Publicações {props.anyUser.postsLen}</p>
         </div>
       </div>
-      {isFollowing}
+      <FollowButton />
     </div>
   );
 }
-
-/*
-return (
-        <button className="standard-deny-button" onClick={deleteFollower}>
-          Deixar de Seguir
-        </button>
-      );
-
-return (
-        <button className="standard-button" onClick={addFollower}>
-          Seguir
-        </button>
-      );
-*/

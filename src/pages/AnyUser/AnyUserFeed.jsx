@@ -21,7 +21,7 @@ export default function AnyUserFeed() {
   }, [routerIdParam.userId]);
 
   const renderedPost = posts.map((post) => (
-    <div key={post._id} className="post fade-in">
+    <div key={post._id} className="post">
       <div className="post-header">
           <img
             className="post-profile-picture"

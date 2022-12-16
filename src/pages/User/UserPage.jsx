@@ -5,7 +5,7 @@ import CardsPanel from "../../components/CardsPanel/CardsPanel";
 
 export default function UserPage() {
   return (
-    <div className="homepage-flex-container fade-in">
+    <div className="homepage-flex-container">
       <UserProfile />
       <UserFeed />
       <CardsPanel />

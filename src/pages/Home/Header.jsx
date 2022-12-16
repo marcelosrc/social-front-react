@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { userContext } from "./HomePage";
 
 export default function Header() {
-  const user = React.useContext(userContext);
+  const { user } = React.useContext(userContext);
 
   return (
     <>

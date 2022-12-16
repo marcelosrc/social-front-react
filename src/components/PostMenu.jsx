@@ -13,7 +13,7 @@ export default function PostMenu(props) {
   };
 
   return (
-    <div className="post-context-menu fade-in">
+    <div className="post-context-menu">
       <small onClick={handlePostRemoval}>PRECISA CONSERTAR ISSO AQUI</small>
     </div>
   );
