@@ -51,19 +51,24 @@ export default function UserFeed() {
         <p>{post.content}</p>
         <small>
           <i>
-            ({post.surname.toUpperCase()}, {formatDate(post.date, "full")})
+            ({post.surname.toUpperCase()}, {formatDate(post.date)})
           </i>
         </small>
       </div>
-
       {post.answerPosts.length === 0
         ? null
         : post.answerPosts.map((answerPost) => (
             <div key={answerPost._id} className="post-answers">
-              <p>{answerPost.content}</p>
+              <img
+                className="post-answers-picture"
+                src={answerPost.profilePicPath}
+                alt={answerPost.name}
+              />
+              <div className="post-answers-content">
+                <p>{answerPost.content}</p>
+              </div>
             </div>
           ))}
-
       {user._id !== post.parentId && postId === post._id ? (
         <PostAnswerInputBox postId={postId} setFeedReloader={setFeedReloader} />
       ) : null}

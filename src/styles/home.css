@@ -134,7 +134,27 @@ header {
 }
 
 .post-answers {
-  padding: 0px 20px 20px 20px;;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0px 20px 20px 20px;
+}
+
+.post-answers-picture {
+  width: 36px;
+  height: 36px;
+  border: 2px solid #202529;
+}
+
+.post-answers-content {
+  display: flex;
+  flex-direction: column;
+  word-break: break-word;
+  white-space: pre-wrap;
+}
+
+.post-answers-content > p {
+  font-size: 13px;
 }
 
 .post-footer {
