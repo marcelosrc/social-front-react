@@ -13,7 +13,7 @@ export default function UserFeed() {
   const [feedReloader, setFeedReloader] = React.useState(false);
 
   React.useEffect(() => {
-    fetch("/queries/generalfeed", {
+    fetch("/queries/userfeed", {
       method: "GET",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("jwt")}`,
