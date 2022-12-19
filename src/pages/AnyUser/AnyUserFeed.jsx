@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { userContext } from "../Home/HomePage";
 import PostAnswerInputBox from "../../components/PostAnswerInputBox";
 import formatDate from "../../components/formatDate";
@@ -30,6 +30,7 @@ export default function AnyUserFeed() {
     setPostId(postId);
   };
 
+  const profileLink = "/users/";
   const renderedPost = posts.map((post) => (
     <div
       key={post._id}
@@ -49,11 +50,13 @@ export default function AnyUserFeed() {
         ? null
         : post.answerPosts.map((answerPost) => (
             <div key={answerPost._id} className="post-answers">
-              <img
-                className="post-answers-picture"
-                src={answerPost.profilePicPath}
-                alt={answerPost.name}
-              />
+              <Link to={profileLink + answerPost.ownerId}>
+                <img
+                  className="post-answers-picture"
+                  src={answerPost.profilePicPath}
+                  alt={answerPost.name}
+                />
+              </Link>
               <div className="post-answers-content">
                 <p>{answerPost.content}</p>
               </div>

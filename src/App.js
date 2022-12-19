@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import HomePage from "./pages/Home/HomePage";
 import UserPage from "./pages/User/UserPage";
+import UserGridPage from "./pages/User/UserGridPage";
 import AnyUserPage from "./pages/AnyUser/AnyUserPage";
 import LoginPage from "./pages/Login/LoginPage";
 import RegisterPage from "./pages/Register/RegisterPage";
@@ -10,6 +11,9 @@ import NotFoundPage from "./pages/NotFound/NotFoundPage";
 import "./styles/main.css";
 import "./styles/login.css";
 import "./styles/home.css";
+import "./styles/anyprofile.css";
+import "./styles/grid.css";
+import "./styles/peoplecards.css";
 import "./styles/register.css";
 
 export default function App() {
@@ -33,6 +37,14 @@ export default function App() {
           element={
             <ProtectedRoute>
               <HomePage page={<UserPage />} />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="following"
+          element={
+            <ProtectedRoute>
+              <HomePage page={<UserGridPage />} />
             </ProtectedRoute>
           }
         />

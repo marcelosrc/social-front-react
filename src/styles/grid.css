@@ -1,0 +1,20 @@
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 100px 20px 20px 20px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: #32383d;
+  padding: 20px;
+}
+
+.card-picture {
+  width: 196px;
+  height: 196px;
+  border: solid 2px #202529;
+}

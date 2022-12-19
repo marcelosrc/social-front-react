@@ -6,7 +6,7 @@ import CardsPanel from "../../components/CardsPanel/CardsPanel";
 const AnyUserProfile = React.lazy(() => import("../AnyUser/AnyUserProfile"));
 const AnyUserFeed = React.lazy(() => import("./AnyUserFeed"));
 
-export default function UserPage() {
+export default function AnyUserPage() {
   const routerIdParam = useParams();
   const [anyUser, setAnyUser] = React.useState({});
   const [reloadAnyUser, setReloadAnyUser] = React.useState(false);

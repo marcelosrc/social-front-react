@@ -1,58 +1,7 @@
 import React from "react";
-import { userContext } from "../Home/HomePage";
+import FollowButton from "../../components/FollowButton";
 
 export default function AnyUserProfile(props) {
-  const { user, setReloadUser } = React.useContext(userContext);
-
-  const addFollower = () => {
-    fetch("/users/update/" + user._id, {
-      method: "PATCH",
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-        "content-type": "application/json; charset=UTF-8",
-      },
-      body: JSON.stringify({ $addToSet: { following: props.anyUser._id } }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        props.setReloadAnyUser(true);
-        setReloadUser(true);
-      });
-  };
-
-  const removeFollower = () => {
-    fetch("/users/update/" + user._id, {
-      method: "PATCH",
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-        "content-type": "application/json; charset=UTF-8",
-      },
-      body: JSON.stringify({ $pull: { following: props.anyUser._id } }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        props.setReloadAnyUser(true);
-        setReloadUser(true);
-      });
-  };
-
-  const FollowButton = () => {
-    if (user.following?.includes(props.anyUser._id)) {
-      return (
-        <button className="standard-deny-button" onClick={removeFollower}>
-          Deixar de Seguir
-        </button>
-      );
-    } else if (user._id === props.anyUser._id) {
-      return null;
-    }
-    return (
-      <button className="standard-button" onClick={addFollower}>
-        Seguir
-      </button>
-    );
-  };
-
   return (
     <div className="anyuser-profile">
       <img
@@ -71,7 +20,10 @@ export default function AnyUserProfile(props) {
           <p>Publicações {props.anyUser.postsLen}</p>
         </div>
       </div>
-      <FollowButton />
+      <FollowButton
+        anyUser={props.anyUser}
+        setReloadAnyUser={props.setReloadAnyUser}
+      />
     </div>
   );
 }

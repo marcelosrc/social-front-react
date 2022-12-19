@@ -39,5 +39,5 @@ export default function PeopleCards() {
       </div>
     </div>
   ));
-  return <div className="cards">{renderedCard}</div>;
+  return <div className="cards-feed">{renderedCard}</div>;
 }

@@ -35,37 +35,6 @@ header {
   justify-content: center;
 }
 
-.user-profile {
-  padding: 100px 20px;
-  width: 200px;
-}
-
-.user-profile-panel {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.anyuser-profile {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 100px 20px;
-  width: 200px;
-}
-
-.anyuser-profile-picture {
-  width: 196px;
-  height: 196px;
-  border: 2px solid lightgray;
-}
-
-.anyuser-profile-panel {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
 .user-feed {
   display: flex;
   flex-direction: column;
@@ -193,25 +162,4 @@ header {
   height: 50%;
   background-color: red;
   border-radius: 0px 10px 0px 0px;
-}
-
-.cards {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 100px 20px;
-  height: 100vh;
-  width: 200px;
-}
-
-.people-card {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-
-.people-card-picture {
-  border: 1px solid lightgray;
-  width: 46px;
-  height: 46px;
 }
