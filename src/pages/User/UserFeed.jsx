@@ -85,11 +85,7 @@ export default function UserFeed() {
     <div className="user-feed">
       <PostInputBox setFeedReloader={setFeedReloader} />
       <div className="feed-content">
-        {posts.length === 0 ? (
-          <h1>Você ainda não tem publicações</h1>
-        ) : (
-          renderedPost
-        )}
+        {renderedPost}
       </div>
     </div>
   );

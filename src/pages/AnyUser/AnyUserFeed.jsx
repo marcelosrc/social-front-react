@@ -67,11 +67,5 @@ export default function AnyUserFeed() {
       ) : null}
     </div>
   ));
-  return posts.length === 0 ? (
-    <div className="anyuser-feed">
-      <h1>Esse usuário ainda não tem publicações</h1>
-    </div>
-  ) : (
-    <div className="anyuser-feed">{renderedPost}</div>
-  );
+  return <div className="anyuser-feed">{renderedPost}</div>;
 }
