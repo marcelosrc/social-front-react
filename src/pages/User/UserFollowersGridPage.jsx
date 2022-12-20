@@ -2,12 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import FollowButton from "../../components/FollowButton";
 
-export default function UserGridPage() {
+export default function UserFollowingGridPage() {
   const [cards, setCards] = React.useState([]);
   const [reloadAnyUser, setReloadAnyUser] = React.useState(false);
 
   React.useEffect(() => {
-    fetch("/queries/following", {
+    fetch("/queries/followers", {
       method: "GET",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("jwt")}`,

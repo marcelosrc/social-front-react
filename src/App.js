@@ -2,7 +2,8 @@ import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import HomePage from "./pages/Home/HomePage";
 import UserPage from "./pages/User/UserPage";
-import UserGridPage from "./pages/User/UserGridPage";
+import UserFollowingGridPage from "./pages/User/UserFollowingGridPage";
+import UserFollowersGridPage from "./pages/User/UserFollowersGridPage";
 import AnyUserPage from "./pages/AnyUser/AnyUserPage";
 import LoginPage from "./pages/Login/LoginPage";
 import RegisterPage from "./pages/Register/RegisterPage";
@@ -44,7 +45,15 @@ export default function App() {
           path="following"
           element={
             <ProtectedRoute>
-              <HomePage page={<UserGridPage />} />
+              <HomePage page={<UserFollowingGridPage />} />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="followers"
+          element={
+            <ProtectedRoute>
+              <HomePage page={<UserFollowersGridPage />} />
             </ProtectedRoute>
           }
         />

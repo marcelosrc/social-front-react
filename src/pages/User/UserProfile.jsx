@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { userContext } from "../Home/HomePage";
 
 export default function UserProfile() {
-  const { user, setReloadUser } = React.useContext(userContext);
+  const { user } = React.useContext(userContext);
   const profileLink = "/users/";
 
   return (
@@ -18,7 +18,9 @@ export default function UserProfile() {
           <Link to="/following">
             <p>Seguindo {user.followingLen}</p>
           </Link>
-          <p>Devotos {user.followersLen}</p>
+          <Link to="/followers">
+            <p>Devotos {user.followersLen}</p>
+          </Link>
           <p>Publicações {user.postsLen}</p>
         </div>
       </div>
