@@ -1,8 +1,21 @@
+.top-empty-space {
+  width: 100%;
+  height: 100px;
+  background-color: #202529;
+}
+
+.grid-title {
+  width: 100%;
+  height: 100px;
+  background-color: #202529;
+  text-align: center;
+}
+
 .grid {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  padding: 100px 20px 20px 20px;
+  padding: 0px 20px 20px 20px;
 }
 
 .card {

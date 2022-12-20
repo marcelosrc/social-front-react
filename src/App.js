@@ -4,6 +4,8 @@ import HomePage from "./pages/Home/HomePage";
 import UserPage from "./pages/User/UserPage";
 import UserFollowingGridPage from "./pages/User/UserFollowingGridPage";
 import UserFollowersGridPage from "./pages/User/UserFollowersGridPage";
+import AnyUserFollowingGridPage from "./pages/AnyUser/AnyUserFollowingGridPage";
+import AnyUserFollowersGridPage from "./pages/AnyUser/AnyUserFollowersGridPage";
 import AnyUserPage from "./pages/AnyUser/AnyUserPage";
 import LoginPage from "./pages/Login/LoginPage";
 import RegisterPage from "./pages/Register/RegisterPage";
@@ -54,6 +56,22 @@ export default function App() {
           element={
             <ProtectedRoute>
               <HomePage page={<UserFollowersGridPage />} />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="following/:userId"
+          element={
+            <ProtectedRoute>
+              <HomePage page={<AnyUserFollowingGridPage />} />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="followers/:userId"
+          element={
+            <ProtectedRoute>
+              <HomePage page={<AnyUserFollowersGridPage />} />
             </ProtectedRoute>
           }
         />

@@ -1,15 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { userContext } from "../Home/HomePage";
+import { useParams } from "react-router-dom";
 import FollowButton from "../../components/FollowButton";
 
-export default function UserFollowersGridPage() {
-  const { user } = React.useContext(userContext);
+export default function AnyUserFollowingGridPage() {
+  const routerIdParam = useParams();
   const [cards, setCards] = React.useState([]);
   const [reloadAnyUser, setReloadAnyUser] = React.useState(false);
 
   React.useEffect(() => {
-    fetch("/queries/followers/" + user._id, {
+    fetch("/queries/following/" + routerIdParam.userId, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("jwt")}`,
@@ -20,7 +20,7 @@ export default function UserFollowersGridPage() {
         setCards(data);
         setReloadAnyUser(false);
       });
-  }, [reloadAnyUser, user._id]);
+  }, [reloadAnyUser, routerIdParam.userId]);
 
   const profileLink = "/users/";
   const renderedCard = cards.map((card) => (
@@ -42,9 +42,6 @@ export default function UserFollowersGridPage() {
   return (
     <>
       <div className="top-empty-space" />
-      <div className="grid-title">
-        <h1>Devotos do {user.name.slice(0, -1)}ismo</h1>
-      </div>
       <div className="grid">{renderedCard}</div>
     </>
   );
