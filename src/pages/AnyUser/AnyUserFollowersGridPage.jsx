@@ -5,10 +5,11 @@ import FollowButton from "../../components/FollowButton";
 
 export default function AnyUserFollowersGridPage() {
   const routerIdParam = useParams();
+  const [anyUser, setAnyUser] = React.useState("");
   const [cards, setCards] = React.useState([]);
 
   React.useEffect(() => {
-    fetch("/queries/followers/" + routerIdParam.userId, {
+    fetch("/users/read/" + routerIdParam.userId, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("jwt")}`,
@@ -16,14 +17,23 @@ export default function AnyUserFollowersGridPage() {
     })
       .then((res) => res.json())
       .then((data) => {
-        setCards(data);
+        setAnyUser(data);
+        fetch("/queries/followers/" + routerIdParam.userId, {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+          },
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            setCards(data);
+          });
       });
   }, [routerIdParam.userId]);
 
-  const profileLink = "/users/";
   const renderedCard = cards.map((card) => (
     <div key={card._id} className="card">
-      <Link to={profileLink + card._id}>
+      <Link to={"/users/" + card._id}>
         <img
           className="card-picture"
           src={card.profilePicPath}
@@ -41,7 +51,7 @@ export default function AnyUserFollowersGridPage() {
     <>
       <div className="top-empty-space" />
       <div className="grid-title">
-        <h1>Devotos de anyUser.name</h1>
+        <h1>Devotos de {anyUser.name}</h1>
       </div>
       <div className="grid">{renderedCard}</div>
     </>
