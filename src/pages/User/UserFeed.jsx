@@ -1,13 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { userContext } from "../Home/HomePage";
+import useFetch from "../../components/useFetch";
 import PostInputBox from "./PostInputBox";
 import PostAnswerInputBox from "../../components/PostAnswerInputBox";
 import PostMenu from "../../components/PostMenu";
 import formatDate from "../../components/formatDate";
 
 export default function UserFeed() {
-  const { user } = React.useContext(userContext);
+  const user = useFetch("/users/myuser", "GET");
   const [posts, setPosts] = React.useState([]);
   const [postId, setPostId] = React.useState("");
   const [feedReloader, setFeedReloader] = React.useState(false);
@@ -60,11 +60,11 @@ export default function UserFeed() {
         : post.answerPosts.map((answerPost) => (
             <div key={answerPost._id} className="post-answers">
               <Link to={profileLink + answerPost.ownerId}>
-              <img
-                className="post-answers-picture"
-                src={answerPost.profilePicPath}
-                alt={answerPost.name}
-              />
+                <img
+                  className="post-answers-picture"
+                  src={answerPost.profilePicPath}
+                  alt={answerPost.name}
+                />
               </Link>
               <div className="post-answers-content">
                 <p>{answerPost.content}</p>
@@ -84,9 +84,7 @@ export default function UserFeed() {
   return (
     <div className="user-feed">
       <PostInputBox setFeedReloader={setFeedReloader} />
-      <div className="feed-content">
-        {renderedPost}
-      </div>
+      <div className="feed-content">{renderedPost}</div>
     </div>
   );
 }

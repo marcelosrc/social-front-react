@@ -1,11 +1,11 @@
 import React from "react";
 import { useParams, Link } from "react-router-dom";
-import { userContext } from "../Home/HomePage";
+import useFetch from "../../components/useFetch";
 import PostAnswerInputBox from "../../components/PostAnswerInputBox";
 import formatDate from "../../components/formatDate";
 
 export default function AnyUserFeed() {
-  const { user } = React.useContext(userContext);
+  const user = useFetch("/users/myuser", "GET");
   const routerIdParam = useParams();
   const [posts, setPosts] = React.useState([]);
   const [postId, setPostId] = React.useState("");

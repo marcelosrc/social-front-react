@@ -1,8 +1,8 @@
 import React from "react";
-import { userContext } from "../pages/Home/HomePage";
+import useFetch from "./useFetch";
 
 export default function FollowButton(props) {
-  const { user, setReloadUser } = React.useContext(userContext);
+  const user = useFetch("/users/myuser", "GET");
 
   const addFollower = () => {
     fetch("/users/update/" + user._id, {
@@ -16,7 +16,6 @@ export default function FollowButton(props) {
       .then((res) => res.json())
       .then((data) => {
         props.setReloadAnyUser(true);
-        setReloadUser(true);
       });
   };
 
@@ -32,7 +31,6 @@ export default function FollowButton(props) {
       .then((res) => res.json())
       .then((data) => {
         props.setReloadAnyUser(true);
-        setReloadUser(true);
       });
   };
 

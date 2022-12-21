@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { userContext } from "../Home/HomePage";
+import useFetch from "../../components/useFetch";
 import FollowButton from "../../components/FollowButton";
 
 export default function UserFollowersGridPage() {
-  const { user } = React.useContext(userContext);
+  const user = useFetch("/users/myuser", "GET");
   const [cards, setCards] = React.useState([]);
   const [reloadAnyUser, setReloadAnyUser] = React.useState(false);
 

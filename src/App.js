@@ -60,7 +60,15 @@ export default function App() {
           }
         />
         <Route
-          path="following/:userId"
+          path="users/:userId"
+          element={
+            <ProtectedRoute>
+              <HomePage page={<AnyUserPage />} />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="users/:userId/following"
           element={
             <ProtectedRoute>
               <HomePage page={<AnyUserFollowingGridPage />} />
@@ -68,18 +76,10 @@ export default function App() {
           }
         />
         <Route
-          path="followers/:userId"
+          path="users/:userId/followers"
           element={
             <ProtectedRoute>
               <HomePage page={<AnyUserFollowersGridPage />} />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="users/:userId"
-          element={
-            <ProtectedRoute>
-              <HomePage page={<AnyUserPage />} />
             </ProtectedRoute>
           }
         />
