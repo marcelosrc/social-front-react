@@ -6,7 +6,6 @@ import FollowButton from "../../components/FollowButton";
 export default function AnyUserFollowingGridPage() {
   const routerIdParam = useParams();
   const [cards, setCards] = React.useState([]);
-  const [reloadAnyUser, setReloadAnyUser] = React.useState(false);
 
   React.useEffect(() => {
     fetch("/queries/following/" + routerIdParam.userId, {
@@ -18,9 +17,8 @@ export default function AnyUserFollowingGridPage() {
       .then((res) => res.json())
       .then((data) => {
         setCards(data);
-        setReloadAnyUser(false);
       });
-  }, [reloadAnyUser, routerIdParam.userId]);
+  }, [routerIdParam.userId]);
 
   const profileLink = "/users/";
   const renderedCard = cards.map((card) => (
@@ -36,12 +34,15 @@ export default function AnyUserFollowingGridPage() {
         <h1>{card.name}</h1>
         <h1>{card.surname}</h1>
       </div>
-      <FollowButton anyUser={card} setReloadAnyUser={setReloadAnyUser} />
+      <FollowButton anyUser={card} />
     </div>
   ));
   return (
     <>
       <div className="top-empty-space" />
+      <div className="grid-title">
+        <h1>Os que influenciam anyUser.name</h1>
+      </div>
       <div className="grid">{renderedCard}</div>
     </>
   );

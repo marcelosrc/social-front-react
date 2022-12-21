@@ -1,15 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import useFetch from "../../components/useFetch";
 import FollowButton from "../../components/FollowButton";
 
 export default function UserFollowingGridPage() {
-  const user = useFetch("/users/myuser", "GET");
+  const [user, setUser] = React.useState("");
   const [cards, setCards] = React.useState([]);
-  const [reloadAnyUser, setReloadAnyUser] = React.useState(false);
 
   React.useEffect(() => {
-    fetch("/queries/following/" + user._id, {
+    fetch("/users/myuser", {
       method: "GET",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("jwt")}`,
@@ -17,15 +15,23 @@ export default function UserFollowingGridPage() {
     })
       .then((res) => res.json())
       .then((data) => {
-        setCards(data);
-        setReloadAnyUser(false);
+        setUser(data);
+        fetch("/queries/following/" + data._id, {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+          },
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            setCards(data);
+          });
       });
-  }, [reloadAnyUser, user._id]);
+  }, []);
 
-  const profileLink = "/users/";
   const renderedCard = cards.map((card) => (
     <div key={card._id} className="card">
-      <Link to={profileLink + card._id}>
+      <Link to={"/users/" + card._id}>
         <img
           className="card-picture"
           src={card.profilePicPath}
@@ -36,7 +42,7 @@ export default function UserFollowingGridPage() {
         <h1>{card.name}</h1>
         <h1>{card.surname}</h1>
       </div>
-      <FollowButton anyUser={card} setReloadAnyUser={setReloadAnyUser} />
+      <FollowButton anyUser={card} />
     </div>
   ));
   return (

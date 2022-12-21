@@ -17,10 +17,10 @@ export default function AnyUserProfile(props) {
       </div>
       <div className="anyuser-profile-panel">
         <div className="anyuser-profile-panel-status">
-          <Link to={"/following/" + routerIdParam.userId}>
+          <Link to={"/users/" + routerIdParam.userId + "/following"}>
             <p>Seguindo {props.anyUser.followingLen}</p>
           </Link>
-          <Link to={"/followers/" + routerIdParam.userId}>
+          <Link to={"/users/" + routerIdParam.userId + "/followers"}>
             <p>Devotos {props.anyUser.followersLen}</p>
           </Link>
           <Link to={"/users/" + props.anyUser._id}>
