@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function PostInputBox(props) {
+export default function PostInputBox() {
   const [postContent, setPostContent] = React.useState("");
   const [count, setCount] = React.useState(0);
   const maxLength = 300;
@@ -25,7 +25,6 @@ export default function PostInputBox(props) {
         setPostContent(data);
         setPostContent("");
         setCount(0);
-        props.setFeedReloader(true);
       });
   };
 

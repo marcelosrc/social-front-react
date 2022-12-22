@@ -9,7 +9,6 @@ const AnyUserFeed = React.lazy(() => import("./AnyUserFeed"));
 export default function AnyUserPage() {
   const routerIdParam = useParams();
   const [anyUser, setAnyUser] = React.useState({});
-  const [reloadAnyUser, setReloadAnyUser] = React.useState(false);
 
   React.useEffect(() => {
     fetch("/users/read/" + routerIdParam.userId, {
@@ -22,9 +21,8 @@ export default function AnyUserPage() {
       .then((res) => res.json())
       .then((data) => {
         setAnyUser(data);
-        setReloadAnyUser(false);
       });
-  }, [reloadAnyUser, routerIdParam.userId]);
+  }, [routerIdParam.userId]);
 
   return (
     <div className="homepage-flex-container">
@@ -35,7 +33,7 @@ export default function AnyUserPage() {
           </div>
         }
       >
-        <AnyUserProfile anyUser={anyUser} setReloadAnyUser={setReloadAnyUser} />
+        <AnyUserProfile anyUser={anyUser} />
       </React.Suspense>
       <React.Suspense
         fallback={

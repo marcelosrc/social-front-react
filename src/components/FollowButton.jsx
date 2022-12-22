@@ -1,8 +1,8 @@
 import React from "react";
-import useFetch from "./useFetch";
+import { AuthContext } from "../App";
 
 export default function FollowButton(props) {
-  const user = useFetch("/users/myuser", "GET");
+  const user = React.useContext(AuthContext);
 
   const addFollower = () => {
     fetch("/users/update/" + user._id, {
@@ -14,9 +14,7 @@ export default function FollowButton(props) {
       body: JSON.stringify({ $addToSet: { following: props.anyUser._id } }),
     })
       .then((res) => res.json())
-      .then((data) => {
-        props.setReloadAnyUser(true);
-      });
+      .then((data) => {});
   };
 
   const removeFollower = () => {
@@ -29,9 +27,7 @@ export default function FollowButton(props) {
       body: JSON.stringify({ $pull: { following: props.anyUser._id } }),
     })
       .then((res) => res.json())
-      .then((data) => {
-        props.setReloadAnyUser(true);
-      });
+      .then((data) => {});
   };
 
   if (user.following?.includes(props.anyUser._id)) {

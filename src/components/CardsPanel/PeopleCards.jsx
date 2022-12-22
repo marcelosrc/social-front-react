@@ -17,10 +17,9 @@ export default function PeopleCards() {
       .catch((err) => alert(err));
   }, []);
 
-  const profileLink = "/users/";
   const renderedCard = people.map((card) => (
     <div key={card._id} className="people-card">
-      <Link to={profileLink + card._id}>
+      <Link to={"/users/" + card._id}>
         <img
           className="people-card-picture"
           src={card.profilePicPath}
@@ -28,7 +27,7 @@ export default function PeopleCards() {
         />
       </Link>
       <div className="people-card-name">
-        <Link to={profileLink + card._id}>
+        <Link to={"/users/" + card._id}>
           <p>
             <b>{card.name}</b>
           </p>

@@ -25,7 +25,6 @@ export default function PostAnswerInputBox(props) {
         setPostContent(data);
         setPostContent("");
         setCount(0);
-        props.setFeedReloader(true);
       });
   };
 

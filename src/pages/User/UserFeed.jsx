@@ -1,36 +1,34 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import useFetch from "../../components/useFetch";
+import { AuthContext } from "../../App";
 import PostInputBox from "./PostInputBox";
 import PostAnswerInputBox from "../../components/PostAnswerInputBox";
 import PostMenu from "../../components/PostMenu";
 import formatDate from "../../components/formatDate";
 
 export default function UserFeed() {
-  const user = useFetch("/users/myuser", "GET");
+  const user = React.useContext(AuthContext);
   const [posts, setPosts] = React.useState([]);
   const [postId, setPostId] = React.useState("");
-  const [feedReloader, setFeedReloader] = React.useState(false);
 
   React.useEffect(() => {
     fetch("/queries/userfeed", {
       method: "GET",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+        "content-type": "application/json; charset=UTF-8",
       },
     })
       .then((res) => res.json())
       .then((data) => {
         setPosts(data);
-        setFeedReloader(false);
       });
-  }, [feedReloader]);
+  }, []);
 
   const postMenuHandler = (postId) => {
     setPostId(postId);
   };
 
-  const profileLink = "/users/";
   const renderedPost = posts.map((post) => (
     <div
       key={post._id}
@@ -39,7 +37,7 @@ export default function UserFeed() {
       onMouseLeave={() => postMenuHandler(null)}
     >
       <div className="post-header">
-        <Link to={profileLink + post.parentId}>
+        <Link to={"/users/" + post.parentId}>
           <img
             className="post-profile-picture"
             src={post.profilePicPath}
@@ -59,7 +57,7 @@ export default function UserFeed() {
         ? null
         : post.answerPosts.map((answerPost) => (
             <div key={answerPost._id} className="post-answers">
-              <Link to={profileLink + answerPost.ownerId}>
+              <Link to={"/users/" + answerPost.ownerId}>
                 <img
                   className="post-answers-picture"
                   src={answerPost.profilePicPath}
@@ -72,7 +70,7 @@ export default function UserFeed() {
             </div>
           ))}
       {user._id !== post.parentId && postId === post._id ? (
-        <PostAnswerInputBox postId={postId} setFeedReloader={setFeedReloader} />
+        <PostAnswerInputBox postId={postId} />
       ) : null}
       <div className="post-menu">
         {user._id === post.parentId && postId === post._id ? (
@@ -83,7 +81,7 @@ export default function UserFeed() {
   ));
   return (
     <div className="user-feed">
-      <PostInputBox setFeedReloader={setFeedReloader} />
+      <PostInputBox />
       <div className="feed-content">{renderedPost}</div>
     </div>
   );

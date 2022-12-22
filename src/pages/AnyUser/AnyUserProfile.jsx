@@ -4,6 +4,7 @@ import FollowButton from "../../components/FollowButton";
 
 export default function AnyUserProfile(props) {
   const routerIdParam = useParams();
+
   return (
     <div className="anyuser-profile">
       <img
@@ -28,10 +29,7 @@ export default function AnyUserProfile(props) {
           </Link>
         </div>
       </div>
-      <FollowButton
-        anyUser={props.anyUser}
-        setReloadAnyUser={props.setReloadAnyUser}
-      />
+      <FollowButton anyUser={props.anyUser} />
     </div>
   );
 }

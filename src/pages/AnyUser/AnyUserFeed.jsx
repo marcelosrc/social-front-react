@@ -1,15 +1,14 @@
 import React from "react";
 import { useParams, Link } from "react-router-dom";
-import useFetch from "../../components/useFetch";
+import { AuthContext } from "../../App";
 import PostAnswerInputBox from "../../components/PostAnswerInputBox";
 import formatDate from "../../components/formatDate";
 
 export default function AnyUserFeed() {
-  const user = useFetch("/users/myuser", "GET");
   const routerIdParam = useParams();
+  const user = React.useContext(AuthContext);
   const [posts, setPosts] = React.useState([]);
-  const [postId, setPostId] = React.useState("");
-  const [feedReloader, setFeedReloader] = React.useState(false);
+  const [postId, setPostId] = React.useState({});
 
   React.useEffect(() => {
     fetch("/queries/feed/" + routerIdParam.userId, {
@@ -22,15 +21,13 @@ export default function AnyUserFeed() {
       .then((res) => res.json())
       .then((data) => {
         setPosts(data);
-        setFeedReloader(false);
       });
-  }, [feedReloader, routerIdParam.userId]);
+  }, [routerIdParam.userId]);
 
   const postMenuHandler = (postId) => {
     setPostId(postId);
   };
 
-  const profileLink = "/users/";
   const renderedPost = posts.map((post) => (
     <div
       key={post._id}
@@ -50,7 +47,7 @@ export default function AnyUserFeed() {
         ? null
         : post.answerPosts.map((answerPost) => (
             <div key={answerPost._id} className="post-answers">
-              <Link to={profileLink + answerPost.ownerId}>
+              <Link to={"/users/" + answerPost.ownerId}>
                 <img
                   className="post-answers-picture"
                   src={answerPost.profilePicPath}
@@ -63,7 +60,7 @@ export default function AnyUserFeed() {
             </div>
           ))}
       {user._id !== post.parentId && postId === post._id ? (
-        <PostAnswerInputBox postId={postId} setFeedReloader={setFeedReloader} />
+        <PostAnswerInputBox postId={postId} />
       ) : null}
     </div>
   ));

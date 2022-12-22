@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import useFetch from "../../components/useFetch";
+import { AuthContext } from "../../App";
 
 export default function UserProfile() {
-  const user = useFetch("/users/myuser", "GET");
+  const user = React.useContext(AuthContext);
 
   return (
     <div className="user-profile">
