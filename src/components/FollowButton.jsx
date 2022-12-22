@@ -33,7 +33,13 @@ export default function FollowButton(props) {
   if (user.following?.includes(props.anyUser._id)) {
     return (
       <button className="standard-deny-button" onClick={removeFollower}>
-        Deixar de Seguir
+        Deixar de seguir
+      </button>
+    );
+  } else if (props.anyUser.following?.includes(user._id)) {
+    return (
+      <button className="standard-button" onClick={addFollower}>
+        Seguir de volta
       </button>
     );
   } else if (user._id === props.anyUser._id) {

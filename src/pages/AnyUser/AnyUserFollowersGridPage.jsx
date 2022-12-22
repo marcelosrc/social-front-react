@@ -13,6 +13,7 @@ export default function AnyUserFollowersGridPage() {
       method: "GET",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+        "content-type": "application/json; charset=UTF-8",
       },
     })
       .then((res) => res.json())
@@ -22,6 +23,7 @@ export default function AnyUserFollowersGridPage() {
           method: "GET",
           headers: {
             Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+            "content-type": "application/json; charset=UTF-8",
           },
         })
           .then((res) => res.json())

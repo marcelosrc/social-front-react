@@ -4,6 +4,7 @@ export default function PostMenu(props) {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+        "content-type": "application/json; charset=UTF-8",
       },
     })
       .then((res) => res.json())
