@@ -4,9 +4,10 @@ import HomePage from "./pages/Home/HomePage";
 import UserPage from "./pages/User/UserPage";
 import UserFollowingGridPage from "./pages/User/UserFollowingGridPage";
 import UserFollowersGridPage from "./pages/User/UserFollowersGridPage";
+import AnyUserPage from "./pages/AnyUser/AnyUserPage";
 import AnyUserFollowingGridPage from "./pages/AnyUser/AnyUserFollowingGridPage";
 import AnyUserFollowersGridPage from "./pages/AnyUser/AnyUserFollowersGridPage";
-import AnyUserPage from "./pages/AnyUser/AnyUserPage";
+import PostPage from "./pages/Post/PostPage";
 import LoginPage from "./pages/Login/LoginPage";
 import RegisterPage from "./pages/Register/RegisterPage";
 import NotFoundPage from "./pages/NotFound/NotFoundPage";
@@ -99,6 +100,14 @@ export default function App() {
             element={
               <ProtectedRoute>
                 <HomePage page={<AnyUserFollowersGridPage />} />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="posts/:postId"
+            element={
+              <ProtectedRoute>
+                <HomePage page={<PostPage />} />
               </ProtectedRoute>
             }
           />
