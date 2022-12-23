@@ -68,6 +68,15 @@ p {
   cursor: pointer;
 }
 
+.standard-grayed-button {
+  border: none;
+  color: lightgray;
+  background-color: gray;
+  width: 150px;
+  padding: 10px;
+  cursor: pointer;
+}
+
 .standard-center-page {
   display: flex;
   height: 100vh;

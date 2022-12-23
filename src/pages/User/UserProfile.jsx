@@ -18,6 +18,7 @@ export default function UserProfile() {
           <Link to={"/users/" + user._id}>
             <p>Publicações {user.postsLen}</p>
           </Link>
+          <p>Carteira {user.score}R$</p>
         </div>
       </div>
     </div>

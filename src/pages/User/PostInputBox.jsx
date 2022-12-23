@@ -1,9 +1,25 @@
 import React from "react";
+import { AuthContext } from "../../App";
 
 export default function PostInputBox() {
+  const user = React.useContext(AuthContext);
   const [postContent, setPostContent] = React.useState("");
   const [count, setCount] = React.useState(0);
   const maxLength = 300;
+  const postValue = 50;
+
+  const subtractFromScore = () => {
+    fetch("/users/update/" + user._id, {
+      method: "PATCH",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+        "content-type": "application/json; charset=UTF-8",
+      },
+      body: JSON.stringify({ $inc: { score: -postValue } }),
+    })
+      .then((res) => res.json())
+      .then((data) => {});
+  };
 
   const handleChange = (event) => {
     setPostContent(event.target.value);
@@ -12,20 +28,26 @@ export default function PostInputBox() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    fetch("/posts/create", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-        "content-type": "application/json; charset=UTF-8",
-      },
-      body: JSON.stringify({ content: postContent }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setPostContent(data);
-        setPostContent("");
-        setCount(0);
-      });
+    if (user.score <= 0) {
+      alert("Você não tem dinheiro");
+      setPostContent("");
+      setCount(0);
+    } else {
+      fetch("/posts/create", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+          "content-type": "application/json; charset=UTF-8",
+        },
+        body: JSON.stringify({ content: postContent }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setPostContent("");
+          setCount(0);
+          subtractFromScore();
+        });
+    }
   };
 
   return (
@@ -43,8 +65,13 @@ export default function PostInputBox() {
       <small className="lightgray">
         {count}/{maxLength}
       </small>
-      <button className="standard-button" type="submit">
-        Postar
+      <button
+        className={
+          user.score <= 0 ? "standard-grayed-button" : "standard-button"
+        }
+        type="submit"
+      >
+        Publicar ({postValue}R$)
       </button>
     </form>
   );
