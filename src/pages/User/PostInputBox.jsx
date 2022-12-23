@@ -30,7 +30,7 @@ export default function PostInputBox() {
 
   return (
     <form className="post-input-box" onSubmit={handleSubmit}>
-      <label htmlFor="content">Vai, manda sua merdinha de hoje</label>
+      <label htmlFor="content">Qual é a sua verdade absoluta de hoje?</label>
       <textarea
         className="post-textarea"
         name="content"

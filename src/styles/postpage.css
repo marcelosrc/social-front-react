@@ -1,27 +1,19 @@
-.post {
+.post-feed {
+  display: flex;
+  flex-direction: column;
+  width: 540px;
+  padding: 100px 20px;
+}
+
+.postpage-post {
   display: flex;
   flex-direction: column;
   width: 540px;
   background-color: #32383d;
 }
 
-.post:hover {
-  filter: brightness(1.3);
-}
-
-.post-header {
-  display: flex;
-  padding: 20px 20px 0px 20px;
-}
-
-.post-profile-picture {
-  width: 76px;
-  height: 76px;
-  border: solid 2px #202529;
-}
-
-.post-content {
-  padding: 20px;
+.postpage-post-content {
+  padding: 100px 20px 100px 20px;
   width: 500px;
   gap: 20px;
   display: flex;
@@ -30,64 +22,35 @@
   white-space: pre-wrap;
 }
 
-.post-answers {
+.postpage-post-content > p {
+  font-size: 22px;
+}
+
+.postpage-post-answers {
   display: flex;
   align-items: center;
   gap: 5px;
   padding: 0px 20px 20px 20px;
 }
 
-.post-answers-picture {
-  width: 36px;
-  height: 36px;
+.postpage-post-answers-picture {
+  width: 56px;
+  height: 56px;
   border: 2px solid #202529;
 }
 
-.post-answers-content {
+.postpage-post-answers-content {
   display: flex;
   flex-direction: column;
   word-break: break-word;
   white-space: pre-wrap;
 }
 
-.post-answers-content > p {
-  font-size: 13px;
-}
-
-.post-footer {
-  height: 20px;
-  width: 540px;
-  background-color: #32383d;
-}
-
-.post-answer-input-box {
+.postpage-post-answer-input-box {
   display: flex;
   flex-direction: column;
   gap: 10px;
   width: 500px;
   padding: 0px 20px 20px 20px;
   background-color: #32383d;
-}
-
-.post-menu {
-  position: absolute;
-  width: 10px;
-  height: 10px;
-}
-
-.post-context-menu {
-  position: relative;
-  background-color: yellow;
-}
-
-.post-context-menu > small {
-  cursor: pointer;
-  height: 50%;
-}
-
-.post-context-menu > small:hover {
-  cursor: pointer;
-  height: 50%;
-  background-color: red;
-  border-radius: 0px 10px 0px 0px;
 }

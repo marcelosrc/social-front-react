@@ -17,6 +17,7 @@ import "./styles/login.css";
 import "./styles/home.css";
 import "./styles/anyprofile.css";
 import "./styles/grid.css";
+import "./styles/postpage.css";
 import "./styles/peoplecards.css";
 import "./styles/register.css";
 

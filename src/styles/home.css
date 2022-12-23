@@ -130,12 +130,6 @@ header {
   font-size: 13px;
 }
 
-.post-footer {
-  height: 20px;
-  width: 540px;
-  background-color: #32383d;
-}
-
 .post-answer-input-box {
   display: flex;
   flex-direction: column;
@@ -143,27 +137,4 @@ header {
   width: 500px;
   padding: 0px 20px 20px 20px;
   background-color: #32383d;
-}
-
-.post-menu {
-  position: absolute;
-  width: 10px;
-  height: 10px;
-}
-
-.post-context-menu {
-  position: relative;
-  background-color: yellow;
-}
-
-.post-context-menu > small {
-  cursor: pointer;
-  height: 50%;
-}
-
-.post-context-menu > small:hover {
-  cursor: pointer;
-  height: 50%;
-  background-color: red;
-  border-radius: 0px 10px 0px 0px;
 }

@@ -1,10 +1,8 @@
 import React from "react";
-import { useParams, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import FollowButton from "../../components/FollowButton";
 
 export default function AnyUserProfile(props) {
-  const routerIdParam = useParams();
-
   return (
     <div className="anyuser-profile">
       <img
@@ -18,10 +16,10 @@ export default function AnyUserProfile(props) {
       </div>
       <div className="anyuser-profile-panel">
         <div className="anyuser-profile-panel-status">
-          <Link to={"/users/" + routerIdParam.userId + "/following"}>
+          <Link to={"/users/" + props.anyUser._id + "/following"}>
             <p>Seguindo {props.anyUser.followingLen}</p>
           </Link>
-          <Link to={"/users/" + routerIdParam.userId + "/followers"}>
+          <Link to={"/users/" + props.anyUser._id + "/followers"}>
             <p>Devotos {props.anyUser.followersLen}</p>
           </Link>
           <Link to={"/users/" + props.anyUser._id}>
