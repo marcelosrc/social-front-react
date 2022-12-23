@@ -18,7 +18,7 @@ header {
 }
 
 .header-picture {
-  border: 2px solid #32383d;
+  border: 2px solid #202529;
   width: 36px;
   height: 36px;
 }
@@ -104,6 +104,10 @@ header {
   flex-direction: column;
   word-break: break-word;
   white-space: pre-wrap;
+}
+
+.post-info {
+  padding: 0px 20px 20px 20px;
 }
 
 .post-answers {

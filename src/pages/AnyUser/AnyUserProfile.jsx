@@ -5,14 +5,20 @@ import FollowButton from "../../components/FollowButton";
 export default function AnyUserProfile(props) {
   return (
     <div className="anyuser-profile">
-      <img
-        className="anyuser-profile-picture"
-        src={props.anyUser.profilePicPath}
-        alt={props.anyUser.name}
-      />
+      <Link to={"/users/" + props.anyUser._id}>
+        <img
+          className="anyuser-profile-picture"
+          src={props.anyUser.profilePicPath}
+          alt={props.anyUser.name}
+        />
+      </Link>
       <div className="anyuser-profile-name">
-        <h2>{props.anyUser.name}</h2>
-        <h2>{props.anyUser.surname}</h2>
+        <Link to={"/users/" + props.anyUser._id}>
+          <h2>{props.anyUser.name}</h2>
+        </Link>
+        <Link to={"/users/" + props.anyUser._id}>
+          <h2>{props.anyUser.surname}</h2>
+        </Link>
       </div>
       <div className="anyuser-profile-panel">
         <div className="anyuser-profile-panel-status">

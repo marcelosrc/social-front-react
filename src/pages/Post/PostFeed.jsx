@@ -17,6 +17,11 @@ export default function PostFeed(props) {
           />
         </Link>
         <div className="postpage-post-answers-content">
+          <h3>
+            <Link to={"/users/" + answerPost.ownerId}>
+              <b>{answerPost.name}</b>
+            </Link>
+          </h3>
           <p>{answerPost.content}</p>
         </div>
       </div>
@@ -30,14 +35,14 @@ export default function PostFeed(props) {
           <p>{props.post.content}</p>
           <small>
             <i>
-              ({props.post.surname.toUpperCase()}, {formatDate(props.post.date, "full")}
+              ({props.post.surname.toUpperCase()}, {formatDate(props.post.date)}
               )
             </i>
           </small>
         </div>
-        {answerPosts}
         <PostAnswerInputBox postId={routerIdParam.postId} />
       </div>
+      {answerPosts}
     </div>
   );
 }

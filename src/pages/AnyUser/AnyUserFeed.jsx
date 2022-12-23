@@ -1,6 +1,5 @@
 import React from "react";
 import { useParams, Link } from "react-router-dom";
-import formatDate from "../../components/formatDate";
 
 export default function AnyUserFeed() {
   const routerIdParam = useParams();
@@ -25,11 +24,9 @@ export default function AnyUserFeed() {
       <Link to={"/posts/" + post._id}>
         <div className="post-content">
           <p>{post.content}</p>
-          <small>
-            <i>
-              ({post.surname.toUpperCase()}, {formatDate(post.date, "full")})
-            </i>
-          </small>
+        </div>
+        <div className="post-info">
+          <small>{post.answerPosts.length} resposta{post.answerPosts.length !== 1 ? "s" : ""}</small>
         </div>
       </Link>
     </div>

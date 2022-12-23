@@ -29,9 +29,9 @@ export default function PostAnswerInputBox(props) {
   };
 
   return (
-    <form className="post-answer-input-box" onSubmit={handleSubmit}>
+    <form className="postpage-post-answer-input-box" onSubmit={handleSubmit}>
       <textarea
-        className="post-textarea"
+        className="postpage-post-textarea"
         name="content"
         type="text"
         rows="3"
@@ -42,9 +42,14 @@ export default function PostAnswerInputBox(props) {
       <small className="lightgray">
         {count}/{maxLength}
       </small>
-      <button className="standard-button" type="submit">
-        Responder
-      </button>
+      <div className="postpage-post-answer-buttons">
+        <button className="standard-button" type="submit">
+          Endossar
+        </button>
+        <button className="standard-deny-button" type="submit">
+          Refutar
+        </button>
+      </div>
     </form>
   );
 }

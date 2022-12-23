@@ -1,6 +1,7 @@
 .post-feed {
   display: flex;
   flex-direction: column;
+  gap: 20px;
   width: 540px;
   padding: 100px 20px;
 }
@@ -13,7 +14,7 @@
 }
 
 .postpage-post-content {
-  padding: 100px 20px 100px 20px;
+  padding: 50px 20px 50px 20px;
   width: 500px;
   gap: 20px;
   display: flex;
@@ -28,20 +29,20 @@
 
 .postpage-post-answers {
   display: flex;
-  align-items: center;
-  gap: 5px;
-  padding: 0px 20px 20px 20px;
+  gap: 10px;
+  padding: 0px 20px 0px 20px;
 }
 
 .postpage-post-answers-picture {
   width: 56px;
   height: 56px;
-  border: 2px solid #202529;
+  border: 2px solid black;
 }
 
 .postpage-post-answers-content {
   display: flex;
   flex-direction: column;
+  gap: 5px;
   word-break: break-word;
   white-space: pre-wrap;
 }
@@ -53,4 +54,17 @@
   width: 500px;
   padding: 0px 20px 20px 20px;
   background-color: #32383d;
+}
+
+.postpage-post-textarea {
+  width: 480px;
+  border: none;
+  background-color: #4c555c;
+  color: lightgray;
+  padding: 10px;
+}
+
+.postpage-post-answer-buttons {
+  display: flex;
+  gap: 20px;
 }

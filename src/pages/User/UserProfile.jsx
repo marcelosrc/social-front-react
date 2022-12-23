@@ -9,7 +9,7 @@ export default function UserProfile() {
     <div className="user-profile">
       <div className="user-profile-panel">
         <div className="user-profile-panel-status">
-          <Link to="/following/">
+          <Link to="/following">
             <p>Seguindo {user.followingLen}</p>
           </Link>
           <Link to="/followers">

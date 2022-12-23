@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import PostInputBox from "./PostInputBox";
-import formatDate from "../../components/formatDate";
 
 export default function UserFeed() {
   const [posts, setPosts] = React.useState([]);
@@ -32,11 +31,9 @@ export default function UserFeed() {
         </div>
         <div className="post-content">
           <p>{post.content}</p>
-          <small>
-            <i>
-              ({post.surname.toUpperCase()}, {formatDate(post.date)})
-            </i>
-          </small>
+        </div>
+        <div className="post-info">
+          <small>{post.answerPosts.length} resposta{post.answerPosts.length !== 1 ? "s" : ""}</small>
         </div>
       </Link>
     </div>

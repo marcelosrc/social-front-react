@@ -1,5 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
+import CardsPanel from "../../components/CardsPanel/CardsPanel";
 import LoadingPage from "../../components/LoadingPage";
 
 const AnyUserProfile = React.lazy(() => import("../AnyUser/AnyUserProfile"));
@@ -64,6 +65,7 @@ export default function PostPage() {
       >
         <PostFeed post={post} />
       </React.Suspense>
+      <CardsPanel anyUser={anyUser} />
     </div>
   );
 }
