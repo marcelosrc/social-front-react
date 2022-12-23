@@ -53,7 +53,7 @@ export default function AnyUserFollowersGridPage() {
     <>
       <div className="top-empty-space" />
       <div className="grid-title">
-        <h1>Devotos de {anyUser.name}</h1>
+        <h1>Devotos de {anyUser.name} {anyUser.surname}</h1>
       </div>
       <div className="grid">{renderedCard}</div>
     </>
