@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../../App";
+import { UserContext } from "../Home/HomePage";
 
 export default function UserProfile() {
-  const user = React.useContext(AuthContext);
+  const { user } = React.useContext(UserContext);
 
   return (
     <div className="user-profile">
@@ -18,7 +18,7 @@ export default function UserProfile() {
           <Link to={"/users/" + user._id}>
             <p>Publicações {user.postsLen}</p>
           </Link>
-          <p>Carteira {user.score}R$</p>
+          <p>Saldo R${user.score},00</p>
         </div>
       </div>
     </div>

@@ -1,8 +1,8 @@
 import React from "react";
-import { AuthContext } from "../../App";
+import { UserContext } from "../Home/HomePage";
 
-export default function PostInputBox() {
-  const user = React.useContext(AuthContext);
+export default function PostInputBox(props) {
+  const { user, setReloadUser } = React.useContext(UserContext);
   const [postContent, setPostContent] = React.useState("");
   const [count, setCount] = React.useState(0);
   const maxLength = 300;
@@ -18,7 +18,10 @@ export default function PostInputBox() {
       body: JSON.stringify({ $inc: { score: -postValue } }),
     })
       .then((res) => res.json())
-      .then((data) => {});
+      .then((data) => {
+        props.setReloadFeed(true);
+        setReloadUser(true);
+      });
   };
 
   const handleChange = (event) => {
@@ -71,7 +74,7 @@ export default function PostInputBox() {
         }
         type="submit"
       >
-        Publicar ({postValue}R$)
+        Publicar (R${postValue},00)
       </button>
     </form>
   );

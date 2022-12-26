@@ -1,8 +1,8 @@
 import React from "react";
-import { AuthContext } from "../App";
+import { UserContext } from "../pages/Home/HomePage";
 
 export default function PostAnswerInputBox(props) {
-  const user = React.useContext(AuthContext);
+  const { user, setReloadUser } = React.useContext(UserContext);
   const [postContent, setPostContent] = React.useState("");
   const [count, setCount] = React.useState(0);
   const maxLength = 300;
@@ -18,7 +18,9 @@ export default function PostAnswerInputBox(props) {
       body: JSON.stringify({ $inc: { score: -postValue } }),
     })
       .then((res) => res.json())
-      .then((data) => {});
+      .then((data) => {
+        setReloadUser(true);
+      });
   };
 
   const handleChange = (event) => {
@@ -72,7 +74,7 @@ export default function PostAnswerInputBox(props) {
           name="like"
           type="submit"
         >
-          Endossar ({postValue}R$)
+          Endossar (R${postValue},00)
         </button>
         <button
           className={
@@ -81,7 +83,7 @@ export default function PostAnswerInputBox(props) {
           name="dislike"
           type="submit"
         >
-          Refutar ({postValue}R$)
+          Refutar (R${postValue},00)
         </button>
       </div>
     </form>

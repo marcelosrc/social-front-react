@@ -1,9 +1,9 @@
 import React from "react";
-import { AuthContext } from "../../App";
+import { UserContext } from "../Home/HomePage";
 import { Link } from "react-router-dom";
 
 export default function Header() {
-  const user = React.useContext(AuthContext);
+  const { user } = React.useContext(UserContext);
 
   return (
     <>

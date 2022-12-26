@@ -6,9 +6,12 @@ import CardsPanel from "../../components/CardsPanel/CardsPanel";
 const AnyUserProfile = React.lazy(() => import("../AnyUser/AnyUserProfile"));
 const AnyUserFeed = React.lazy(() => import("./AnyUserFeed"));
 
+export const AnyUserContext = React.createContext({});
+
 export default function AnyUserPage() {
   const routerIdParam = useParams();
   const [anyUser, setAnyUser] = React.useState({});
+  const [reloadAnyUser, setReloadAnyUser] = React.useState(false);
 
   React.useEffect(() => {
     fetch("/users/read/" + routerIdParam.userId, {
@@ -21,30 +24,33 @@ export default function AnyUserPage() {
       .then((res) => res.json())
       .then((data) => {
         setAnyUser(data);
+        setReloadAnyUser(false);
       });
-  }, [routerIdParam.userId]);
+  }, [reloadAnyUser, routerIdParam.userId]);
 
   return (
-    <div className="homepage-flex-container">
-      <React.Suspense
-        fallback={
-          <div className="profile">
-            <LoadingPage />
-          </div>
-        }
-      >
-        <AnyUserProfile anyUser={anyUser} />
-      </React.Suspense>
-      <React.Suspense
-        fallback={
-          <div className="generalfeed">
-            <LoadingPage />
-          </div>
-        }
-      >
-        <AnyUserFeed anyUser={anyUser} />
-      </React.Suspense>
-      <CardsPanel anyUser={anyUser} />
-    </div>
+    <AnyUserContext.Provider value={{ anyUser, setReloadAnyUser }}>
+      <div className="homepage-flex-container">
+        <React.Suspense
+          fallback={
+            <div className="profile">
+              <LoadingPage />
+            </div>
+          }
+        >
+          <AnyUserProfile />
+        </React.Suspense>
+        <React.Suspense
+          fallback={
+            <div className="generalfeed">
+              <LoadingPage />
+            </div>
+          }
+        >
+          <AnyUserFeed />
+        </React.Suspense>
+        <CardsPanel />
+      </div>
+    </AnyUserContext.Provider>
   );
 }

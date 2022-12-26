@@ -8,7 +8,6 @@ const PostFeed = React.lazy(() => import("./PostFeed"));
 
 export default function PostPage() {
   const routerIdParam = useParams();
-  const [anyUser, setAnyUser] = React.useState({});
   const [post, setPost] = React.useState({
     _id: "",
     parentId: "",
@@ -31,17 +30,6 @@ export default function PostPage() {
       .then((res) => res.json())
       .then((data) => {
         setPost(data);
-        fetch("/users/read/" + data.ownerId, {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-            "content-type": "application/json; charset=UTF-8",
-          },
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            setAnyUser(data);
-          });
       });
   }, [routerIdParam.postId]);
 
@@ -54,7 +42,7 @@ export default function PostPage() {
           </div>
         }
       >
-        <AnyUserProfile anyUser={anyUser} />
+        <AnyUserProfile />
       </React.Suspense>
       <React.Suspense
         fallback={
@@ -65,7 +53,7 @@ export default function PostPage() {
       >
         <PostFeed post={post} />
       </React.Suspense>
-      <CardsPanel anyUser={anyUser} />
+      <CardsPanel />
     </div>
   );
 }
