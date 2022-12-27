@@ -21,12 +21,15 @@ export default function AnyUserFeed() {
 
   const renderedPost = posts.map((post) => (
     <div key={post._id} className="post">
-      <Link to={"/posts/" + post._id}>
+      <Link to={"/" + post.parentId + "/" + post._id}>
         <div className="post-content">
           <p>{post.content}</p>
         </div>
         <div className="post-info">
-          <small>{post.answerPosts.length} resposta{post.answerPosts.length !== 1 ? "s" : ""}</small>
+          <small>
+            {post.answerPosts.length} resposta
+            {post.answerPosts.length !== 1 ? "s" : ""}
+          </small>
         </div>
       </Link>
     </div>

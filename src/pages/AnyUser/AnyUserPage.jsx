@@ -1,10 +1,7 @@
 import React from "react";
-import { useParams } from "react-router-dom";
-import LoadingPage from "../../components/LoadingPage";
+import { Outlet, useParams } from "react-router-dom";
 import CardsPanel from "../../components/CardsPanel/CardsPanel";
-
-const AnyUserProfile = React.lazy(() => import("../AnyUser/AnyUserProfile"));
-const AnyUserFeed = React.lazy(() => import("./AnyUserFeed"));
+import AnyUserProfile from "../AnyUser/AnyUserProfile";
 
 export const AnyUserContext = React.createContext({});
 
@@ -31,24 +28,8 @@ export default function AnyUserPage() {
   return (
     <AnyUserContext.Provider value={{ anyUser, setReloadAnyUser }}>
       <div className="homepage-flex-container">
-        <React.Suspense
-          fallback={
-            <div className="profile">
-              <LoadingPage />
-            </div>
-          }
-        >
-          <AnyUserProfile />
-        </React.Suspense>
-        <React.Suspense
-          fallback={
-            <div className="generalfeed">
-              <LoadingPage />
-            </div>
-          }
-        >
-          <AnyUserFeed />
-        </React.Suspense>
+        <AnyUserProfile />
+        <Outlet />
         <CardsPanel />
       </div>
     </AnyUserContext.Provider>

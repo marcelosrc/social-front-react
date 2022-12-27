@@ -21,6 +21,9 @@ export default function Header() {
               <b>{user.name}</b>
             </p>
           </Link>
+          <p>
+              <b>R${user.score},00</b>
+            </p>
         </div>
         <div className="header-right-pane">
           <Link to="/logout">

@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import FollowButton from "../../components/FollowButton";
 
 export default function AnyUserFollowingGridPage() {
   const routerIdParam = useParams();
@@ -35,7 +34,7 @@ export default function AnyUserFollowingGridPage() {
 
   const renderedCard = cards.map((card) => (
     <div key={card._id} className="card">
-      <Link to={"/users/" + card._id}>
+      <Link to={"/" + card._id}>
         <img
           className="card-picture"
           src={card.profilePicPath}
@@ -46,14 +45,15 @@ export default function AnyUserFollowingGridPage() {
         <h1>{card.name}</h1>
         <h1>{card.surname}</h1>
       </div>
-      <FollowButton anyUser={card} />
     </div>
   ));
   return (
     <>
       <div className="top-empty-space" />
       <div className="grid-title">
-        <h1>Influenciadores de {anyUser.name} {anyUser.surname}</h1>
+        <h1>
+          Influenciadores de {anyUser.name} {anyUser.surname}
+        </h1>
       </div>
       <div className="grid">{renderedCard}</div>
     </>

@@ -26,7 +26,7 @@ export default function UserFeed() {
 
   const renderedPost = posts.map((post) => (
     <div key={post._id} className="post">
-      <Link to={"/posts/" + post._id}>
+      <Link to={post.parentId + "/" + post._id}>
         <div className="post-header">
           <img
             className="post-profile-picture"

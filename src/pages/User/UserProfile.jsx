@@ -9,16 +9,15 @@ export default function UserProfile() {
     <div className="user-profile">
       <div className="user-profile-panel">
         <div className="user-profile-panel-status">
-          <Link to="/following">
+          <Link to={"/" + user._id + "/following"}>
             <p>Seguindo {user.followingLen}</p>
           </Link>
-          <Link to="/followers">
+          <Link to={"/" + user._id + "/followers"}>
             <p>Devotos {user.followersLen}</p>
           </Link>
-          <Link to={"/users/" + user._id}>
+          <Link to={"/" + user._id}>
             <p>Publicações {user.postsLen}</p>
           </Link>
-          <p>Saldo R${user.score},00</p>
         </div>
       </div>
     </div>

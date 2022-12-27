@@ -20,6 +20,7 @@ export default function PostAnswerInputBox(props) {
       .then((res) => res.json())
       .then((data) => {
         setReloadUser(true);
+        props.setReloadPost(true);
       });
   };
 

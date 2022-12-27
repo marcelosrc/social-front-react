@@ -8,7 +8,7 @@ export default function AnyUserProfile() {
 
   return (
     <div className="anyuser-profile">
-      <Link to={"/users/" + anyUser._id}>
+      <Link to={"/" + anyUser._id}>
         <img
           className="anyuser-profile-picture"
           src={anyUser.profilePicPath}
@@ -16,22 +16,22 @@ export default function AnyUserProfile() {
         />
       </Link>
       <div className="anyuser-profile-name">
-        <Link to={"/users/" + anyUser._id}>
+        <Link to={"/" + anyUser._id}>
           <h2>{anyUser.name}</h2>
         </Link>
-        <Link to={"/users/" + anyUser._id}>
+        <Link to={"/" + anyUser._id}>
           <h2>{anyUser.surname}</h2>
         </Link>
       </div>
       <div className="anyuser-profile-panel">
         <div className="anyuser-profile-panel-status">
-          <Link to={"/users/" + anyUser._id + "/following"}>
+          <Link to={"/" + anyUser._id + "/following"}>
             <p>Seguindo {anyUser.followingLen}</p>
           </Link>
-          <Link to={"/users/" + anyUser._id + "/followers"}>
+          <Link to={"/" + anyUser._id + "/followers"}>
             <p>Devotos {anyUser.followersLen}</p>
           </Link>
-          <Link to={"/users/" + anyUser._id}>
+          <Link to={"/" + anyUser._id}>
             <p>Publicações {anyUser.postsLen}</p>
           </Link>
         </div>
