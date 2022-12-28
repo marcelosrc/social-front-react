@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
 import PostAnswerInputBox from "../../components/PostAnswerInputBox";
+import PostAnswerAnswerInputBox from "../../components/PostAnswerAnswerInputBox";
 import formatDate from "../../components/formatDate";
 
 export default function AnyUserPost() {
@@ -34,21 +35,48 @@ export default function AnyUserPost() {
 
   const answerPosts = post.answerPosts.map((answerPost) => {
     return (
-      <div key={answerPost._id} className="postpage-post-answers">
-        <Link to={"/" + answerPost.ownerId}>
-          <img
-            className="postpage-post-answers-picture"
-            src={answerPost.profilePicPath}
-            alt={answerPost.name}
+      <div key={answerPost._id} className="postpage-post-answers-container">
+        <div className="postpage-post-answers">
+          <Link to={"/" + answerPost.ownerId}>
+            <img
+              className="postpage-post-answers-picture"
+              src={answerPost.profilePicPath}
+              alt={answerPost.name}
+            />
+          </Link>
+          <div className="postpage-post-answers-content">
+            <h3>
+              <Link to={"/" + answerPost.ownerId}>
+                <b>{answerPost.name}</b>
+              </Link>
+            </h3>
+            <p>{answerPost.content}</p>
+          </div>
+        </div>
+        {answerPost.answerAnswerPosts.map((answerAnswerPost) => {
+          return (
+            <div
+              key={answerAnswerPost._id}
+              className="postpage-post-answers-answers"
+            >
+              <Link to={"/" + answerAnswerPost.ownerId}>
+                <img
+                  className="postpage-post-answers-answers-picture"
+                  src={answerAnswerPost.profilePicPath}
+                  alt={answerAnswerPost.name}
+                />
+              </Link>
+              <div className="postpage-post-answers-answers-content">
+                <p>{answerAnswerPost.content}</p>
+              </div>
+            </div>
+          );
+        })}
+        <div className="postpage-post-answers-answers-answer">
+          <PostAnswerAnswerInputBox
+            postId={answerPost._id}
+            setReloadPost={setReloadPost}
           />
-        </Link>
-        <div className="postpage-post-answers-content">
-          <h3>
-            <Link to={"/" + answerPost.ownerId}>
-              <b>{answerPost.name}</b>
-            </Link>
-          </h3>
-          <p>{answerPost.content}</p>
         </div>
       </div>
     );

@@ -27,26 +27,6 @@
   font-size: 22px;
 }
 
-.postpage-post-answers {
-  display: flex;
-  gap: 10px;
-  padding: 0px 20px 0px 20px;
-}
-
-.postpage-post-answers-picture {
-  width: 56px;
-  height: 56px;
-  border: 2px solid black;
-}
-
-.postpage-post-answers-content {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  word-break: break-word;
-  white-space: pre-wrap;
-}
-
 .postpage-post-answer-input-box {
   display: flex;
   flex-direction: column;
@@ -67,4 +47,71 @@
 .postpage-post-answer-buttons {
   display: flex;
   gap: 20px;
+}
+
+.postpage-post-answers-container {
+  display: flex;
+  flex-direction: column;
+  padding: 0px 20px 0px 20px;
+}
+
+.postpage-post-answers {
+  display: flex;
+  gap: 10px;
+}
+
+.postpage-post-answers-picture {
+  width: 56px;
+  height: 56px;
+  border: 2px solid black;
+}
+
+.postpage-post-answers-content {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  word-break: break-word;
+  white-space: pre-wrap;
+}
+
+.postpage-post-answers-answers {
+  display: flex;
+  gap: 10px;
+  padding: 10px 0px 0px 70px;
+}
+
+.postpage-post-answers-answers-picture {
+  width: 36px;
+  height: 36px;
+  border: 2px solid black;
+}
+
+.postpage-post-answers-answers-content {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  word-break: break-word;
+  white-space: pre-wrap;
+}
+
+.postpage-post-answers-answers-content > p {
+  font-size: 14px;
+}
+
+.postpage-post-answers-answers-answer {
+  padding: 10px 0px 0px 70px;
+}
+
+.postpage-post-answers-answers-textarea {
+  width: 410px;
+  border: none;
+  background-color: #4c555c;
+  color: lightgray;
+  padding: 10px;
+}
+
+.postpage-post-answers-answers-buttonarea {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
