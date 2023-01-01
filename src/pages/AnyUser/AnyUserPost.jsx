@@ -53,7 +53,7 @@ export default function AnyUserPost() {
             <p>{answerPost.content}</p>
           </div>
         </div>
-        {answerPost.answerAnswerPosts.map((answerAnswerPost) => {
+        {answerPost.answerPosts.map((answerAnswerPost) => {
           return (
             <div
               key={answerAnswerPost._id}
