@@ -14,7 +14,8 @@
 
 .anyuser-profile {
   position: fixed;
-  left: 100px;
+  left: 50%;
+  margin-left: -530px;
   display: flex;
   flex-direction: column;
   gap: 10px;
