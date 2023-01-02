@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "../Home/HomePage";
-import PostInputBox from "./PostInputBox";
+import PostInputBox from "../../components/PostInputBox";
 
 export default function UserFeed() {
   const { setReloadUser } = React.useContext(UserContext);

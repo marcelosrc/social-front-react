@@ -31,8 +31,10 @@ export default function PostAnswerInputBox(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (user.score <= 0) {
-      alert("Você não tem dinheiro");
+    if (user.score <= postValue) {
+      alert(
+        `Você precisa ter, no mínimo, ${postValue} pontos para endossar/refutar`
+      );
       setPostContent("");
       setCount(0);
     } else {
@@ -42,7 +44,10 @@ export default function PostAnswerInputBox(props) {
           Authorization: `Bearer ${localStorage.getItem("jwt")}`,
           "content-type": "application/json; charset=UTF-8",
         },
-        body: JSON.stringify({ content: postContent }),
+        body: JSON.stringify({
+          content: postContent,
+          reaction: event.nativeEvent.submitter.name,
+        }),
       })
         .then((res) => res.json())
         .then((data) => {
@@ -57,7 +62,6 @@ export default function PostAnswerInputBox(props) {
     <form className="postpage-post-answer-input-box" onSubmit={handleSubmit}>
       <textarea
         className="postpage-post-textarea"
-        name="content"
         type="text"
         rows="3"
         value={postContent}
@@ -70,21 +74,25 @@ export default function PostAnswerInputBox(props) {
       <div className="postpage-post-answer-buttons">
         <button
           className={
-            user.score <= 0 ? "standard-grayed-button" : "standard-button"
+            user.score <= postValue
+              ? "standard-grayed-button"
+              : "standard-button"
           }
           name="like"
           type="submit"
         >
-          Endossar (R${postValue},00)
+          Endossar ({postValue} pontos)
         </button>
         <button
           className={
-            user.score <= 0 ? "standard-grayed-button" : "standard-deny-button"
+            user.score <= postValue
+              ? "standard-grayed-button"
+              : "standard-deny-button"
           }
           name="dislike"
           type="submit"
         >
-          Refutar (R${postValue},00)
+          Refutar ({postValue} pontos)
         </button>
       </div>
     </form>

@@ -22,7 +22,7 @@ export default function Header() {
             </p>
           </Link>
           <p>
-              <b>R${user.score},00</b>
+              <b>({user.score} pontos)</b>
             </p>
         </div>
         <div className="header-right-pane">

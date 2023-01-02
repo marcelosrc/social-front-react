@@ -14,6 +14,7 @@ export default function AnyUserPost() {
     surname: "",
     profilePicPath: null,
     content: "",
+    reaction: "",
     date: "",
     answerPosts: [],
   });
@@ -47,7 +48,15 @@ export default function AnyUserPost() {
           <div className="postpage-post-answers-content">
             <h3>
               <Link to={"/" + answerPost.ownerId}>
-                <b>{answerPost.name}</b>
+                <b>
+                  {`${answerPost.name} ${
+                    answerPost.reaction === "dislike"
+                      ? "refutou essa publicação:"
+                      : answerPost.reaction === "like"
+                      ? "endossou essa publicação:"
+                      : ""
+                  }`}
+                </b>
               </Link>
             </h3>
             <p>{answerPost.content}</p>

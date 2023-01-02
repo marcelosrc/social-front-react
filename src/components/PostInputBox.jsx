@@ -1,5 +1,5 @@
 import React from "react";
-import { UserContext } from "../Home/HomePage";
+import { UserContext } from "../pages/Home/HomePage";
 
 export default function PostInputBox(props) {
   const { user, setReloadUser } = React.useContext(UserContext);
@@ -31,8 +31,8 @@ export default function PostInputBox(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (user.score <= 0) {
-      alert("Você não tem dinheiro");
+    if (user.score <= postValue) {
+      alert(`Você precisa ter, no mínimo, ${postValue} pontos para publicar`);
       setPostContent("");
       setCount(0);
     } else {
@@ -70,11 +70,11 @@ export default function PostInputBox(props) {
       </small>
       <button
         className={
-          user.score <= 0 ? "standard-grayed-button" : "standard-button"
+          user.score <= postValue ? "standard-grayed-button" : "standard-button"
         }
         type="submit"
       >
-        Publicar (R${postValue},00)
+        Publicar ({postValue} pontos)
       </button>
     </form>
   );

@@ -13,10 +13,10 @@ export default function UserProfile() {
             <p>Seguindo {user.followingLen}</p>
           </Link>
           <Link to={"/" + user._id + "/followers"}>
-            <p>Devotos {user.followersLen}</p>
+            <p>{user.followersLen} devotos </p>
           </Link>
           <Link to={"/" + user._id}>
-            <p>Publicações {user.postsLen}</p>
+            <p>{user.postsLen} publicações </p>
           </Link>
         </div>
       </div>

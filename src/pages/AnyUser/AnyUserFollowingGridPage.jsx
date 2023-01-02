@@ -52,7 +52,7 @@ export default function AnyUserFollowingGridPage() {
       <div className="top-empty-space" />
       <div className="grid-title">
         <h1>
-          Influenciadores de {anyUser.name} {anyUser.surname}
+          As {anyUser.followingLen} pessoas que influenciam a estupidez de {anyUser.name} {anyUser.surname}
         </h1>
       </div>
       <div className="grid">{renderedCard}</div>
