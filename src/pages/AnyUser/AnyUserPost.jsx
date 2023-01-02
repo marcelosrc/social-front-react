@@ -36,8 +36,17 @@ export default function AnyUserPost() {
 
   const answerPosts = post.answerPosts.map((answerPost) => {
     return (
-      <div key={answerPost._id} className="postpage-post-answers-container">
-        <div className="postpage-post-answers">
+      <div
+        key={answerPost._id}
+        className={
+          answerPost.reaction === "dislike"
+            ? "postpage-post-dislike-answer"
+            : answerPost.reaction === "like"
+            ? "postpage-post-like-answer"
+            : "postpage-post-answer"
+        }
+      >
+        <div className="postpage-post-answers-content">
           <Link to={"/" + answerPost.ownerId}>
             <img
               className="postpage-post-answers-picture"
@@ -45,19 +54,17 @@ export default function AnyUserPost() {
               alt={answerPost.name}
             />
           </Link>
-          <div className="postpage-post-answers-content">
+          <div className="postpage-post-answers-text">
             <h3>
-              <Link to={"/" + answerPost.ownerId}>
-                <b>
-                  {`${answerPost.name} ${
-                    answerPost.reaction === "dislike"
-                      ? "refutou essa publicação:"
-                      : answerPost.reaction === "like"
-                      ? "endossou essa publicação:"
-                      : ""
-                  }`}
-                </b>
-              </Link>
+              <b>
+                {`${answerPost.name} ${
+                  answerPost.reaction === "dislike"
+                    ? "REFUTOU essa publicação:"
+                    : answerPost.reaction === "like"
+                    ? "endossou essa publicação:"
+                    : ""
+                }`}
+              </b>
             </h3>
             <p>{answerPost.content}</p>
           </div>
@@ -81,7 +88,7 @@ export default function AnyUserPost() {
             </div>
           );
         })}
-        <div className="postpage-post-answers-answers-answer">
+        <div className="postpage-post-answers-answers-input-box">
           <PostAnswerAnswerInputBox
             postId={answerPost._id}
             setReloadPost={setReloadPost}
@@ -95,7 +102,11 @@ export default function AnyUserPost() {
     <div className="post-feed">
       <div key={post._id} className="postpage-post">
         <div className="postpage-post-content">
-          <p>{post.content}</p>
+          <p>
+            {post.content.substring(0, 1) === '"' ? "" : '"'}
+            {post.content}
+            {post.content.substring(-1, 1) === '"' ? "" : '"'}
+          </p>
           <small>
             <i>
               ({post.surname.toUpperCase()}, {formatDate(post.date)})

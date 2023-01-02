@@ -29,7 +29,10 @@ export default function PostAnswerAnswerInputBox(props) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form
+      className="postpage-post-answers-answers-form"
+      onSubmit={handleSubmit}
+    >
       <textarea
         className="postpage-post-answers-answers-textarea"
         type="text"
@@ -38,14 +41,12 @@ export default function PostAnswerAnswerInputBox(props) {
         onChange={handleChange}
         maxLength={maxLength}
       />
-      <div className="postpage-post-answers-answers-buttonarea">
-        <button className={"standard-button"} type="submit">
-          Responder
-        </button>
-        <small className="lightgray">
-          {count}/{maxLength}
-        </small>
-      </div>
+      <small className="lightgray">
+        {count}/{maxLength}
+      </small>
+      <button className={"standard-button"} type="submit">
+        Responder
+      </button>
     </form>
   );
 }

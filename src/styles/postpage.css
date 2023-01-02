@@ -49,15 +49,30 @@
   gap: 20px;
 }
 
-.postpage-post-answers-container {
+.postpage-post-answer {
   display: flex;
   flex-direction: column;
-  padding: 0px 20px 0px 20px;
+  background-color: #32383d;
 }
 
-.postpage-post-answers {
+.postpage-post-dislike-answer {
+  display: flex;
+  flex-direction: column;
+  background-color: #3d3232;
+}
+
+.postpage-post-like-answer {
+  display: flex;
+  flex-direction: column;
+  background-color: #323d3c;
+}
+
+.postpage-post-answers-content {
   display: flex;
   gap: 10px;
+  padding: 20px;
+  word-break: break-word;
+  white-space: pre-wrap;
 }
 
 .postpage-post-answers-picture {
@@ -66,23 +81,22 @@
   border: 2px solid black;
 }
 
-.postpage-post-answers-content {
+.postpage-post-answers-text {
   display: flex;
   flex-direction: column;
   gap: 5px;
-  word-break: break-word;
-  white-space: pre-wrap;
 }
 
 .postpage-post-answers-answers {
   display: flex;
   gap: 10px;
-  padding: 10px 0px 0px 20px;
+  padding: 0px 20px 20px 20px;
 }
 
 .postpage-post-answers-answers-picture {
   width: 36px;
   height: 36px;
+  margin-left: 20px;
   border: 2px solid black;
 }
 
@@ -98,8 +112,14 @@
   font-size: 14px;
 }
 
-.postpage-post-answers-answers-answer {
-  padding: 10px 0px 0px 0px;
+.postpage-post-answers-answers-input-box {
+  padding: 0px 20px 20px 20px;
+}
+
+.postpage-post-answers-answers-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .postpage-post-answers-answers-textarea {
@@ -108,10 +128,4 @@
   background-color: #4c555c;
   color: lightgray;
   padding: 10px;
-}
-
-.postpage-post-answers-answers-buttonarea {
-  display: flex;
-  align-items: center;
-  gap: 10px;
 }

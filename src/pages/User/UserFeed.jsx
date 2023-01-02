@@ -35,12 +35,20 @@ export default function UserFeed() {
           />
         </div>
         <div className="post-content">
-          <p>{post.content}</p>
+          <p>
+            {post.content.substring(0, 1) === '"' ? "" : '"'}
+            {post.content}
+            {post.content.substring(-1, 1) === '"' ? "" : '"'}
+          </p>
         </div>
         <div className="post-info">
           <small>
-            {post.answerPosts.length} resposta
-            {post.answerPosts.length !== 1 ? "s" : ""}
+            {post.answerPostsCount} resposta
+            {post.answerPostsCount !== 1 ? "s" : ""} (
+            {post.answerDislikePostsCount} refutaç
+            {post.answerDislikePostsCount !== 1 ? "ões" : "ão"} e{" "}
+            {post.answerLikePostsCount} endosso
+            {post.answerLikePostsCount !== 1 ? "s" : ""})
           </small>
         </div>
       </Link>
