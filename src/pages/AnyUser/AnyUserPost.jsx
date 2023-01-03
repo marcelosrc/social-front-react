@@ -1,11 +1,13 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
+import { UserContext } from "../Home/HomePage";
 import PostAnswerInputBox from "../../components/PostAnswerInputBox";
 import PostAnswerAnswerInputBox from "../../components/PostAnswerAnswerInputBox";
 import formatDate from "../../components/formatDate";
 
 export default function AnyUserPost() {
   const routerIdParam = useParams();
+  const { user } = React.useContext(UserContext);
   const [reloadPost, setReloadPost] = React.useState(false);
   const [post, setPost] = React.useState({
     _id: "",
@@ -98,6 +100,19 @@ export default function AnyUserPost() {
     );
   });
 
+  const checkAnswerAllowance = () => {
+    let allow = true;
+    for (let i = 0; i < post.answerPosts.length; i++) {
+      if (post.answerPosts[i].ownerId === user._id) {
+        allow = false;
+      }
+    }
+    if (user._id !== routerIdParam.userId && allow) {
+      allow = true;
+    }
+    return allow;
+  };
+
   return (
     <div className="post-feed">
       <div key={post._id} className="postpage-post">
@@ -113,10 +128,14 @@ export default function AnyUserPost() {
             </i>
           </small>
         </div>
-        <PostAnswerInputBox
-          postId={routerIdParam.postId}
-          setReloadPost={setReloadPost}
-        />
+        {checkAnswerAllowance() ? (
+          <PostAnswerInputBox
+            postId={routerIdParam.postId}
+            setReloadPost={setReloadPost}
+          />
+        ) : (
+          <></>
+        )}
       </div>
       {answerPosts}
     </div>

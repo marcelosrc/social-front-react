@@ -1,9 +1,7 @@
 import React from "react";
-import { useParams } from "react-router-dom";
 import { UserContext } from "../pages/Home/HomePage";
 
 export default function PostAnswerInputBox(props) {
-  const routerIdParam = useParams();
   const { user, setReloadUser } = React.useContext(UserContext);
   const [postContent, setPostContent] = React.useState("");
   const [count, setCount] = React.useState(0);
@@ -60,47 +58,43 @@ export default function PostAnswerInputBox(props) {
     }
   };
 
-  if (user._id !== routerIdParam.userId) {
-    return (
-      <form className="postpage-post-answer-input-box" onSubmit={handleSubmit}>
-        <textarea
-          className="postpage-post-textarea"
-          type="text"
-          rows="3"
-          value={postContent}
-          onChange={handleChange}
-          maxLength={maxLength}
-        />
-        <small className="lightgray">
-          {count}/{maxLength}
-        </small>
-        <div className="postpage-post-answer-buttons">
-          <button
-            className={
-              user.score <= postValue
-                ? "standard-grayed-button"
-                : "standard-button"
-            }
-            name="like"
-            type="submit"
-          >
-            Endossar ({postValue} pontos)
-          </button>
-          <button
-            className={
-              user.score <= postValue
-                ? "standard-grayed-button"
-                : "standard-deny-button"
-            }
-            name="dislike"
-            type="submit"
-          >
-            Refutar ({postValue} pontos)
-          </button>
-        </div>
-      </form>
-    );
-  } else {
-    <></>;
-  }
+  return (
+    <form className="postpage-post-answer-input-box" onSubmit={handleSubmit}>
+      <textarea
+        className="postpage-post-textarea"
+        type="text"
+        rows="3"
+        value={postContent}
+        onChange={handleChange}
+        maxLength={maxLength}
+      />
+      <small className="lightgray">
+        {count}/{maxLength}
+      </small>
+      <div className="postpage-post-answer-buttons">
+        <button
+          className={
+            user.score <= postValue
+              ? "standard-grayed-button"
+              : "standard-button"
+          }
+          name="like"
+          type="submit"
+        >
+          Endossar ({postValue} pontos)
+        </button>
+        <button
+          className={
+            user.score <= postValue
+              ? "standard-grayed-button"
+              : "standard-deny-button"
+          }
+          name="dislike"
+          type="submit"
+        >
+          Refutar ({postValue} pontos)
+        </button>
+      </div>
+    </form>
+  );
 }
