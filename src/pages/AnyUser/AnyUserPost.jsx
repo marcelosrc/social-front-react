@@ -36,6 +36,16 @@ export default function AnyUserPost() {
       });
   }, [reloadPost, routerIdParam.postId]);
 
+  const allowAnswer = () => {
+    let allow = true;
+    for (let i = 0; i < post.answerPosts.length; i++) {
+      if (post.answerPosts[i].ownerId === user._id) {
+        allow = false;
+      }
+    }
+    return allow;
+  };
+
   const answerPosts = post.answerPosts.map((answerPost) => {
     return (
       <div
@@ -100,19 +110,6 @@ export default function AnyUserPost() {
     );
   });
 
-  const checkAnswerAllowance = () => {
-    let allow = true;
-    for (let i = 0; i < post.answerPosts.length; i++) {
-      if (post.answerPosts[i].ownerId === user._id) {
-        allow = false;
-      }
-    }
-    if (user._id !== routerIdParam.userId && allow) {
-      allow = true;
-    }
-    return allow;
-  };
-
   return (
     <div className="post-feed">
       <div key={post._id} className="postpage-post">
@@ -128,7 +125,7 @@ export default function AnyUserPost() {
             </i>
           </small>
         </div>
-        {checkAnswerAllowance() ? (
+        {user._id !== routerIdParam.userId && allowAnswer() ? (
           <PostAnswerInputBox
             postId={routerIdParam.postId}
             setReloadPost={setReloadPost}

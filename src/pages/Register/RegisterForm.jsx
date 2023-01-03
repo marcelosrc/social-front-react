@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate, Link } from "react-router-dom";
+import Cropper from "react-easy-crop";
 
 export default function RegisterForm() {
   const [newUser, setNewUser] = React.useState({
@@ -11,6 +12,7 @@ export default function RegisterForm() {
     password: "",
   });
   const navigate = useNavigate();
+  const [crop, setCrop] = React.useState({ x: 0, y: 0 });
 
   const handleChange = (event) => {
     setNewUser({ ...newUser, [event.target.name]: event.target.value });
@@ -40,8 +42,6 @@ export default function RegisterForm() {
   return (
     <div className="registerpage-right-pane">
       <form className="registerpage-form" onSubmit={handleSubmit}>
-        <label htmlFor="profilePic">Foto</label>
-        <input type="file" name="profilePic" onChange={handleFileChange} />
         <label htmlFor="email">Email</label>
         <input
           className="standard-input"
@@ -81,6 +81,20 @@ export default function RegisterForm() {
           type="password"
           value={newUser.password}
           onChange={handleChange}
+        />
+        <label className="standard-button" htmlFor="profilePic">
+          Foto
+        </label>
+        <input
+          type="file"
+          id="profilePic"
+          name="profilePic"
+          onChange={handleFileChange}
+        />
+        <Cropper
+          image="/media/read/63b1ebb6c7fda9407aad044e/63b1ebb6c7fda9407aad044e"
+          crop={crop}
+          onCropChange={setCrop}
         />
         <button className="standard-button" type="submit">
           Criar
