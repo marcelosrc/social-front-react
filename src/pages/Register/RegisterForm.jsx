@@ -1,8 +1,9 @@
 import React from "react";
-import { useNavigate, Link } from "react-router-dom";
-import Cropper from "react-easy-crop";
+import { useNavigate } from "react-router-dom";
+import PictureWindow from "./PictureWindow";
 
 export default function RegisterForm() {
+  const [pictureWindow, setPictureWindow] = React.useState(false);
   const [newUser, setNewUser] = React.useState({
     profilePic: "",
     email: "",
@@ -12,14 +13,9 @@ export default function RegisterForm() {
     password: "",
   });
   const navigate = useNavigate();
-  const [crop, setCrop] = React.useState({ x: 0, y: 0 });
 
   const handleChange = (event) => {
     setNewUser({ ...newUser, [event.target.name]: event.target.value });
-  };
-
-  const handleFileChange = (event) => {
-    setNewUser({ ...newUser, [event.target.name]: event.target.files[0] });
   };
 
   const handleSubmit = (event) => {
@@ -39,8 +35,25 @@ export default function RegisterForm() {
       });
   };
 
+  const showPictureWindow = () => {
+    console.log(pictureWindow);
+    setPictureWindow(true);
+  };
+
+  const navigateToLogin = () => {
+    navigate("/login");
+  };
+
   return (
     <div className="registerpage-right-pane">
+      {pictureWindow ? (
+        <PictureWindow newUser={newUser} setNewUser={setNewUser} />
+      ) : (
+        <></>
+      )}
+      <button className="standard-button" onClick={showPictureWindow}>
+        Foto
+      </button>
       <form className="registerpage-form" onSubmit={handleSubmit}>
         <label htmlFor="email">Email</label>
         <input
@@ -82,27 +95,13 @@ export default function RegisterForm() {
           value={newUser.password}
           onChange={handleChange}
         />
-        <label className="standard-button" htmlFor="profilePic">
-          Foto
-        </label>
-        <input
-          type="file"
-          id="profilePic"
-          name="profilePic"
-          onChange={handleFileChange}
-        />
-        <Cropper
-          image="/media/read/63b1ebb6c7fda9407aad044e/63b1ebb6c7fda9407aad044e"
-          crop={crop}
-          onCropChange={setCrop}
-        />
         <button className="standard-button" type="submit">
           Criar
         </button>
-        <Link to="/login">
-          <button className="standard-button">Voltar</button>
-        </Link>
       </form>
+      <button className="standard-button" onClick={navigateToLogin}>
+        Voltar
+      </button>
     </div>
   );
 }

@@ -33,26 +33,27 @@ export default function AnyUserFollowingGridPage() {
   }, [routerIdParam.userId]);
 
   const renderedCard = cards.map((card) => (
-    <div key={card._id} className="card">
-      <Link to={"/" + card._id}>
+    <Link to={"/" + card._id}>
+      <div key={card._id} className="card">
         <img
           className="card-picture"
           src={card.profilePicPath}
           alt={card.name}
         />
-      </Link>
-      <div>
-        <h1>{card.name}</h1>
-        <h1>{card.surname}</h1>
+        <div>
+          <h1>{card.name}</h1>
+          <h1>{card.surname}</h1>
+        </div>
       </div>
-    </div>
+    </Link>
   ));
   return (
     <>
       <div className="top-empty-space" />
       <div className="grid-title">
         <h1>
-          As {anyUser.followingLen} pessoas que influenciam a estupidez de {anyUser.name} {anyUser.surname}
+          As {anyUser.followingLen} pessoas que influenciam a estupidez de{" "}
+          {anyUser.name} {anyUser.surname}
         </h1>
       </div>
       <div className="grid">{renderedCard}</div>
