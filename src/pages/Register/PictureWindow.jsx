@@ -1,9 +1,6 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 
 export default function PictureWindow(props) {
-  const navigate = useNavigate();
-
   const handleFileChange = (event) => {
     props.setNewUser({
       ...props.newUser,
@@ -32,14 +29,16 @@ export default function PictureWindow(props) {
     );
   };
 
-  const navigateToRegister = () => {
-    navigate("/register");
+  const showPictureWindow = () => {
+    props.setPictureWindow(false);
   };
+
+  console.log(props.newUser.profilePic);
 
   return (
     <div className="registerpage-picture-page">
       <div className="registerpage-picture-window">
-        <button className="standard-button" onClick={navigateToRegister}>
+        <button className="standard-button" onClick={showPictureWindow}>
           Fechar
         </button>
         <Canvas />

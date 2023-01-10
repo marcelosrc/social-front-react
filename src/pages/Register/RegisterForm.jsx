@@ -36,7 +36,6 @@ export default function RegisterForm() {
   };
 
   const showPictureWindow = () => {
-    console.log(pictureWindow);
     setPictureWindow(true);
   };
 
@@ -47,7 +46,11 @@ export default function RegisterForm() {
   return (
     <div className="registerpage-right-pane">
       {pictureWindow ? (
-        <PictureWindow newUser={newUser} setNewUser={setNewUser} />
+        <PictureWindow
+          newUser={newUser}
+          setNewUser={setNewUser}
+          setPictureWindow={setPictureWindow}
+        />
       ) : (
         <></>
       )}

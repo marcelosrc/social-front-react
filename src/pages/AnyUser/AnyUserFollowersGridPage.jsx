@@ -33,8 +33,8 @@ export default function AnyUserFollowersGridPage() {
   }, [routerIdParam.userId]);
 
   const renderedCard = cards.map((card) => (
-    <Link to={"/" + card._id}>
-      <div key={card._id} className="card">
+    <Link to={"/" + card._id} key={card._id}>
+      <div className="card">
         <img
           className="card-picture"
           src={card.profilePicPath}
